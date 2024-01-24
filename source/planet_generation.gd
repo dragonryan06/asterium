@@ -20,6 +20,7 @@ func _on_generate_pressed():
 			remove_child(c)
 			break
 	var star = Star.instantiate()
+	star.object_inspector = $HUD/ObjectInspector
 	var solar_class = star_data["main-sequence"].keys().pick_random()
 	var data = {}
 	data["obj_title"]=str(randi_range(1,9))+"-"+alphabet.pick_random()+alphabet.pick_random()+"-"+str(randi_range(0,9))+""+str(randi_range(0,9))+""+str(randi_range(0,9))

@@ -19,3 +19,18 @@ func _set_temperature(val:int) -> void:
 func setup(data:Dictionary) -> void:
 	for k in data.keys():
 		set(k,data[k])
+
+var hover = false
+
+func _show_tooltip():
+	if hover:
+		object_inspector.show_tooltip(self)
+
+func _on_hitbox_mouse_entered() -> void:
+	hover = true
+	var timer = get_tree().create_timer(0.5)
+	timer.timeout.connect(_show_tooltip)
+
+func _on_hitbox_mouse_exited() -> void:
+	hover = false
+	object_inspector.hide_tooltip()

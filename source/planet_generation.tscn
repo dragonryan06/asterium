@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8nk8farod758"]
+[gd_scene load_steps=4 format=3 uid="uid://b8nk8farod758"]
 
 [ext_resource type="Script" path="res://source/planet_generation.gd" id="1_w0wtp"]
 [ext_resource type="Script" path="res://source/standard_camera.gd" id="2_kie41"]
+[ext_resource type="PackedScene" uid="uid://biq41mroccyk2" path="res://source/ui/object_inspector.tscn" id="3_ptwlh"]
 
 [node name="PlanetGeneration" type="Node2D"]
 script = ExtResource("1_w0wtp")
@@ -24,5 +25,7 @@ offset_bottom = -88.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "GENERATE A NEW STAR"
+
+[node name="ObjectInspector" parent="HUD" instance=ExtResource("3_ptwlh")]
 
 [connection signal="pressed" from="HUD/Generate" to="." method="_on_generate_pressed"]
