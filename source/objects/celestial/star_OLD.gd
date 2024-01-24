@@ -2,6 +2,11 @@ extends Node2D
 
 @export var spectrum : Gradient
 
+const obj_type = "star"
+
+# this value must be set before this object enters the tree to allow inspecting
+var inspector : Control
+
 var solar_class : String
 var chromaticity : String
 var rotational_velocity : float : set=_set_rotvel# */s ---- 360*/d = 0.004*/s

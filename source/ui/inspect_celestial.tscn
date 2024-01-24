@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://b6wsmd8ri58dw"]
 
-[ext_resource type="Theme" uid="uid://b8ljuij7sans3" path="res://assets/ui/ui_theme.tres" id="1_60j5y"]
-[ext_resource type="StyleBox" uid="uid://cryglg1n6wl06" path="res://assets/ui/dialog_stylebox.tres" id="2_b3tsl"]
+[ext_resource type="Theme" uid="uid://b8ljuij7sans3" path="res://assets/ui/ui_theme.tres" id="1_h7oar"]
+[ext_resource type="StyleBox" uid="uid://cryglg1n6wl06" path="res://assets/ui/dialog_stylebox.tres" id="2_wrmmy"]
 
-[node name="CelestialInfoDialog" type="Node2D"]
+[node name="CelestialInspectDialog" type="Node2D"]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -26,8 +26,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_60j5y")
-theme_override_styles/panel = ExtResource("2_b3tsl")
+theme = ExtResource("1_h7oar")
+theme_override_styles/panel = ExtResource("2_wrmmy")
 metadata/_edit_use_anchors_ = true
 
 [node name="Details" type="RichTextLabel" parent="Control"]
@@ -41,7 +41,7 @@ offset_left = -0.039999
 offset_top = 0.0559998
 grow_horizontal = 2
 grow_vertical = 0
-theme = ExtResource("1_60j5y")
+theme = ExtResource("1_h7oar")
 theme_override_font_sizes/normal_font_size = 0
 theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
@@ -62,7 +62,7 @@ offset_left = -0.039999
 offset_top = 0.0559998
 grow_horizontal = 2
 grow_vertical = 0
-theme = ExtResource("1_60j5y")
+theme = ExtResource("1_h7oar")
 theme_override_font_sizes/normal_font_size = 0
 bbcode_enabled = true
 text = "	Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text 
@@ -82,7 +82,7 @@ offset_top = -5.056
 offset_right = 3.992
 offset_bottom = -4.952
 grow_horizontal = 2
-theme = ExtResource("1_60j5y")
+theme = ExtResource("1_h7oar")
 theme_override_font_sizes/font_size = 24
 text = "[BodyName]"
 metadata/_edit_use_anchors_ = true
@@ -99,7 +99,7 @@ offset_top = 0.0639992
 offset_right = 0.00799561
 offset_bottom = 0.0960007
 grow_horizontal = 2
-theme = ExtResource("1_60j5y")
+theme = ExtResource("1_h7oar")
 theme_override_font_sizes/font_size = 16
 text = "[BodyType]"
 metadata/_edit_use_anchors_ = true

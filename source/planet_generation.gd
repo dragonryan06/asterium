@@ -1,6 +1,6 @@
 extends Node2D
 
-const Star = preload("res://source/celestial/star.tscn")
+const Star = preload("res://source/objects/celestial/star.tscn")
 const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 
 # thoughts:
@@ -20,17 +20,19 @@ func _on_generate_pressed():
 			remove_child(c)
 			break
 	var star = Star.instantiate()
-	star.name = str(randi_range(1,9))+"-"+alphabet.pick_random()+alphabet.pick_random()+"-"+str(randi_range(0,9))+""+str(randi_range(0,9))+""+str(randi_range(0,9))
-	star.solar_class = star_data["main-sequence"].keys().pick_random()
-	star.chromaticity = star_data["main-sequence"][star.solar_class]["chromaticity"]
-	star.rotational_velocity = randf_range(-5,5) #idk, come up with some numbers for this
-	star.temperature = randi_range(star_data["main-sequence"][star.solar_class]["temp_min"],star_data["main-sequence"][star.solar_class]["temp_max"])
-	star.radius = randf_range(star_data["main-sequence"][star.solar_class]["radius_min"],star_data["main-sequence"][star.solar_class]["radius_max"])
-	star.mass = randf_range(star_data["main-sequence"][star.solar_class]["mass_min"],star_data["main-sequence"][star.solar_class]["mass_max"])
-	print("-----------------------")
-	print(star.name)
-	print(star.solar_class,"-class main-sequence star")
-	print(star.temperature," K")
-	print(star.radius," solar radii")
-	print(star.mass," solar masses")
+	var solar_class = star_data["main-sequence"].keys().pick_random()
+	var data = {}
+	data["obj_title"]=str(randi_range(1,9))+"-"+alphabet.pick_random()+alphabet.pick_random()+"-"+str(randi_range(0,9))+""+str(randi_range(0,9))+""+str(randi_range(0,9))
+	data["obj_subtitle"]=solar_class+"-class Main Sequence Star"
+	
+	data["mass"]=randf_range(star_data["main-sequence"][solar_class]["mass_min"],star_data["main-sequence"][solar_class]["mass_max"])
+	data["radius"]=randf_range(star_data["main-sequence"][solar_class]["radius_min"],star_data["main-sequence"][solar_class]["radius_max"])
+	data["orbital_parent"]=null
+	data["orbital_period"]=-1
+	data["rotational_period"]=86400 #idk, come up with some numbers for this
+	
+	data["chromaticity"]=star_data["main-sequence"][solar_class]["chromaticity"]
+	data["temperature"]=randi_range(star_data["main-sequence"][solar_class]["temp_min"],star_data["main-sequence"][solar_class]["temp_max"])
+	
+	star.setup(data)
 	add_child(star)

@@ -46,4 +46,3 @@ func _physics_process(delta):
 		zoom_velocity+=0.5*ZOOM_SPEED
 	else:
 		zoom_velocity = 0
-	print(zoom)

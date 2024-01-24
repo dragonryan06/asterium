@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://c7e3tuv5e8nju"]
+[gd_scene load_steps=13 format=3 uid="uid://c7e3tuv5e8nju"]
 
-[ext_resource type="Shader" path="res://source/shaders/starsprite.gdshader" id="1_6btq0"]
-[ext_resource type="Script" path="res://source/celestial/star.gd" id="2_01m0o"]
-[ext_resource type="Gradient" uid="uid://c7e5qxvhcopkf" path="res://assets/star_spectrum.tres" id="2_s8j84"]
-[ext_resource type="PackedScene" uid="uid://b6wsmd8ri58dw" path="res://source/ui/celestial_info_dialog.tscn" id="3_syoj4"]
+[ext_resource type="Script" path="res://source/objects/celestial/star.gd" id="1_i0e3g"]
+[ext_resource type="Gradient" uid="uid://c7e5qxvhcopkf" path="res://assets/star_spectrum.tres" id="2_qpb65"]
+[ext_resource type="Shader" path="res://source/shaders/starsprite.gdshader" id="3_ms3mq"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_iijiv"]
 noise_type = 2
@@ -30,7 +29,7 @@ seamless = true
 noise = SubResource("FastNoiseLite_lencx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q4m2q"]
-shader = ExtResource("1_6btq0")
+shader = ExtResource("3_ms3mq")
 shader_parameter/color = Vector4(1, 1, 0.75, 1)
 shader_parameter/energy = 0.75
 shader_parameter/rotSpeed = 1.0
@@ -46,21 +45,19 @@ shader_parameter/curve = SubResource("CurveTexture_syn2b")
 radius = 0.228207
 
 [node name="Star" type="Node2D"]
-script = ExtResource("2_01m0o")
-spectrum = ExtResource("2_s8j84")
+script = ExtResource("1_i0e3g")
+spectrum = ExtResource("2_qpb65")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_q4m2q")
 scale = Vector2(512, 512)
 texture = SubResource("PlaceholderTexture2D_u70ln")
 
-[node name="Hitbox" type="Area2D" parent="Sprite"]
+[node name="Hitbox" type="Area2D" parent="."]
+scale = Vector2(512, 512)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_i61au")
 
-[node name="CelestialInfoDialog" parent="." instance=ExtResource("3_syoj4")]
-visible = false
-
-[connection signal="mouse_entered" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_entered"]
-[connection signal="mouse_exited" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_exited"]
+[connection signal="mouse_entered" from="Hitbox" to="." method="_on_hitbox_mouse_entered"]
+[connection signal="mouse_exited" from="Hitbox" to="." method="_on_hitbox_mouse_exited"]
