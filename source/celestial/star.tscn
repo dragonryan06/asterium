@@ -1,0 +1,66 @@
+[gd_scene load_steps=14 format=3 uid="uid://c7e3tuv5e8nju"]
+
+[ext_resource type="Shader" path="res://source/shaders/starsprite.gdshader" id="1_6btq0"]
+[ext_resource type="Script" path="res://source/celestial/star.gd" id="2_01m0o"]
+[ext_resource type="Gradient" uid="uid://c7e5qxvhcopkf" path="res://assets/star_spectrum.tres" id="2_s8j84"]
+[ext_resource type="PackedScene" uid="uid://b6wsmd8ri58dw" path="res://source/ui/celestial_info_dialog.tscn" id="3_syoj4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_iijiv"]
+noise_type = 2
+frequency = 0.0491
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5b6g3"]
+seamless = true
+noise = SubResource("FastNoiseLite_iijiv")
+
+[sub_resource type="Curve" id="Curve_cejoe"]
+max_value = 8.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 8), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_syn2b"]
+curve = SubResource("Curve_cejoe")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lencx"]
+noise_type = 2
+frequency = 0.075
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3bic2"]
+seamless = true
+noise = SubResource("FastNoiseLite_lencx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q4m2q"]
+shader = ExtResource("1_6btq0")
+shader_parameter/color = Vector4(1, 1, 0.75, 1)
+shader_parameter/energy = 0.75
+shader_parameter/rotSpeed = 1.0
+shader_parameter/rotDirection = Vector2(1, 0)
+shader_parameter/coronaRadius = 1.0
+shader_parameter/coronaTexture = SubResource("NoiseTexture2D_5b6g3")
+shader_parameter/surfaceTexture = SubResource("NoiseTexture2D_3bic2")
+shader_parameter/curve = SubResource("CurveTexture_syn2b")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_u70ln"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i61au"]
+radius = 0.228207
+
+[node name="Star" type="Node2D"]
+script = ExtResource("2_01m0o")
+spectrum = ExtResource("2_s8j84")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_q4m2q")
+scale = Vector2(512, 512)
+texture = SubResource("PlaceholderTexture2D_u70ln")
+
+[node name="Hitbox" type="Area2D" parent="Sprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Hitbox"]
+shape = SubResource("CircleShape2D_i61au")
+
+[node name="CelestialInfoDialog" parent="." instance=ExtResource("3_syoj4")]
+visible = false
+
+[connection signal="mouse_entered" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_entered"]
+[connection signal="mouse_exited" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_exited"]

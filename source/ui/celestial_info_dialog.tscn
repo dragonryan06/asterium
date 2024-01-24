@@ -1,0 +1,121 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6wsmd8ri58dw"]
+
+[ext_resource type="Theme" uid="uid://b8ljuij7sans3" path="res://assets/ui/ui_theme.tres" id="1_60j5y"]
+[ext_resource type="StyleBox" uid="uid://cryglg1n6wl06" path="res://assets/ui/dialog_stylebox.tres" id="2_b3tsl"]
+
+[node name="CelestialInfoDialog" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -192.0
+offset_right = 128.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_60j5y")
+theme_override_styles/panel = ExtResource("2_b3tsl")
+metadata/_edit_use_anchors_ = true
+
+[node name="Details" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.105625
+anchor_top = 0.176938
+anchor_right = 0.894531
+anchor_bottom = 0.393229
+offset_left = -0.039999
+offset_top = 0.0559998
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_60j5y")
+theme_override_font_sizes/normal_font_size = 0
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+text = "Detail1: detail detail
+Detail2: detail detail
+Detail3: detail detail
+Detail4: detail detail"
+metadata/_edit_use_anchors_ = true
+
+[node name="Description" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.105625
+anchor_top = 0.416521
+anchor_right = 0.894531
+anchor_bottom = 0.96875
+offset_left = -0.039999
+offset_top = 0.0559998
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_60j5y")
+theme_override_font_sizes/normal_font_size = 0
+bbcode_enabled = true
+text = "	Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text 
+
+	Text text text text text text text text text text text text text text text text text text "
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0780938
+anchor_top = 0.0548333
+anchor_right = 0.953156
+anchor_bottom = 0.143104
+offset_left = 4.008
+offset_top = -5.056
+offset_right = 3.992
+offset_bottom = -4.952
+grow_horizontal = 2
+theme = ExtResource("1_60j5y")
+theme_override_font_sizes/font_size = 24
+text = "[BodyName]"
+metadata/_edit_use_anchors_ = true
+
+[node name="Subtitle" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0078125
+anchor_top = 0.104
+anchor_right = 0.957
+anchor_bottom = 0.156
+offset_left = 24.0
+offset_top = 0.0639992
+offset_right = 0.00799561
+offset_bottom = 0.0960007
+grow_horizontal = 2
+theme = ExtResource("1_60j5y")
+theme_override_font_sizes/font_size = 16
+text = "[BodyType]"
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleDivider" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 64.0
+offset_right = 224.0
+offset_bottom = 67.0
+color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="DescDivider" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 154.0
+offset_right = 224.0
+offset_bottom = 157.0
+color = Color(0.8, 0.8, 0.8, 1)

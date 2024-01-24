@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://6rvnl2h3invh"]
+
+[ext_resource type="Script" path="res://source/main.gd" id="1_me805"]
+[ext_resource type="PackedScene" uid="uid://7hmixo30hi33" path="res://source/main_menu.tscn" id="1_qxr8v"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_me805")
+
+[node name="FTB" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Main Menu" parent="." instance=ExtResource("1_qxr8v")]

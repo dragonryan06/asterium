@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8nk8farod758"]
+
+[ext_resource type="Script" path="res://source/planet_generation.gd" id="1_w0wtp"]
+[ext_resource type="Script" path="res://source/standard_camera.gd" id="2_kie41"]
+
+[node name="PlanetGeneration" type="Node2D"]
+script = ExtResource("1_w0wtp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("2_kie41")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Generate" type="Button" parent="HUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -94.0
+offset_top = -119.0
+offset_right = 94.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "GENERATE A NEW STAR"
+
+[connection signal="pressed" from="HUD/Generate" to="." method="_on_generate_pressed"]

@@ -1,0 +1,25 @@
+
+a world can be a planet or a moon
+
+worlds can be divided into two types:
+
+Terrestrial
+	- generated space sprite
+	- "orbital" layer (representing low orbit)
+	- "aerial" layer (regardless of if air is present)
+	- "ground" layer
+Gaseous
+	- generated space sprite
+	- "orbital" layer (representing low orbit)
+	- "aerial" layer (could even just be a solid, foggy color or have pretty clouds; bespin)
+
+
+Terrestrial worlds can be classified as:
+	- Barren world (the moon), little to no atmosphere, almost uniform composition, no tectonic activity
+	- Smothered world (venus), extremely high atmosphere, any composition, probably tectonic activity
+	- Ocean world (kamino), standardish atmosphere, >95% surface area covered by liquid
+	- 
+
+	(other ideas)
+	- Tomb world (jakku), planet defined by wreckage and ruins, most always uninhabitable or dangerous
+	- Gem world, planet defined by frequent occurance of metamorphic rock and gemstones, beautiful from space

@@ -1,0 +1,67 @@
+{
+	"main-sequence": {
+		"O": {
+			"temp_min":30000,
+			"temp_max":60000,
+			"mass_min":16,
+			"mass_max":32,
+			"radius_min":6.6,
+			"radius_max":12.0,
+			"chromaticity":"blue"
+		},
+		"B": {
+			"temp_min":10000,
+			"temp_max":30000,
+			"mass_min":2.1,
+			"mass_max":16,
+			"radius_min":1.8,
+			"radius_max":6.6,
+			"chromaticity":"bluish white"
+		},
+		"A": {
+			"temp_min":7500,
+			"temp_max":10000,
+			"mass_min":1.4,
+			"mass_max":2.1,
+			"radius_min":1.4,
+			"radius_max":1.8,
+			"chromaticity":"white"
+		},
+		"F": {
+			"temp_min":6000,
+			"temp_max":7500,
+			"mass_min":1.04,
+			"mass_max":1.4,
+			"radius_min":1.15,
+			"radius_max":1.4,
+			"chromaticity":"yellowish white"
+		},
+		"G": {
+			"temp_min":5200,
+			"temp_max":6000,
+			"mass_min":0.8,
+			"mass_max":1.04,
+			"radius_min":0.96,
+			"radius_max":1.15,
+			"chromaticity":"yellow"
+		},
+		"K": {
+			"temp_min":3700,
+			"temp_max":5200,
+			"mass_min":0.45,
+			"mass_max":0.8,
+			"radius_min":0.7,
+			"radius_max":0.96,
+			"chromaticity":"light orange"
+		},
+		"M": {
+			"temp_min":2400,
+			"temp_max":3700,
+			"mass_min":0.08,
+			"mass_max":0.45,
+			"radius_min":0.4,
+			"radius_max":0.7,
+			"chromaticity":"orangish red"
+		}
+	}
+}
