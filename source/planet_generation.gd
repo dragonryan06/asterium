@@ -1,6 +1,6 @@
 extends Node2D
 
-const Star = preload("res://source/objects/celestial/star.tscn")
+const _Star = preload("res://source/objects/celestial/star.tscn")
 const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 
 # thoughts:
@@ -19,7 +19,7 @@ func _on_generate_pressed():
 			c.queue_free()
 			remove_child(c)
 			break
-	var star = Star.instantiate()
+	var star = _Star.instantiate()
 	star.object_inspector = $HUD/ObjectInspector
 	var solar_class = star_data["main-sequence"].keys().pick_random()
 	var data = {}

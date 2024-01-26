@@ -14,7 +14,7 @@ var rotational_period : int : set=_set_rotational_period
 
 func _set_radius(val:float) -> void:
 	radius = val
-	# RESCALE SPRITE TO REPRESENT
+	$Sprite.scale *= Vector2(radius,radius)
 
 func _set_rotational_period(val:int) -> void:
 	rotational_period = val

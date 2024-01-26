@@ -18,11 +18,11 @@ void fragment() {
 	float distToCenter = length(vecToCenter);
 	float curveVal = texture(curve, vec2(distToCenter)).r;
 	vec2 diff = normalize(vecToCenter)*0.9*curveVal;
-	vec4 star = vec4(circle(UV-diff, 0.1, 0.0025))*texture(surfaceTexture,(UV-diff+rotDirection*TIME*0.1)*rotSpeed)*color;
+	vec4 star = vec4(circle(UV-diff, 0.1, 0.0025))*texture(surfaceTexture,vec2(UV.x + TIME * rotSpeed*0.01, UV.y))*color;
 	float glow = circle(UV-diff,0.001,0.4);
 	float corona = 0.0;
 	if (star.a<1.0) {
-		corona = circle(UV-diff,0.035*coronaRadius,0.1)*texture(coronaTexture,UV-diff*2.0+(TIME*0.005)).r*2.0;
+		corona = circle(UV-diff,0.035*coronaRadius,0.1)*texture(coronaTexture,vec2(UV.x + TIME * rotSpeed*0.02, UV.y)).r*2.0;
 	}
 	COLOR = star+vec4(2.0*color.r,2.0*color.g,2.0*color.b,glow)/2.0*energy+corona;
 }
