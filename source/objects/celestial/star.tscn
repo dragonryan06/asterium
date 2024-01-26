@@ -59,5 +59,6 @@ scale = Vector2(512, 512)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_i61au")
 
+[connection signal="input_event" from="Hitbox" to="." method="_on_hitbox_input_event"]
 [connection signal="mouse_entered" from="Hitbox" to="." method="_on_hitbox_mouse_entered"]
 [connection signal="mouse_exited" from="Hitbox" to="." method="_on_hitbox_mouse_exited"]
