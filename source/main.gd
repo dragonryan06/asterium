@@ -13,6 +13,7 @@ func play() -> void:
 	mm.queue_free()
 	var PlanetGeneration = load("res://source/planet_generation.tscn")
 	var pg = PlanetGeneration.instantiate()
+	pg.get_node("Camera2D").enabled = false
 	add_child(pg)
 	
 	fade = get_tree().create_tween()

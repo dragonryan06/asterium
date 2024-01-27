@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://7hmixo30hi33"]
+[gd_scene load_steps=19 format=3 uid="uid://7hmixo30hi33"]
 
 [ext_resource type="Script" path="res://source/main_menu.gd" id="1_7mvos"]
 [ext_resource type="Shader" path="res://source/shaders/stardrop.gdshader" id="1_jql27"]
@@ -40,6 +40,17 @@ shader_parameter/brightness = SubResource("NoiseTexture2D_yifhf")
 default_font = ExtResource("3_lr3ci")
 default_font_size = 24
 
+[sub_resource type="Environment" id="Environment_826rr"]
+background_mode = 3
+tonemap_mode = 3
+glow_normalized = true
+glow_intensity = 1.25
+glow_bloom = 0.01
+glow_blend_mode = 0
+glow_hdr_threshold = 1.25
+adjustment_enabled = true
+adjustment_saturation = 2.5
+
 [node name="Main Menu" type="Node2D"]
 script = ExtResource("1_7mvos")
 
@@ -59,6 +70,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Title" type="TextureRect" parent="UI/Control"]
 texture_filter = 1
@@ -72,6 +84,7 @@ offset_right = 236.0
 offset_bottom = 344.0
 grow_horizontal = 2
 texture = ExtResource("2_274ln")
+metadata/_edit_use_anchors_ = true
 
 [node name="PlayButton" type="Button" parent="UI/Control"]
 layout_mode = 1
@@ -88,6 +101,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_l0k5x")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_7efiq")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_rtyi1")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jxoiw")
+metadata/_edit_use_anchors_ = true
 
 [node name="PLAY" type="Label" parent="UI/Control/PlayButton"]
 layout_mode = 1
@@ -103,6 +117,10 @@ theme = SubResource("Theme_heo2k")
 theme_override_fonts/font = ExtResource("4_gmdjo")
 theme_override_font_sizes/font_size = 72
 text = "PLAY"
+metadata/_edit_use_anchors_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_826rr")
 
 [connection signal="mouse_entered" from="UI/Control/PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="mouse_exited" from="UI/Control/PlayButton" to="." method="_on_play_button_mouse_exited"]
