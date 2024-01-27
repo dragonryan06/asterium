@@ -14,7 +14,8 @@ var rotational_period : int : set=_set_rotational_period
 
 func _set_radius(val:float) -> void:
 	radius = val
-	$Sprite.scale *= Vector2(radius,radius)
+	$Sprite.texture.width = 128*round(radius)
+	$Sprite.texture.height = 64*round(radius)
 
 func _set_rotational_period(val:int) -> void:
 	rotational_period = val

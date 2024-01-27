@@ -1,8 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8nk8farod758"]
+[gd_scene load_steps=5 format=3 uid="uid://b8nk8farod758"]
 
 [ext_resource type="Script" path="res://source/planet_generation.gd" id="1_w0wtp"]
 [ext_resource type="Script" path="res://source/standard_camera.gd" id="2_kie41"]
 [ext_resource type="PackedScene" uid="uid://biq41mroccyk2" path="res://source/ui/object_inspector.tscn" id="3_ptwlh"]
+
+[sub_resource type="Environment" id="Environment_14p7s"]
+background_mode = 3
+tonemap_mode = 3
+tonemap_white = 2.5
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 1.25
+glow_bloom = 0.01
+glow_blend_mode = 0
+glow_hdr_threshold = 1.25
 
 [node name="PlanetGeneration" type="Node2D"]
 script = ExtResource("1_w0wtp")
@@ -27,5 +38,8 @@ grow_vertical = 0
 text = "GENERATE A NEW STAR"
 
 [node name="ObjectInspector" parent="HUD" instance=ExtResource("3_ptwlh")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_14p7s")
 
 [connection signal="pressed" from="HUD/Generate" to="." method="_on_generate_pressed"]

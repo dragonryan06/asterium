@@ -4,59 +4,76 @@
 [ext_resource type="Gradient" uid="uid://c7e5qxvhcopkf" path="res://assets/star_spectrum.tres" id="2_qpb65"]
 [ext_resource type="Shader" path="res://source/shaders/starsprite.gdshader" id="3_ms3mq"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_iijiv"]
-noise_type = 2
-frequency = 0.0491
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l7yco"]
+frequency = 0.05
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5b6g3"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xmrw5"]
+width = 64
+height = 64
 seamless = true
-noise = SubResource("FastNoiseLite_iijiv")
-
-[sub_resource type="Curve" id="Curve_cejoe"]
-max_value = 8.0
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 8), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_syn2b"]
-curve = SubResource("Curve_cejoe")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_lencx"]
-noise_type = 2
-frequency = 0.075
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3bic2"]
-seamless = true
-noise = SubResource("FastNoiseLite_lencx")
+noise = SubResource("FastNoiseLite_l7yco")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q4m2q"]
 shader = ExtResource("3_ms3mq")
-shader_parameter/color = Vector4(1, 1, 0.75, 1)
-shader_parameter/energy = 0.75
-shader_parameter/rotSpeed = 1.0
-shader_parameter/rotDirection = Vector2(1, 0)
-shader_parameter/coronaRadius = 1.0
-shader_parameter/coronaTexture = SubResource("NoiseTexture2D_5b6g3")
-shader_parameter/surfaceTexture = SubResource("NoiseTexture2D_3bic2")
-shader_parameter/curve = SubResource("CurveTexture_syn2b")
+shader_parameter/base_color = Vector4(1, 1, 1, 1)
+shader_parameter/aspect_ratio = 2.0
+shader_parameter/rotation_speed = 0.3
+shader_parameter/as_shadow = false
+shader_parameter/corona_texture = SubResource("NoiseTexture2D_xmrw5")
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_u70ln"]
+[sub_resource type="Gradient" id="Gradient_7t1j7"]
+offsets = PackedFloat32Array(0, 0.376623, 0.538961, 0.714286, 1)
+colors = PackedColorArray(0.187176, 0.187176, 0.187176, 1, 1, 1, 1, 1, 0.834614, 0.834614, 0.834614, 1, 0.625597, 0.625597, 0.625597, 1, 1, 1, 1, 1)
+metadata/_snap_count = 2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_paqke"]
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0e4oq"]
+width = 128
+height = 64
+seamless = true
+color_ramp = SubResource("Gradient_7t1j7")
+noise = SubResource("FastNoiseLite_paqke")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i61au"]
 radius = 0.228207
+
+[sub_resource type="Gradient" id="Gradient_fxgtt"]
+offsets = PackedFloat32Array(0.701299, 1)
+colors = PackedColorArray(0.501407, 0.501406, 0.501406, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ymo3g"]
+gradient = SubResource("Gradient_fxgtt")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.75)
 
 [node name="Star" type="Node2D"]
 script = ExtResource("1_i0e3g")
 spectrum = ExtResource("2_qpb65")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
 material = SubResource("ShaderMaterial_q4m2q")
-scale = Vector2(512, 512)
-texture = SubResource("PlaceholderTexture2D_u70ln")
+scale = Vector2(8, 16)
+texture = SubResource("NoiseTexture2D_0e4oq")
 
 [node name="Hitbox" type="Area2D" parent="Sprite"]
+scale = Vector2(128, 64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Hitbox"]
 shape = SubResource("CircleShape2D_i61au")
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite"]
+position = Vector2(-264, 135)
+scale = Vector2(16, 16)
+energy = 0.7
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ymo3g")
 
 [connection signal="input_event" from="Sprite/Hitbox" to="." method="_on_hitbox_input_event"]
 [connection signal="mouse_entered" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_entered"]

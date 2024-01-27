@@ -1,33 +1,49 @@
 shader_type canvas_item;
 
-uniform vec4 color = vec4(1.0,1.0,0.75,1.0);
-uniform float energy = 0.75;
-uniform float rotSpeed = 1.0;
-uniform vec2 rotDirection = vec2(1.0,0.0);
-uniform float coronaRadius = 1.0;
-uniform sampler2D coronaTexture : repeat_enable;
-uniform sampler2D surfaceTexture : repeat_enable;
-uniform sampler2D curve;
+uniform vec4 base_color = vec4(1.0,1.0,1.0,1.0);
+uniform sampler2D corona_texture : filter_nearest, repeat_enable;
+
+uniform float aspect_ratio = 2.0;
+uniform float rotation_speed = 0.3;
+uniform bool as_shadow = false;
 
 float circle(vec2 position, float radius, float feather) {
 	return 1.0-smoothstep(radius, radius + feather, length(position-vec2(0.125)));
 }
 
 void fragment() {
-	vec2 vecToCenter = vec2(0.125, 0.125) - UV;
-	float distToCenter = length(vecToCenter);
-	float curveVal = texture(curve, vec2(distToCenter)).r;
-	vec2 diff = normalize(vecToCenter)*0.9*curveVal;
-	vec4 star = vec4(circle(UV-diff, 0.1, 0.0025))*texture(surfaceTexture,vec2(UV.x + TIME * rotSpeed*0.01, UV.y))*color;
-	float glow = circle(UV-diff,0.001,0.4);
-	float corona = 0.0;
-	if (star.a<1.0) {
-		corona = circle(UV-diff,0.035*coronaRadius,0.1)*texture(coronaTexture,vec2(UV.x + TIME * rotSpeed*0.02, UV.y)).r*2.0;
+	COLOR=base_color*circle(UV-0.38,0.08,0.5);
+	// make sphere, cc0 code taken from https://godotshaders.com/shader/2d-spinning-sphere/
+	float px = 4.5 * (UV.x - 0.5);
+	float py = 4.5 * (UV.y - 0.5);
+	
+	if (px * px + py * py > 1.0) {
+		// Outside of "sphere"
+		COLOR.a = 0.0;
+	} else {
+		px = asin(px / sqrt(1.0 - py * py)) * 2.0 / PI;
+		py = asin(py) * 2.0 / PI;
+		
+		COLOR = texture(TEXTURE, vec2(
+			0.5 * (px + 1.0) / aspect_ratio - TIME * rotation_speed,
+			0.5 * (py + 1.0)));
+		if (as_shadow) {
+			COLOR.rgb = vec3(0.0, 0.0, 0.0);
+			COLOR.a *= 0.9;
+		}
 	}
-	COLOR = star+vec4(2.0*color.r,2.0*color.g,2.0*color.b,glow)/2.0*energy+corona;
+	// modulate color based on temperature
+	COLOR*=base_color*1.5;
+	if (COLOR.g>1.25) {
+		COLOR.rgb = vec3(1.25,1.25,1.25);
+	}
+	// apply corona
+	if (COLOR.a==0.0) {
+		// force additive because of hdr loop-around
+		float alpha = circle(UV-0.38,0.20,0.1)-texture(corona_texture,UV+TIME*0.05).r;
+		if (alpha>0.0) {
+			COLOR.a += alpha;
+		} 
+		COLOR.rgb=texture(corona_texture,UV+TIME*0.05).rgb*base_color.rgb+0.5;
+	}
 }
-
-//void light() {
-	// Called for every pixel for every light affecting the CanvasItem.
-	// Uncomment to replace the default light processing function with this one.
-//}
