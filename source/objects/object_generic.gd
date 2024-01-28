@@ -26,7 +26,7 @@ func _on_hitbox_mouse_exited() -> void:
 	hover = false
 	object_inspector.hide_tooltip()
 
-func _on_hitbox_input_event(_viewport, event, _shape_idx):
+func _on_hitbox_input_event(_viewport, event, _shape_idx) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and Input.is_physical_key_pressed(KEY_SHIFT):
 		if not inspecting:
 			object_inspector.show_inspect(self)

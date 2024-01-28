@@ -12,7 +12,7 @@
 		},
 		"diorite": {
 			"cooling-time":"slow",
-			"feldspar-index":0.,
+			"feldspar-index":0.33,
 			"base-color":"#495251"
 		},
 		"andesite": {
