@@ -1,4 +1,5 @@
 extends Node
+class_name ResourceManager
 
 static func load_json(filepath:String) -> JSON:
 	var f = FileAccess.open(filepath, FileAccess.READ)

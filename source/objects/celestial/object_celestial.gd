@@ -20,7 +20,7 @@ func _set_radius(val:float) -> void:
 func _set_rotational_period(val:int) -> void:
 	rotational_period = val
 	# BUG: ALL THIS DOES IS CHANGE TEXTURE SCALING NOT SPEED
-	var vel = int(val/86400) # 1 rotation per day equals rotSpeed of 1.0
+	var vel = int(val/86400.0) # 1 rotation per day equals rotSpeed of 1.0
 	$Sprite.get_material().set_shader_parameter("rotSpeed",abs(vel))
 	var dir = vel/abs(vel)
 	$Sprite.get_material().set_shader_parameter("rotDirection",Vector2(dir,0))

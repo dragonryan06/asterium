@@ -1,0 +1,46 @@
+{
+	"igneous": {
+		"granite": {
+			"cooling-time":"slow",
+			"feldspar-index":0.0,
+			"base-color":"#b39b9a"
+		},
+		"rhyolite": {
+			"cooling-time":"rapid",
+			"feldspar-index":0.0,
+			"base-color":"#B4B1B2"
+		},
+		"diorite": {
+			"cooling-time":"slow",
+			"feldspar-index":0.,
+			"base-color":"#495251"
+		},
+		"andesite": {
+			"cooling-time":"rapid",
+			"feldspar-index":0.33,
+			"base-color":"#37393C"
+		},
+		"gabbro": {
+			"cooling-time":"slow",
+			"feldspar-index":0.66,
+			"base-color":"#1D1E14"
+		},
+		"basalt": {
+			"cooling-time":"rapid",
+			"feldspar-index":0.66,
+			"base-color":"#1F1F29"
+		},
+		"peridotite": {
+			"cooling-time":"slow",
+			"feldspar-index":1.0,
+			"base-color":"#343923"
+		},
+		"obsidian": {
+			"cooling-time":"instantaneous",
+			"feldspar-index":-1,
+			"base-color":"#000000"
+		}
+	},
+	"sedimentary": {},
+	"metamorphic": {}
+}

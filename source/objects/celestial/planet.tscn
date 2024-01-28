@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cj8yr0m0pkqln"]
+
+[ext_resource type="Script" path="res://source/objects/celestial/planet.gd" id="1_iq64g"]
+[ext_resource type="Shader" path="res://source/shaders/planetsprite.gdshader" id="2_vuqeg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l83id"]
+shader = ExtResource("2_vuqeg")
+shader_parameter/base_color = Vector4(1, 0, 0, 1)
+shader_parameter/aspect_ratio = 2.0
+shader_parameter/rotation_speed = 1.0
+shader_parameter/as_shadow = false
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s0ctd"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_84cue"]
+width = 128
+height = 64
+seamless = true
+noise = SubResource("FastNoiseLite_s0ctd")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2h0o0"]
+radius = 0.228207
+
+[node name="Planet" type="Node2D"]
+script = ExtResource("1_iq64g")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_l83id")
+scale = Vector2(1, 2)
+texture = SubResource("NoiseTexture2D_84cue")
+
+[node name="Hitbox" type="Area2D" parent="Sprite"]
+scale = Vector2(128, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Hitbox"]
+shape = SubResource("CircleShape2D_2h0o0")
+
+[connection signal="input_event" from="Sprite/Hitbox" to="." method="_on_hitbox_input_event"]
+[connection signal="mouse_entered" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_entered"]
+[connection signal="mouse_exited" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_exited"]
