@@ -1,0 +1,16 @@
+{
+	"planet": {
+		"terrestrial": {
+			"radius_min":0.30,
+			"radius_max":2.0
+		},
+		"gaseous": {
+			"radius_min":2.0,
+			"radius_max":12.0
+		}
+	},
+	"moon": {
+		"radius_min":0.01,
+		"radius_max":0.5
+	}
+}

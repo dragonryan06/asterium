@@ -1,44 +1,52 @@
 {
 	"igneous": {
 		"granite": {
-			"cooling-time":"slow",
-			"feldspar-index":0.0,
-			"base-color":"#b39b9a"
+			"cooling_time":"slow",
+			"feldspar_index":0.0,
+			"base_color":"#b39b9a",
+			"hardness":6
 		},
 		"rhyolite": {
-			"cooling-time":"rapid",
-			"feldspar-index":0.0,
-			"base-color":"#B4B1B2"
+			"cooling_time":"rapid",
+			"feldspar_index":0.0,
+			"base_color":"#B4B1B2",
+			"hardness":6
 		},
 		"diorite": {
-			"cooling-time":"slow",
-			"feldspar-index":0.33,
-			"base-color":"#495251"
+			"cooling_time":"slow",
+			"feldspar_index":0.33,
+			"base_color":"#495251",
+			"hardness":6
 		},
 		"andesite": {
-			"cooling-time":"rapid",
-			"feldspar-index":0.33,
-			"base-color":"#37393C"
+			"cooling_time":"rapid",
+			"feldspar_index":0.33,
+			"base_color":"#37393C",
+			"hardness":7
 		},
 		"gabbro": {
-			"cooling-time":"slow",
-			"feldspar-index":0.66,
-			"base-color":"#1D1E14"
+			"cooling_time":"slow",
+			"feldspar_index":0.66,
+			"base_color":"#1D1E14",
+			"hardness":6
 		},
 		"basalt": {
-			"cooling-time":"rapid",
-			"feldspar-index":0.66,
-			"base-color":"#1F1F29"
+			"cooling_time":"rapid",
+			"feldspar_index":0.66,
+			"base_color":"#1F1F29",
+			"hardness":5
 		},
 		"peridotite": {
-			"cooling-time":"slow",
-			"feldspar-index":1.0,
-			"base-color":"#343923"
+			"cooling_time":"slow",
+			"feldspar_index":1.0,
+			"base_color":"#343923",
+			"hardness":7
 		},
 		"obsidian": {
-			"cooling-time":"instantaneous",
-			"feldspar-index":-1,
-			"base-color":"#000000"
+			"cooling_time":"instantaneous",
+			"feldspar_index":-1,
+			"base_color":"#000000",
+			"hardness":5
 		}
 	},
 	"sedimentary": {},

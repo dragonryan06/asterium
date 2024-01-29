@@ -22,7 +22,7 @@ func show_inspect(obj:GenericObject) -> void:
 			while details.find("{")!=-1:
 				var val = obj.get(details.substr(details.find("{")+1,details.find("}")-1-details.find("{")))
 				if val is float:
-					val = round(val*pow(10,3))/pow(10,3)
+					val = snapped(val,0.001)
 				details = details.substr(0,details.find("{"))+str(val)+details.substr(details.find("}")+1,-1)
 			$InspectCelestial/Details.text = details
 			var description = formats["star"]["description"]

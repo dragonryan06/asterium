@@ -1,9 +1,9 @@
 extends CelestialObject
-class_name Planet
+class_name TerrestrialPlanet
 
 # the primary rock this world is made of (yes, entirely uniform of one material lol oversimplification)
 var parent_rock : Dictionary : set=_set_parent_rock
-# the other minerals found within the rock in the form of ores
+# the other minerals found within the rock in the form of ores (mineral_richness 100% means there is no parent rock)
 var mineral_composition : Dictionary
 var mineral_richness : float
 # primary gases in atmosphere
@@ -18,5 +18,8 @@ func _set_parent_rock(rocktype:Dictionary) -> void:
 	$Sprite.get_material().set_shader_parameter("base_color",rocktype["color"])
 
 func setup(data:Dictionary) -> void:
+	# make unique material and texture
+	$Sprite.texture = $Sprite.texture.duplicate()
+	$Sprite.material = $Sprite.material.duplicate()
 	for k in data.keys():
 		set(k,data[k])

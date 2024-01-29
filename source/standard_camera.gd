@@ -8,13 +8,13 @@ var zoom_velocity = 0.0
 
 func _physics_process(delta):
 	if Input.is_action_pressed("camera_move_up"):
-		pos_velocity.y-=POS_SPEED
+		pos_velocity.y-=POS_SPEED*1.0/zoom.x
 	if Input.is_action_pressed("camera_move_left"):
-		pos_velocity.x-=POS_SPEED
+		pos_velocity.x-=POS_SPEED*1.0/zoom.x
 	if Input.is_action_pressed("camera_move_down"):
-		pos_velocity.y+=POS_SPEED
+		pos_velocity.y+=POS_SPEED*1.0/zoom.x
 	if Input.is_action_pressed("camera_move_right"):
-		pos_velocity.x+=POS_SPEED
+		pos_velocity.x+=POS_SPEED*1.0/zoom.x
 	if Input.is_action_pressed("camera_zoom_in"):
 		zoom_velocity+=ZOOM_SPEED
 	if Input.is_action_pressed("camera_zoom_out"):
@@ -27,16 +27,16 @@ func _physics_process(delta):
 	else:
 		zoom+=Vector2(zoom_velocity,zoom_velocity)
 	
-	if pos_velocity.x>0 and pos_velocity.x-0.5*POS_SPEED>0:
-		pos_velocity.x-=0.5*POS_SPEED
-	elif pos_velocity.x<0 and pos_velocity.x+0.5*POS_SPEED<0:
-		pos_velocity.x+=0.5*POS_SPEED
+	if pos_velocity.x>0 and pos_velocity.x-0.5*POS_SPEED*1.0/zoom.x>0:
+		pos_velocity.x-=0.5*POS_SPEED*1.0/zoom.x
+	elif pos_velocity.x<0 and pos_velocity.x+0.5*POS_SPEED*1.0/zoom.x<0:
+		pos_velocity.x+=0.5*POS_SPEED*1.0/zoom.x
 	else:
 		pos_velocity.x=0
-	if pos_velocity.y>0 and pos_velocity.y-0.5*POS_SPEED>0:
-		pos_velocity.y-=0.5*POS_SPEED
-	elif pos_velocity.y<0 and pos_velocity.y+0.5*POS_SPEED<0:
-		pos_velocity.y+=0.5*POS_SPEED
+	if pos_velocity.y>0 and pos_velocity.y-0.5*POS_SPEED*1.0/zoom.x>0:
+		pos_velocity.y-=0.5*POS_SPEED*1.0/zoom.x
+	elif pos_velocity.y<0 and pos_velocity.y+0.5*POS_SPEED*1.0/zoom.x<0:
+		pos_velocity.y+=0.5*POS_SPEED*1.0/zoom.x
 	else:
 		pos_velocity.y=0
 	
