@@ -29,5 +29,12 @@ func _set_temperature(val:int) -> void:
 	$Sprite/PointLight2D.color = spectrum.sample(normVal)
 
 func setup(data:Dictionary) -> void:
+	# make unique material and texture
+	$Sprite.texture = $Sprite.texture.duplicate()
+	$Sprite.material = $Sprite.material.duplicate()
 	for k in data.keys():
 		set(k,data[k])
+
+func _draw() -> void:
+	for p in $Satellites.get_children():
+		draw_arc(position,p.orbital_radius*2048,0,TAU,128,Color("white"))

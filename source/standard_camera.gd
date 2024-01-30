@@ -21,11 +21,11 @@ func _physics_process(delta):
 		zoom_velocity-=ZOOM_SPEED
 	
 	position+=pos_velocity*delta
-	if zoom.x+zoom_velocity<=0.0:
+	if zoom.x+zoom_velocity*delta<=0.0:
 		zoom = Vector2(0.1,0.1)
 		zoom_velocity = 0.0
 	else:
-		zoom+=Vector2(zoom_velocity,zoom_velocity)
+		zoom+=Vector2(zoom_velocity,zoom_velocity)*delta
 	
 	if pos_velocity.x>0 and pos_velocity.x-0.5*POS_SPEED*1.0/zoom.x>0:
 		pos_velocity.x-=0.5*POS_SPEED*1.0/zoom.x

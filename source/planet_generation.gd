@@ -66,7 +66,7 @@ func generate_planet(parent_star:Star) -> CelestialObject:
 	data["radius"] = randf_range(planet_data["planet"]["terrestrial"]["radius_min"],planet_data["planet"]["terrestrial"]["radius_max"])
 	data["mass"] = ((4.0/3.0)*PI*pow(data["radius"],3.0))
 	data["orbital_parent"] = parent_star
-	data["orbital_radius"] = randf_range(0.25,30.0)*data["radius"]*parent_star.mass/2.0
+	#data["orbital_radius"] = randf_range(0.25,30.0)*data["radius"]*parent_star.mass/2.0
 	
 	planet.setup(data)
 	return planet
@@ -74,13 +74,19 @@ func generate_planet(parent_star:Star) -> CelestialObject:
 func generate_system():
 	var star = generate_star()
 	var planets = []
-	for i in randi_range(3,6):
-		planets.append(generate_planet(star))
+	for i in range(0,randi_range(3,6)):
+		var planet = generate_planet(star)
+		if i==0:
+			planet.orbital_radius = randf_range(0.5,1.0)+star.radius
+		else:
+			planet.orbital_radius = planets[i-1].orbital_radius+randf_range(0.5,1.0)+star.radius
+		planets.append(planet)
 	add_child(star)
+	
 	for p in planets:
-		p.position.x = p.orbital_radius*128
 		star.get_node("Satellites").add_child(p)
-	$Star/Satellites.get_child(0).get_node("Sprite").get_material().set_shader_parameter("base_color",Color(1.0,0.0,0.0,1.0))
+		var angle = randf_range(0,TAU)
+		p.position = Vector2(p.orbital_radius*cos(angle)*2048,p.orbital_radius*sin(angle)*2048)
 
 func _on_generate_pressed():
 	for c in get_children():
