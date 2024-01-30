@@ -1,6 +1,8 @@
 extends Node2D
 class_name GenericObject
 
+signal camera_focus_object(object)
+
 ## The inspector to send information to
 # NOTE assign this value before the object enters tree
 var object_inspector : Control
@@ -34,3 +36,7 @@ func _on_hitbox_input_event(_viewport, event, _shape_idx) -> void:
 		else:
 			object_inspector.hide_inspect()
 			inspecting = false
+
+func _process(_delta):
+	if hover and Input.is_action_just_pressed("camera_focus_object"):
+		camera_focus_object.emit(self)

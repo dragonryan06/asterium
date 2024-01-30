@@ -22,7 +22,7 @@ func _physics_process(delta):
 	
 	position+=pos_velocity*delta
 	if zoom.x+zoom_velocity*delta<=0.0:
-		zoom = Vector2(0.1,0.1)
+		zoom = Vector2(0.00001,0.00001)
 		zoom_velocity = 0.0
 	else:
 		zoom+=Vector2(zoom_velocity,zoom_velocity)*delta
@@ -46,3 +46,8 @@ func _physics_process(delta):
 		zoom_velocity+=0.5*ZOOM_SPEED
 	else:
 		zoom_velocity = 0
+
+func _on_camera_focus_object(object:GenericObject) -> void:
+	var tween = get_tree().create_tween().set_parallel()
+	tween.tween_property(self,"position",object.position,0.5).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self,"zoom",Vector2(0.1,0.1),0.5).set_trans(Tween.TRANS_CUBIC)

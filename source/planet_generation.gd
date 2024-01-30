@@ -81,9 +81,12 @@ func generate_system():
 		else:
 			planet.orbital_radius = planets[i-1].orbital_radius+randf_range(0.5,1.0)+star.radius
 		planets.append(planet)
+	
+	star.camera_focus_object.connect($Camera2D._on_camera_focus_object)
 	add_child(star)
 	
 	for p in planets:
+		p.camera_focus_object.connect($Camera2D._on_camera_focus_object)
 		star.get_node("Satellites").add_child(p)
 		var angle = randf_range(0,TAU)
 		p.position = Vector2(p.orbital_radius*cos(angle)*2048,p.orbital_radius*sin(angle)*2048)
