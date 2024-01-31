@@ -1,5 +1,7 @@
 extends Camera2D
 
+signal camera_changed
+
 const POS_SPEED = 20
 const ZOOM_SPEED = 0.01
 
@@ -21,11 +23,18 @@ func _physics_process(delta):
 		zoom_velocity-=ZOOM_SPEED
 	
 	position+=pos_velocity*delta
-	if zoom.x+zoom_velocity*delta<=0.0:
-		zoom = Vector2(0.00001,0.00001)
+	if pos_velocity*delta!=Vector2(0.0,0.0):
+		camera_changed.emit()
+	
+	if zoom.x+zoom_velocity*delta<=0.01:
+		zoom = Vector2(0.01,0.01)
 		zoom_velocity = 0.0
+		if pos_velocity*delta==Vector2(0.0,0.0):
+			camera_changed.emit()
 	else:
 		zoom+=Vector2(zoom_velocity,zoom_velocity)*delta
+		if pos_velocity*delta==Vector2(0.0,0.0) and Vector2(zoom_velocity,zoom_velocity)*delta!=Vector2(0.0,0.0):
+			camera_changed.emit()
 	
 	if pos_velocity.x>0 and pos_velocity.x-0.5*POS_SPEED*1.0/zoom.x>0:
 		pos_velocity.x-=0.5*POS_SPEED*1.0/zoom.x
@@ -47,7 +56,14 @@ func _physics_process(delta):
 	else:
 		zoom_velocity = 0
 
+# this is so that tween_method() can call camera_changed.emit()
+func _update_camera(_null):
+	camera_changed.emit()
+
 func _on_camera_focus_object(object:GenericObject) -> void:
 	var tween = get_tree().create_tween().set_parallel()
 	tween.tween_property(self,"position",object.position,0.5).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(self,"zoom",Vector2(0.1,0.1),0.5).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_method(_update_camera,null,null,1.0)
+	await tween.finished
+	camera_changed.emit()
