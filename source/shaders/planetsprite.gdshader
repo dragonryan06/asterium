@@ -26,4 +26,7 @@ void fragment() {
 		}
 	}
 	COLOR*=base_color;
+	if (COLOR.r<0.5 && COLOR.g<0.5 && COLOR.b<0.5) {
+		COLOR.rgb+=vec3(0.1,0.1,0.1);
+	}
 }

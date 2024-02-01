@@ -1,0 +1,7 @@
+i'm officially giving up on 2d-hdr, it's way too buggy and has far too many colorspacing issues
+
+the main problem is that, when drawing something over top of something else using a shader, the lower layer bleeds through into the default mix() function and breaks the whole thing.
+
+i also tried manually performing mixing, whereby making a=1.0 frags completely replace the screen color, and a=0.0 frags just display the screen color, but then in the a=0.0 sections, the color would be ever so slightly lighter by some random margin. it is really just too much to mess with
+
+i'll probably end up making my own bloom shader and maybe come back to hdr once the game is more finished idk
