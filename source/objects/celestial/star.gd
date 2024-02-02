@@ -8,6 +8,8 @@ class_name Star
 var chromaticity : String
 ## This Star's surface temperature, in K
 var temperature : int : set=_set_temperature
+## This Star's luminosity (divided by the stefan-boltzmann constant), determined from temperature
+var luminosity : float
 
 func _set_radius(val:float) -> void:
 	radius = val
@@ -27,6 +29,9 @@ func _set_temperature(val:int) -> void:
 	var normVal = (float(val)-2400.0)/(30000.0-2400.0)
 	$Sprite.get_material().set_shader_parameter("base_color",spectrum.sample(normVal))
 	$Sprite/PointLight2D.color = spectrum.sample(normVal)
+	# formula from https://www.astronomy.ohio-state.edu/thompson.1847/1144/Lecture9.html
+	# because this value is internal and used only for temperature where the stefan-boltzmann constant is divided back out, it is being divided out in advance.
+	luminosity = 4.0*PI*pow(radius,2.0)*pow(temperature,4.0)
 
 func setup(data:Dictionary) -> void:
 	# make unique material and texture
