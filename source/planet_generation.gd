@@ -66,30 +66,28 @@ func generate_planet(parent_star:Star) -> CelestialObject:
 	data["radius"] = randf_range(planet_data["planet"]["terrestrial"]["radius_min"],planet_data["planet"]["terrestrial"]["radius_max"])
 	data["mass"] = ((4.0/3.0)*PI*pow(data["radius"],3.0))
 	data["orbital_parent"] = parent_star
-	#data["orbital_radius"] = randf_range(0.25,30.0)*data["radius"]*parent_star.mass/2.0
+	
+	var albedo = 0.0
+	if len(parent_star.get_node("Satellites").get_children())==0:
+		data["orbital_radius"] = randf_range(0.5,1.0)+parent_star.radius
+	else:
+		data["orbital_radius"] = parent_star.get_node("Satellites").get_children()[-1].orbital_radius+randf_range(0.5,1.0)+parent_star.radius
+	var base_temperature = pow((parent_star.luminosity*(1.0-albedo))/(16.0*PI*pow(data["orbital_radius"]*Constants.M_IN_AU,2.0)),0.25)
 	
 	planet.setup(data)
 	return planet
 
 func generate_system():
 	var star = generate_star()
-	var planets = []
 	for i in range(0,randi_range(3,6)):
 		var planet = generate_planet(star)
-		if i==0:
-			planet.orbital_radius = randf_range(0.5,1.0)+star.radius
-		else:
-			planet.orbital_radius = planets[i-1].orbital_radius+randf_range(0.5,1.0)+star.radius
-		planets.append(planet)
+		planet.camera_focus_object.connect($Camera2D._on_camera_focus_object)
+		var angle = randf_range(0,TAU)
+		planet.position = Vector2(planet.orbital_radius*cos(angle)*2048,planet.orbital_radius*sin(angle)*2048)
+		star.get_node("Satellites").add_child(planet)
 	
 	star.camera_focus_object.connect($Camera2D._on_camera_focus_object)
 	add_child(star)
-	
-	for p in planets:
-		p.camera_focus_object.connect($Camera2D._on_camera_focus_object)
-		star.get_node("Satellites").add_child(p)
-		var angle = randf_range(0,TAU)
-		p.position = Vector2(p.orbital_radius*cos(angle)*2048,p.orbital_radius*sin(angle)*2048)
 
 func _on_generate_pressed():
 	for c in get_children():

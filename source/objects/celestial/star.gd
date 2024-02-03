@@ -31,7 +31,7 @@ func _set_temperature(val:int) -> void:
 	$Sprite/PointLight2D.color = spectrum.sample(normVal)
 	# formula from https://www.astronomy.ohio-state.edu/thompson.1847/1144/Lecture9.html
 	# because this value is internal and used only for temperature where the stefan-boltzmann constant is divided back out, it is being divided out in advance.
-	luminosity = 4.0*PI*pow(radius,2.0)*pow(temperature,4.0)
+	luminosity = 4.0*PI*pow(radius*Constants.M_IN_SR,2.0)*pow(temperature,4.0)
 
 func setup(data:Dictionary) -> void:
 	# make unique material and texture
