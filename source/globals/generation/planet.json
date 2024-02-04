@@ -12,5 +12,8 @@
 	"moon": {
 		"radius_min":0.01,
 		"radius_max":0.5
+	},
+	"worldclass": {
+		
 	}
 }

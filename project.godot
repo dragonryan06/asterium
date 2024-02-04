@@ -15,10 +15,6 @@ run/main_scene="res://source/main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://assets/tempgameicon.png"
 
-[autoload]
-
-Constants="*res://source/globals/constants.gd"
-
 [display]
 
 window/stretch/mode="viewport"
@@ -29,6 +25,7 @@ window/stretch/aspect="expand"
 folder_colors={
 "res://source/": "yellow",
 "res://source/globals/": "green",
+"res://source/globals/generation/": "teal",
 "res://source/objects/": "orange",
 "res://source/objects/celestial/": "purple",
 "res://source/shaders/": "pink",

@@ -2,7 +2,6 @@ extends Node2D
 
 const _Star = preload("res://source/objects/celestial/star.tscn")
 const _Terrestrial = preload("res://source/objects/celestial/terrestrial_planet.tscn")
-const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 
 # thoughts:
 # perhaps some Curve resources should be saved to skew the probability and allow for some extremely rare edge case things
@@ -12,18 +11,23 @@ const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P
 var star_data : Dictionary
 var planet_data : Dictionary
 var rock_data : Dictionary
+var name_data : Dictionary
 
 func _ready():
-	star_data = ResourceManager.load_json("res://source/globals/star.json").data
-	planet_data = ResourceManager.load_json("res://source/globals/planet.json").data
+	star_data = ResourceManager.load_json("res://source/globals/generation/star.json").data
+	planet_data = ResourceManager.load_json("res://source/globals/generation/planet.json").data
 	rock_data = ResourceManager.load_json("res://source/globals/rock.json").data
+	name_data = ResourceManager.load_json("res://source/globals/generation/random_names.json").data
 
 func generate_star() -> Star:
 	var star = _Star.instantiate()
 	star.object_inspector = $HUD/ObjectInspector
 	var solar_class = star_data["main-sequence"].keys().pick_random()
 	var data = {}
-	data["obj_title"]=str(randi_range(1,9))+"-"+alphabet.pick_random()+alphabet.pick_random()+"-"+str(randi_range(0,9))+""+str(randi_range(0,9))+""+str(randi_range(0,9))
+	if randi_range(0,1)==0:
+		data["obj_title"]=str(randi_range(1,9))+"-"+Constants.ALPHABET.pick_random()+Constants.ALPHABET.pick_random()+"-"+str(randi_range(0,9))+""+str(randi_range(0,9))+""+str(randi_range(0,9))
+	else:
+		data["obj_title"]=name_data["star"]["prefix"].pick_random()+name_data["star"]["suffix"].pick_random()
 	data["obj_subtitle"]=solar_class+"-class Main Sequence Star"
 	
 	data["mass"]=randf_range(star_data["main-sequence"][solar_class]["mass_min"],star_data["main-sequence"][solar_class]["mass_max"])
@@ -31,7 +35,7 @@ func generate_star() -> Star:
 	data["orbital_parent"]=null
 	data["orbital_period"]=-1
 	data["orbital_radius"]=-1
-	data["rotational_period"]=86400 #idk, come up with some numbers for this
+	data["rotational_period"]=randf_range(-5,5)
 	
 	data["chromaticity"]=star_data["main-sequence"][solar_class]["chromaticity"]
 	data["temperature"]=randi_range(star_data["main-sequence"][solar_class]["temp_min"],star_data["main-sequence"][solar_class]["temp_max"])
@@ -65,6 +69,7 @@ func generate_planet(parent_star:Star) -> CelestialObject:
 	
 	data["radius"] = randf_range(planet_data["planet"]["terrestrial"]["radius_min"],planet_data["planet"]["terrestrial"]["radius_max"])
 	data["mass"] = ((4.0/3.0)*PI*pow(data["radius"],3.0))
+	data["rotational_period"] = randf_range(-5,5)
 	data["orbital_parent"] = parent_star
 	
 	var albedo = 0.0
@@ -72,7 +77,7 @@ func generate_planet(parent_star:Star) -> CelestialObject:
 		data["orbital_radius"] = randf_range(0.5,1.0)+parent_star.radius
 	else:
 		data["orbital_radius"] = parent_star.get_node("Satellites").get_children()[-1].orbital_radius+randf_range(0.5,1.0)+parent_star.radius
-	var base_temperature = pow((parent_star.luminosity*(1.0-albedo))/(16.0*PI*pow(data["orbital_radius"]*Constants.M_IN_AU,2.0)),0.25)
+	data["base_temperature"] = pow((parent_star.luminosity*(1.0-albedo))/(16.0*PI*pow(data["orbital_radius"]*Constants.M_IN_AU,2.0)),0.25)
 	
 	planet.setup(data)
 	return planet
@@ -84,6 +89,8 @@ func generate_system():
 		planet.camera_focus_object.connect($Camera2D._on_camera_focus_object)
 		var angle = randf_range(0,TAU)
 		planet.position = Vector2(planet.orbital_radius*cos(angle)*2048,planet.orbital_radius*sin(angle)*2048)
+		planet.obj_title = star.obj_title+" - "+Constants.romanify(i+1)
+		planet.obj_subtitle = "world type"
 		star.get_node("Satellites").add_child(planet)
 	
 	star.camera_focus_object.connect($Camera2D._on_camera_focus_object)
