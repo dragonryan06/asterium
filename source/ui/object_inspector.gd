@@ -6,7 +6,7 @@ const formats = {
 		"description":"\t{obj_title} is a large sphere composed of plasma. It is constantly fusing atoms together, converting a fraction of their mass into energy each time. \n\tIt is the heart of the {obj_title} system, and provides the {chromaticity} illumination seen in its satellites' skies"
 	},
 	"terrestrial_planet": {
-		"details":"[u]Rotational Period:[/u] {rotational_period} d\n[u]Parent Rock:[/u] {parent_rock.name}\n[u]Mineral Composition:[/u] Not Implemented",
+		"details":"[u]Rotational Period:[/u] {rotational_period} d\n[u]Parent Rock:[/u] {parent_rock.name}\n[u]Temperature:[/u] {base_temperature} K\n[u]Ocean:[/u] {liquid_composition.solvent}\n[u]Ocean Coverage:[/u] {liquid_surface_coverage}",
 		"description":"\t{obj_title} is a planet"
 	}
 }

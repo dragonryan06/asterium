@@ -9,6 +9,8 @@ shader_parameter/base_color = Vector4(1, 1, 1, 1)
 shader_parameter/aspect_ratio = 2.0
 shader_parameter/rotation_speed = 1.0
 shader_parameter/as_shadow = false
+shader_parameter/ocean_color = Vector4(1, 0, 1, 1)
+shader_parameter/ocean_coverage = 0.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ka5ry"]
 

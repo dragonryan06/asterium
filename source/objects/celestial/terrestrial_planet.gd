@@ -1,6 +1,8 @@
 extends CelestialObject
 class_name TerrestrialPlanet
 
+var chemical_data = ResourceManager.load_json("res://source/globals/chemical.json").data
+
 ## The temperature of this world from solar radiation
 var base_temperature : float 
 ## The primary rock this world is made of
@@ -13,11 +15,19 @@ var gas_composition : Dictionary
 var gas_density : float
 ## Primary liquids/ice sheets on the surface
 var liquid_composition : Dictionary
-var liquid_height : float
+var liquid_surface_coverage : float : set=_set_liquid_surface_coverage
 
 func _set_parent_rock(rocktype:Dictionary) -> void:
 	parent_rock = rocktype
 	$Sprite.get_material().set_shader_parameter("base_color",rocktype["color"])
+
+func _set_liquid_surface_coverage(surface_coverage) -> void:
+	liquid_surface_coverage = surface_coverage
+	var color = chemical_data["liquid"][liquid_composition["solvent"]]["base_color"]
+	if color == "clear":
+		return
+	$Sprite.get_material().set_shader_parameter("ocean_color",Color(color))
+	$Sprite.get_material().set_shader_parameter("ocean_coverage",liquid_surface_coverage)
 
 func setup(data:Dictionary) -> void:
 	# make unique material and texture
