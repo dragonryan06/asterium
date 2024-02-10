@@ -29,6 +29,7 @@ folder_colors={
 "res://source/objects/": "orange",
 "res://source/objects/celestial/": "purple",
 "res://source/shaders/": "pink",
+"res://source/substances/": "teal",
 "res://source/ui/": "blue"
 }
 

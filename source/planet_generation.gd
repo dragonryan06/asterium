@@ -11,14 +11,12 @@ const _Terrestrial = preload("res://source/objects/celestial/terrestrial_planet.
 var star_data : Dictionary
 var planet_data : Dictionary
 var rock_data : Dictionary
-var chemical_data : Dictionary
 var name_data : Dictionary
 
 func _ready():
 	star_data = ResourceManager.load_json("res://source/globals/generation/star.json").data
 	planet_data = ResourceManager.load_json("res://source/globals/generation/planet.json").data
 	rock_data = ResourceManager.load_json("res://source/globals/rock.json").data
-	chemical_data = ResourceManager.load_json("res://source/globals/chemical.json").data
 	name_data = ResourceManager.load_json("res://source/globals/generation/random_names.json").data
 
 func generate_star() -> Star:
@@ -82,23 +80,11 @@ func generate_planet(parent_star:Star) -> CelestialObject:
 	var albedo = 0.0
 	data["base_temperature"] = pow((parent_star.luminosity*(1.0-albedo))/(16.0*PI*pow(data["orbital_radius"]*Constants.M_IN_AU,2.0)),0.25)
 	# initial ocean/atmosphere
-	var atmosphere = {}
-	var percentage = 0.0
-	for i in range(0,randi_range(0,3)):
-		var chem = chemical_data["gas"].keys().pick_random()
-		while chem in atmosphere:
-			chem = chemical_data["gas"].keys().pick_random()
-		var p = randf_range(0.0,1.0-percentage)
-		atmosphere[chem] = p
-		percentage += p
-	if percentage<1.0 and len(atmosphere)>0:
-		atmosphere[atmosphere.keys()[0]]+=1.0-percentage
-	var ocean = chemical_data["liquid"].keys().pick_random()
-	var liquid_coverage = randf_range(0.0,1.0)
-	
-	data["gas_composition"] = atmosphere
-	data["liquid_composition"] = {"solvent":ocean}
-	data["liquid_surface_coverage"] = liquid_coverage
+	var ocean = Chemical.new()
+	var o_mat = Chemical.data["liquid"].keys().pick_random()
+	ocean.from_dictionary(o_mat,Chemical.data["liquid"][o_mat],Chemical.states.LIQUID)
+	ocean.temperature = data["base_temperature"]
+	planet.get_node("Composition/Ocean").add_child(ocean)
 	
 	planet.get_node("Sprite").texture.noise.seed = randi()
 	planet.setup(data)
