@@ -61,6 +61,15 @@
 			"expand_temp":195.4,
 			"expand_state":"liquid_ammonia",
 			"reactions":{}
+		},
+		"solid_sulfuric_acid": {
+			"base_color":"yellow",
+			"item_color":"yellow",
+			"condense_temp":-1,
+			"condense_state":-1,
+			"expand_temp":283.5,
+			"expand_state":"sulfuric_acid",
+			"reactions":{}
 		}
 	},
 	"liquid":{

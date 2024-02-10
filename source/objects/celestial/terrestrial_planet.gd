@@ -13,21 +13,20 @@ var mineral_richness : float
 ## Primary gases in atmosphere
 var gas_composition : Dictionary
 var gas_density : float
-## Primary liquids/ice sheets on the surface
-var liquid_composition : Chemical
-var liquid_surface_coverage : float : set=_set_liquid_surface_coverage
+
+var ocean_coverage : float : set=_set_ocean_coverage
 
 func _set_parent_rock(rocktype:Dictionary) -> void:
 	parent_rock = rocktype
 	$Sprite.get_material().set_shader_parameter("base_color",rocktype["color"])
 
-func _set_liquid_surface_coverage(surface_coverage) -> void:
-	liquid_surface_coverage = surface_coverage
-	var color = liquid_composition.base_color
+func _set_ocean_coverage(surface_coverage) -> void:
+	ocean_coverage = surface_coverage
+	var color = $Composition/Ocean.get_child(0).base_color
 	if color == "clear":
-		return
+		color = Color(0.5,0.5,0.5,1.0)
 	$Sprite.get_material().set_shader_parameter("ocean_color",Color(color))
-	$Sprite.get_material().set_shader_parameter("ocean_coverage",liquid_surface_coverage)
+	$Sprite.get_material().set_shader_parameter("ocean_coverage",ocean_coverage)
 
 func setup(data:Dictionary) -> void:
 	# make unique material and texture
