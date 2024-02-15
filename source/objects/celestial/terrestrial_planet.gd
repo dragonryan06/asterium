@@ -23,7 +23,7 @@ func _set_parent_rock(rocktype:Dictionary) -> void:
 func _set_ocean_coverage(surface_coverage) -> void:
 	ocean_coverage = surface_coverage
 	var color = $Composition/Ocean.get_child(0).base_color
-	if color == "clear":
+	if color.a == 0:
 		color = Color(0.5,0.5,0.5,1.0)
 	$Sprite.get_material().set_shader_parameter("ocean_color",Color(color))
 	$Sprite.get_material().set_shader_parameter("ocean_coverage",ocean_coverage)

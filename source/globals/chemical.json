@@ -2,7 +2,7 @@
 	"solid":{
 		"solid_hydrogen": {
 			"base_color":"clear",
-			"item_color":"blue",
+			"item_color":"#0000ff",
 			"condense_temp":-1,
 			"condense_state":-1,
 			"expand_temp":14.0,
@@ -10,8 +10,8 @@
 			"reactions":{}
 		},
 		"ice": {
-			"base_color":"white",
-			"item_color":"light_blue",
+			"base_color":"#ffffff",
+			"item_color":"#05a8ff",
 			"condense_temp":-1,
 			"condense_state":-1,
 			"expand_temp":273.2,
@@ -19,8 +19,8 @@
 			"reactions":{}
 		},
 		"solid_oxygen": {
-			"base_color":"light_blue",
-			"item_color":"light_blue",
+			"base_color":"#7ed0fc",
+			"item_color":"#05a8ff",
 			"condense_temp":-1,
 			"condense_state":-1,
 			"expand_temp":54.4,
@@ -28,8 +28,8 @@
 			"reactions":{}
 		},
 		"dry_ice": {
-			"base_color":"white",
-			"item_color":"gray",
+			"base_color":"#ffffff",
+			"item_color":"#4c4c4c",
 			"condense_temp":-1,
 			"condense_state":-1,
 			"expand_temp":194.7,
@@ -38,7 +38,7 @@
 		},
 		"solid_sulfur_dioxide": {
 			"base_color":"clear",
-			"item_color":"yellow",
+			"item_color":"#ffff00",
 			"condense_temp":-1,
 			"condense_state":-1,
 			"expand_temp":201.0,
@@ -46,7 +46,7 @@
 		},
 		"solid_nitrogen": {
 			"base_color":"clear",
-			"item_color":"orange",
+			"item_color":"#ff9900",
 			"condense_temp":-1,
 			"condense_state":-1,
 			"expand_temp":63.2,
@@ -54,8 +54,8 @@
 			"reactions":{}
 		},
 		"solid_ammonia": {
-			"base_color":"white",
-			"item_color":"light_orange",
+			"base_color":"#ffffff",
+			"item_color":"#fac87d",
 			"condense_temp":-1,
 			"condense_state":-1,
 			"expand_temp":195.4,
@@ -63,8 +63,8 @@
 			"reactions":{}
 		},
 		"solid_sulfuric_acid": {
-			"base_color":"yellow",
-			"item_color":"yellow",
+			"base_color":"#ffff00",
+			"item_color":"#ffff00",
 			"condense_temp":-1,
 			"condense_state":-1,
 			"expand_temp":283.5,
@@ -75,7 +75,7 @@
 	"liquid":{
 		"liquid_hydrogen": {
 			"base_color":"clear",
-			"item_color":"blue",
+			"item_color":"#0000ff",
 			"condense_temp":14.0,
 			"condense_state":"solid_hydrogen",
 			"expand_temp":20.3,
@@ -83,8 +83,8 @@
 			"reactions":{}
 		},
 		"water": {
-			"base_color":"light_blue",
-			"item_color":"light_blue",
+			"base_color":"#7ed0fc",
+			"item_color":"#7ed0fc",
 			"condense_temp":273.2,
 			"condense_state":"ice",
 			"expand_temp":373.2,
@@ -97,8 +97,8 @@
 			}
 		},
 		"liquid_oxygen": {
-			"base_color":"light_blue",
-			"item_color":"light_blue",
+			"base_color":"#7ed0fc",
+			"item_color":"#05a8ff",
 			"condense_temp":54.4,
 			"condense_state":"solid_oxygen",
 			"expand_temp":90.2,
@@ -107,7 +107,7 @@
 		},
 		"liquid_sulfur_dioxide": {
 			"base_color":"clear",
-			"item_color":"yellow",
+			"item_color":"#ffff00",
 			"condense_temp":201.0,
 			"condense_state":"solid_sulfur_dioxide",
 			"expand_temp":263.0,
@@ -115,8 +115,8 @@
 			"reactions":{}
 		},
 		"sulfuric_acid": {
-			"base_color":"yellow",
-			"item_color":"yellow",
+			"base_color":"#ffff00",
+			"item_color":"#ffff00",
 			"condense_temp":283.5,
 			"condense_state":"solid_sulfuric_acid",
 			"expand_temp":-1,
@@ -130,7 +130,7 @@
 		},
 		"liquid_nitrogen": {
 			"base_color":"clear",
-			"item_color":"orange",
+			"item_color":"#ff9900",
 			"condense_temp":63.2,
 			"condense_state":"solid_nitrogen",
 			"expand_temp":77.4,
@@ -139,7 +139,7 @@
 		},
 		"liquid_ammonia": {
 			"base_color":"clear",
-			"item_color":"light_orange",
+			"item_color":"#fcce88",
 			"condense_temp":195.4,
 			"condense_state":"solid_ammonia",
 			"expand_temp":239.8,
@@ -150,7 +150,7 @@
 	"gas":{
 		"hydrogen": {
 			"base_color":"clear",
-			"item_color":"blue",
+			"item_color":"#0000ff",
 			"condense_temp":20.3,
 			"condense_state":"liquid_hydrogen",
 			"expand_temp":2000.0,
@@ -158,8 +158,8 @@
 			"reactions":{}
 		},
 		"water_vapor": {
-			"base_color":"white",
-			"item_color":"light_blue",
+			"base_color":"#ffffff",
+			"item_color":"#7ed0fc",
 			"condense_temp":373.2,
 			"condense_state":"water",
 			"expand_temp":-1,
@@ -168,7 +168,7 @@
 		},
 		"oxygen": {
 			"base_color":"clear",
-			"item_color":"light_blue",
+			"item_color":"#05a8ff",
 			"condense_temp":90.2,
 			"condense_state":"liquid_oxygen",
 			"expand_temp":-1,
@@ -177,7 +177,7 @@
 		},
 		"carbon_dioxide": {
 			"base_color":"clear",
-			"item_color":"gray",
+			"item_color":"#4c4c4c",
 			"condense_temp":194.7,
 			"condense_state":"dry_ice",
 			"expand_temp":-1,
@@ -186,7 +186,7 @@
 		},
 		"sulfur_dioxide": {
 			"base_color":"clear",
-			"item_color":"yellow",
+			"item_color":"#ffff00",
 			"condense_temp":263.0,
 			"condense_state":"liquid_sulfur_dioxide",
 			"expand_temp":-1,
@@ -200,7 +200,7 @@
 		},
 		"nitrogen": {
 			"base_color":"clear",
-			"item_color":"orange",
+			"item_color":"#ff9900",
 			"condense_temp":77.4,
 			"expand_temp":-1,
 			"expand_state":-1,
@@ -213,7 +213,7 @@
 		},
 		"ammonia": {
 			"base_color":"clear",
-			"item_color":"light_orange",
+			"item_color":"#fcce88",
 			"condense_temp":239.8,
 			"condense_state":"liquid_ammonia",
 			"expand_temp":-1,
@@ -228,8 +228,8 @@
 	},
 	"plasma":{
 		"stardust":{
-			"base_color":"white",
-			"item_color":"magenta",
+			"base_color":"#ffffff",
+			"item_color":"#ff00ff",
 			"condense_temp":2000.0,
 			"condense_state":"hydrogen",
 			"expand_temp":-1,

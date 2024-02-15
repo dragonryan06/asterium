@@ -58,23 +58,23 @@ func generate_planet(parent_star:Star) -> CelestialObject:
 	else:
 		data["orbital_radius"] = parent_star.get_node("Satellites").get_children()[-1].orbital_radius+randf_range(0.5,1.0)+parent_star.radius
 	
-	var parent_rock
+	var parent_rock = Rock.new()
 	# create initial mineral soup
-	var mineral_content = {
-		"feldspar_index":randf_range(0.0,1.0)
-	}
+	parent_rock.mafic_felsic_ratio = randf_range(0.0,1.0)
 	# cool magma into igneous rock
-	var cool_time = ["slow","rapid"].pick_random()
+	var cool_time = Rock.cool_times.values().pick_random()
 	var idx = 0
 	var nearest_match = [1.0,-1]
 	for rock in rock_data["igneous"].values():
 		if rock["cooling_time"]==cool_time:
-			if abs(rock["feldspar_index"]-mineral_content["feldspar_index"])<nearest_match[0]:
-				nearest_match[0] = abs(rock["feldspar_index"]-mineral_content["feldspar_index"])
+			if abs(rock["mafic_felsic_ratio"]-parent_rock.mafic_felsic_ratio)<nearest_match[0]:
+				nearest_match[0] = abs(rock["mafic_felsic_ratio"]-parent_rock.mafic_felsic_ratio)
 				nearest_match[1] = idx
 		idx+=1
-	parent_rock = rock_data["igneous"].keys()[nearest_match[1]]
-	data["parent_rock"] = {"name":parent_rock,"color":Color(rock_data["igneous"][parent_rock]["base_color"])+Color(randf_range(-0.005,0.005),randf_range(-0.005,0.005),randf_range(-0.005,0.005))}
+	parent_rock.name = rock_data["igneous"].keys()[nearest_match[1]]
+	parent_rock.base_color = Color(rock_data["igneous"][parent_rock.name]["base_color"])+Color(randf_range(-0.005,0.005),randf_range(-0.005,0.005),randf_range(-0.005,0.005))
+	parent_rock.item_color = Color(0.5,0.5,0.5,1.0)
+	planet.get_node("Composition/Surface").add_child(parent_rock)
 	
 	# implementing albedo later, for now assuming that all planets are totally matte black
 	var albedo = 0.0
