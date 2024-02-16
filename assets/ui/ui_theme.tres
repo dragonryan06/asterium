@@ -1,6 +1,72 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b8ljuij7sans3"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://b8ljuij7sans3"]
 
 [ext_resource type="FontFile" uid="uid://dnpsjacgpflbl" path="res://assets/fonts/PixelOperator.ttf" id="1_ti0ik"]
+[ext_resource type="Texture2D" uid="uid://ci5x42i6frx2q" path="res://assets/ui/panel_backdrop.png" id="1_yrdsr"]
+[ext_resource type="FontFile" uid="uid://c5j20n3msj3bg" path="res://assets/fonts/PixelOperator-Bold.ttf" id="2_gyqef"]
+[ext_resource type="Texture2D" uid="uid://dq0wxw4wnl0yt" path="res://assets/ui/tab_backgrounds.png" id="2_nnuke"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7abht"]
+atlas = ExtResource("1_yrdsr")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lefp0"]
+texture = SubResource("AtlasTexture_7abht")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+axis_stretch_vertical = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pou38"]
+atlas = ExtResource("1_yrdsr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7nogv"]
+texture = SubResource("AtlasTexture_pou38")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tg87m"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_thf5i"]
+load_path = "res://.godot/imported/tab_backgrounds.png-b87e8375b9a4b404f7dabce186962a5e.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu6as"]
+atlas = SubResource("CompressedTexture2D_thf5i")
+region = Rect2(0, 63, 64, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_68jah"]
+texture = SubResource("AtlasTexture_iu6as")
+texture_margin_left = 16.0
+texture_margin_right = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ccac"]
+atlas = ExtResource("2_nnuke")
+region = Rect2(0, 0, 64, 31)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y5afa"]
+texture = SubResource("AtlasTexture_4ccac")
+texture_margin_left = 16.0
+texture_margin_right = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1rt0"]
+atlas = ExtResource("2_nnuke")
+region = Rect2(0, 31, 64, 33)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jtru8"]
+texture = SubResource("AtlasTexture_e1rt0")
+texture_margin_left = 16.0
+texture_margin_right = 16.0
 
 [resource]
 default_font = ExtResource("1_ti0ik")
+InteriorPanel/base_type = &"Panel"
+InteriorPanel/styles/panel = SubResource("StyleBoxTexture_lefp0")
+Panel/styles/panel = SubResource("StyleBoxTexture_7nogv")
+RichTextLabel/fonts/bold_font = ExtResource("2_gyqef")
+TabContainer/styles/panel = SubResource("StyleBoxEmpty_tg87m")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxTexture_68jah")
+TabContainer/styles/tab_selected = SubResource("StyleBoxTexture_y5afa")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxTexture_jtru8")

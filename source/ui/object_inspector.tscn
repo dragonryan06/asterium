@@ -5,6 +5,7 @@
 [ext_resource type="StyleBox" uid="uid://cryglg1n6wl06" path="res://assets/ui/dialog_stylebox.tres" id="3_f1olx"]
 
 [node name="ObjectInspector" type="Control"]
+texture_filter = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,13 +21,12 @@ layout_mode = 2
 offset_left = -215.0
 offset_top = -67.0
 theme = ExtResource("2_cr7my")
-theme_override_styles/panel = ExtResource("3_f1olx")
 
 [node name="Title" type="Label" parent="Tooltip"]
 layout_mode = 1
-offset_left = 15.0
+offset_left = 31.0
 offset_top = 4.0
-offset_right = 166.0
+offset_right = 182.0
 offset_bottom = 52.0
 theme = ExtResource("2_cr7my")
 theme_override_font_sizes/font_size = 24
@@ -34,10 +34,10 @@ text = "Title"
 
 [node name="Subtitle" type="Label" parent="Tooltip"]
 layout_mode = 1
-offset_left = 30.0
-offset_top = 27.0
-offset_right = 167.0
-offset_bottom = 59.0
+offset_left = 12.0
+offset_top = 29.0
+offset_right = 149.0
+offset_bottom = 61.0
 theme = ExtResource("2_cr7my")
 theme_override_font_sizes/font_size = 16
 text = "Subtitle"
@@ -52,14 +52,14 @@ theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
 theme_override_font_sizes/font_size = 10
 text = "(Shift+LMB to Inspect)"
 
-[node name="InspectCelestial" type="Control" parent="."]
+[node name="InspectCelestialOld" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 anchors_preset = 0
 offset_left = -256.0
 offset_top = -384.0
 
-[node name="Panel" type="Panel" parent="InspectCelestial"]
+[node name="Panel" type="Panel" parent="InspectCelestialOld"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,7 +70,7 @@ theme = ExtResource("2_cr7my")
 theme_override_styles/panel = ExtResource("3_f1olx")
 metadata/_edit_use_anchors_ = true
 
-[node name="Details" type="RichTextLabel" parent="InspectCelestial"]
+[node name="Details" type="RichTextLabel" parent="InspectCelestialOld"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.105625
@@ -91,7 +91,7 @@ Detail3: detail detail
 Detail4: detail detail"
 metadata/_edit_use_anchors_ = true
 
-[node name="Description" type="RichTextLabel" parent="InspectCelestial"]
+[node name="Description" type="RichTextLabel" parent="InspectCelestialOld"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.105625
@@ -108,6 +108,74 @@ bbcode_enabled = true
 text = "	Text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text 
 
 	Text text text text text text text text text text text text text text text text text text "
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="InspectCelestialOld"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0780938
+anchor_top = 0.0548333
+anchor_right = 0.953156
+anchor_bottom = 0.143104
+offset_left = 4.008
+offset_top = -5.056
+offset_right = 3.992
+offset_bottom = -4.952
+grow_horizontal = 2
+theme = ExtResource("2_cr7my")
+theme_override_font_sizes/font_size = 24
+text = "[BodyName]"
+metadata/_edit_use_anchors_ = true
+
+[node name="Subtitle" type="Label" parent="InspectCelestialOld"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0078125
+anchor_top = 0.104
+anchor_right = 0.957
+anchor_bottom = 0.156
+offset_left = 24.0
+offset_top = 0.0639992
+offset_right = 0.00799561
+offset_bottom = 0.0960007
+grow_horizontal = 2
+theme = ExtResource("2_cr7my")
+theme_override_font_sizes/font_size = 16
+text = "[BodyType]"
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleDivider" type="ColorRect" parent="InspectCelestialOld"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 64.0
+offset_right = 224.0
+offset_bottom = 67.0
+color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="DescDivider" type="ColorRect" parent="InspectCelestialOld"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 154.0
+offset_right = 224.0
+offset_bottom = 157.0
+color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="InspectCelestial" type="Control" parent="."]
+layout_mode = 2
+anchors_preset = 0
+offset_left = -270.0
+offset_top = -380.0
+offset_right = -14.0
+offset_bottom = 4.0
+
+[node name="Panel" type="Panel" parent="InspectCelestial"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.07031
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_cr7my")
 metadata/_edit_use_anchors_ = true
 
 [node name="Title" type="Label" parent="InspectCelestial"]
@@ -144,18 +212,73 @@ theme_override_font_sizes/font_size = 16
 text = "[BodyType]"
 metadata/_edit_use_anchors_ = true
 
-[node name="TitleDivider" type="ColorRect" parent="InspectCelestial"]
+[node name="TabContainer" type="TabContainer" parent="InspectCelestial"]
 layout_mode = 0
-offset_left = 24.0
+offset_left = 15.0
 offset_top = 64.0
-offset_right = 224.0
-offset_bottom = 67.0
-color = Color(0.8, 0.8, 0.8, 1)
+offset_right = 258.0
+offset_bottom = 367.0
+theme = ExtResource("2_cr7my")
 
-[node name="DescDivider" type="ColorRect" parent="InspectCelestial"]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 154.0
-offset_right = 224.0
-offset_bottom = 157.0
-color = Color(0.8, 0.8, 0.8, 1)
+[node name="Overview" type="MarginContainer" parent="InspectCelestial/TabContainer"]
+show_behind_parent = true
+layout_mode = 2
+theme_override_constants/margin_top = -3
+
+[node name="Panel" type="Panel" parent="InspectCelestial/TabContainer/Overview"]
+layout_mode = 2
+theme = ExtResource("2_cr7my")
+theme_type_variation = &"InteriorPanel"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InspectCelestial/TabContainer/Overview/Panel"]
+layout_mode = 2
+offset_left = 15.0
+offset_top = 11.0
+offset_right = 231.0
+offset_bottom = 267.0
+theme = ExtResource("2_cr7my")
+bbcode_enabled = true
+text = "[color=#ff0000][b]This[/b] text is red![/color] [b]This[/b] text is white"
+
+[node name="Description" type="MarginContainer" parent="InspectCelestial/TabContainer"]
+visible = false
+show_behind_parent = true
+layout_mode = 2
+theme_override_constants/margin_top = -3
+
+[node name="Panel" type="Panel" parent="InspectCelestial/TabContainer/Description"]
+layout_mode = 2
+theme = ExtResource("2_cr7my")
+theme_type_variation = &"InteriorPanel"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InspectCelestial/TabContainer/Description/Panel"]
+layout_mode = 2
+offset_left = 15.0
+offset_top = 11.0
+offset_right = 231.0
+offset_bottom = 267.0
+theme = ExtResource("2_cr7my")
+bbcode_enabled = true
+text = "[color=#ff0000][b]This[/b] text is red![/color] [b]This[/b] text is white"
+
+[node name="Composition" type="MarginContainer" parent="InspectCelestial/TabContainer"]
+visible = false
+show_behind_parent = true
+layout_mode = 2
+theme_override_constants/margin_top = -3
+
+[node name="Panel" type="Panel" parent="InspectCelestial/TabContainer/Composition"]
+layout_mode = 2
+theme = ExtResource("2_cr7my")
+theme_type_variation = &"InteriorPanel"
+
+[node name="Properties" type="MarginContainer" parent="InspectCelestial/TabContainer"]
+visible = false
+show_behind_parent = true
+layout_mode = 2
+theme_override_constants/margin_top = -3
+
+[node name="Panel" type="Panel" parent="InspectCelestial/TabContainer/Properties"]
+layout_mode = 2
+theme = ExtResource("2_cr7my")
+theme_type_variation = &"InteriorPanel"

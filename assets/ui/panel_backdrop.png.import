@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bulvaa6ot25e7"
-path="res://.godot/imported/9patch.png-345731ac2e4eef3f7107d06a734e145c.ctex"
+uid="uid://ci5x42i6frx2q"
+path="res://.godot/imported/panel_backdrop.png-095936b37f254e68877da57271a4c736.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/9patch.png"
-dest_files=["res://.godot/imported/9patch.png-345731ac2e4eef3f7107d06a734e145c.ctex"]
+source_file="res://assets/ui/panel_backdrop.png"
+dest_files=["res://.godot/imported/panel_backdrop.png-095936b37f254e68877da57271a4c736.ctex"]
 
 [params]
 
