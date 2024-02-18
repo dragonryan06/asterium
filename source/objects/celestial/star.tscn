@@ -75,9 +75,9 @@ energy = 0.7
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_ymo3g")
 
-[node name="Satellites" type="Node" parent="."]
-
 [node name="Composition" type="Node" parent="."]
+
+[node name="Satellites" type="Node" parent="."]
 
 [connection signal="input_event" from="Sprite/Hitbox" to="." method="_on_hitbox_input_event"]
 [connection signal="mouse_entered" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_entered"]

@@ -10,6 +10,10 @@ extends Control
 		#"description":"\t{obj_title} is a planet"
 	#}
 #}
+
+@onready var matter_icons = preload("res://assets/ui/matterstate_icons.png")
+@onready var celestial_icons = preload("res://assets/ui/celestialobject_icons.png")
+
 ## format notation:
 ## {xyz} = obj.get(xyz)
 ## {xyz.abc} = obj.get(xyz).get(abc)
@@ -54,6 +58,7 @@ func show_inspect(obj:GenericObject) -> void:
 		if obj is Star:
 			$InspectCelestial/TabContainer/Overview/Panel/RichTextLabel.text = formatify(formats["star"]["overview"],obj)
 			$InspectCelestial/TabContainer/Description/Panel/RichTextLabel.text = formatify(formats["star"]["description"],obj)
+			make_composition_tree(obj)
 		
 		var tween = get_tree().create_tween().set_parallel()
 		tween.tween_property($InspectCelestial,"modulate",Color(1,1,1,1),0.25)
@@ -105,3 +110,78 @@ func hide_tooltip() -> void:
 	tween.tween_property($Tooltip,"modulate",Color(1,1,1,0),0.25)
 	await tween.finished
 	$Tooltip.position = -$Tooltip.size
+
+func make_composition_tree(obj:GenericObject) -> void:
+	var comp_tree = $InspectCelestial/TabContainer/Composition/Panel/Tree
+	comp_tree.clear()
+	if comp_tree.item_activated.is_connected(_on_comp_tree_item_activated):
+		comp_tree.item_activated.disconnect(_on_comp_tree_item_activated)
+	comp_tree.item_activated.connect(_on_comp_tree_item_activated.bind(comp_tree,obj))
+	comp_tree.columns = 2
+	var root = comp_tree.create_item()
+	comp_tree.hide_root = true
+	for i in obj.get_children():
+		if i is Sprite2D:
+			continue
+		var item = comp_tree.create_item(root)
+		item.set_text(0,i.name)
+		item.set_custom_font_size(0,24)
+		item.set_custom_color(0,Color("#ffffff"))
+		item.set_selectable(0,false)
+		if i.name=="Composition":
+			item.set_custom_color(1,Color("#ffffff"))
+			item.set_selectable(1,false)
+			item.set_text(1,"%")
+		elif i.name=="Satellites":
+			item.set_custom_color(1,Color("#ffffff"))
+			item.set_selectable(1,false)
+			item.set_text(1,"dist.")
+		for o in i.get_children():
+			var subitem = comp_tree.create_item(item)
+			if "item_color" in o:
+				subitem.set_custom_color(0,o.item_color)
+				if o is Chemical:
+					var rect : Rect2i
+					match o.state:
+						Chemical.states.SOLID:
+							rect = Rect2i(0,0,18,18)
+						Chemical.states.LIQUID:
+							rect = Rect2i(18,0,18,18)
+						Chemical.states.GAS:
+							rect = Rect2i(0,18,18,18)
+						Chemical.states.PLASMA:
+							rect = Rect2i(18,18,18,18)
+					var tex = AtlasTexture.new()
+					tex.atlas = matter_icons
+					tex.region = rect
+					var img = tex.get_image()
+					for y in range(img.get_height()):
+						for x in range(img.get_width()):
+							img.set_pixel(x,y,img.get_pixel(x,y)*o.item_color)
+					subitem.set_icon(0,ImageTexture.create_from_image(img))
+					subitem.set_selectable(1,false)
+					subitem.set_text(1,str(o.comp_percent*100)+"%")
+			if o is CelestialObject:
+				subitem.set_text(1,str(snapped(o.orbital_radius,0.01))+" AU")
+				subitem.set_selectable(1,false)
+				var rect:Rect2i
+				if o is TerrestrialPlanet:
+					rect = Rect2i(0,0,18,18)
+				elif o is Star:
+					rect = Rect2i(18,18,18,18)
+				# add asteroids/rings and gasplanet here
+				var tex = AtlasTexture.new()
+				tex.atlas = celestial_icons
+				tex.region = rect
+				subitem.set_icon(0,tex)
+			if "obj_title" in o:
+				subitem.set_text(0,o.obj_title)
+			else:
+				subitem.set_text(0,o.name.capitalize())
+
+func _on_comp_tree_item_activated(comp_tree:Tree,obj:GenericObject) -> void:
+	var selected = comp_tree.get_selected().get_text(0)
+	if obj.has_node("Satellites"):
+		for s in obj.get_node("Satellites").get_children():
+			if s.obj_title == selected:
+				s.camera_focus_object.emit(s)

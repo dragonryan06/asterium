@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://biq41mroccyk2"]
+[gd_scene load_steps=5 format=3 uid="uid://biq41mroccyk2"]
 
 [ext_resource type="Script" path="res://source/ui/object_inspector.gd" id="1_6wfxm"]
 [ext_resource type="Theme" uid="uid://b8ljuij7sans3" path="res://assets/ui/ui_theme.tres" id="2_cr7my"]
 [ext_resource type="StyleBox" uid="uid://cryglg1n6wl06" path="res://assets/ui/dialog_stylebox.tres" id="3_f1olx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kkhxj"]
 
 [node name="ObjectInspector" type="Control"]
 texture_filter = 3
@@ -219,8 +221,10 @@ offset_top = 64.0
 offset_right = 258.0
 offset_bottom = 367.0
 theme = ExtResource("2_cr7my")
+current_tab = 2
 
 [node name="Overview" type="MarginContainer" parent="InspectCelestial/TabContainer"]
+visible = false
 show_behind_parent = true
 layout_mode = 2
 theme_override_constants/margin_top = -3
@@ -262,7 +266,6 @@ bbcode_enabled = true
 text = "[color=#ff0000][b]This[/b] text is red![/color] [b]This[/b] text is white"
 
 [node name="Composition" type="MarginContainer" parent="InspectCelestial/TabContainer"]
-visible = false
 show_behind_parent = true
 layout_mode = 2
 theme_override_constants/margin_top = -3
@@ -271,6 +274,16 @@ theme_override_constants/margin_top = -3
 layout_mode = 2
 theme = ExtResource("2_cr7my")
 theme_type_variation = &"InteriorPanel"
+
+[node name="Tree" type="Tree" parent="InspectCelestial/TabContainer/Composition/Panel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 7.0
+offset_right = 234.0
+offset_bottom = 274.0
+focus_mode = 0
+theme = ExtResource("2_cr7my")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kkhxj")
 
 [node name="Properties" type="MarginContainer" parent="InspectCelestial/TabContainer"]
 visible = false

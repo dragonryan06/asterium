@@ -42,6 +42,7 @@ func setup(data:Dictionary) -> void:
 	var comp = Chemical.new()
 	comp.from_dictionary("stardust",Chemical.data["plasma"]["stardust"],Chemical.states.PLASMA)
 	comp.temperature = temperature
+	comp.comp_percent = 1.0
 	$Composition.add_child(comp)
 
 func _draw() -> void:
