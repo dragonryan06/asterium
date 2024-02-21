@@ -73,7 +73,8 @@ func generate_planet(parent_star:Star) -> CelestialObject:
 		idx+=1
 	parent_rock.name = rock_data["igneous"].keys()[nearest_match[1]]
 	parent_rock.base_color = Color(rock_data["igneous"][parent_rock.name]["base_color"])+Color(randf_range(-0.005,0.005),randf_range(-0.005,0.005),randf_range(-0.005,0.005))
-	parent_rock.item_color = Color(0.5,0.5,0.5,1.0)
+	parent_rock.item_color = Color(rock_data["igneous"][parent_rock.name]["base_color"])
+	parent_rock.comp_percent = 1.0
 	planet.get_node("Composition/Surface").add_child(parent_rock)
 	
 	# implementing albedo later, for now assuming that all planets are totally matte black
@@ -83,9 +84,10 @@ func generate_planet(parent_star:Star) -> CelestialObject:
 	var ocean = Chemical.new()
 	var o_mat = Chemical.data["liquid"].keys().pick_random()
 	ocean.from_dictionary(o_mat,Chemical.data["liquid"][o_mat],Chemical.states.LIQUID)
+	ocean.comp_percent = 1.0
 	planet.get_node("Composition/Ocean").add_child(ocean)
 	ocean.temperature = data["base_temperature"]
-	data["ocean_coverage"] = randf_range(0.0,1.0)
+	data["ocean_coverage_percent"] = randf_range(0.0,1.0)
 	
 	planet.get_node("Sprite").texture.noise.seed = randi()
 	planet.setup(data)

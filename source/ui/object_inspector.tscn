@@ -221,10 +221,8 @@ offset_top = 64.0
 offset_right = 258.0
 offset_bottom = 367.0
 theme = ExtResource("2_cr7my")
-current_tab = 2
 
 [node name="Overview" type="MarginContainer" parent="InspectCelestial/TabContainer"]
-visible = false
 show_behind_parent = true
 layout_mode = 2
 theme_override_constants/margin_top = -3
@@ -266,6 +264,7 @@ bbcode_enabled = true
 text = "[color=#ff0000][b]This[/b] text is red![/color] [b]This[/b] text is white"
 
 [node name="Composition" type="MarginContainer" parent="InspectCelestial/TabContainer"]
+visible = false
 show_behind_parent = true
 layout_mode = 2
 theme_override_constants/margin_top = -3

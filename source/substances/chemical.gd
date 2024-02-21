@@ -14,9 +14,6 @@ var state = -1
 var c_state = [-1,null]
 var e_state = [-1,null]
 
-# the percent ratio this Chemical is of whatever mixture it is in
-var comp_percent : float
-
 func _set_temperature(new_temp) -> void:
 	temperature = new_temp
 	while e_state[0]!=-1 and temperature>e_state[0]:

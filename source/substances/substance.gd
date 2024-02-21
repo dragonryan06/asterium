@@ -8,6 +8,8 @@ var base_color : Color
 ## The color this Substance is represented by
 var item_color : Color
 var temperature : float : set=_set_temperature
+## the percent ratio this Substance is of whatever mixture it is in
+var comp_percent : float
 
 func from_dictionary(_name:String,dict:Dictionary,_state:int) -> void:
 	if dict["base_color"] == "clear":
