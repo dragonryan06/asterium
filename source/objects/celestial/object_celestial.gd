@@ -13,6 +13,8 @@ var orbital_period : float # NOT YET IMPLEMENTED, KEPLER'S THIRD LAW SHOULD HELP
 var orbital_radius : float
 ## The time it takes this CelestialObject to complete one full rotation in seconds. Sign indicates direction.
 var rotational_period : float : set=_set_rotational_period
+## This CelestialObject's tags, differs based on subclass.
+var tags : Array
 
 func _set_radius(val:float) -> void:
 	radius = val

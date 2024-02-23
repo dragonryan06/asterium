@@ -221,8 +221,10 @@ offset_top = 64.0
 offset_right = 258.0
 offset_bottom = 367.0
 theme = ExtResource("2_cr7my")
+current_tab = 3
 
 [node name="Overview" type="MarginContainer" parent="InspectCelestial/TabContainer"]
+visible = false
 show_behind_parent = true
 layout_mode = 2
 theme_override_constants/margin_top = -3
@@ -285,7 +287,6 @@ theme = ExtResource("2_cr7my")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_kkhxj")
 
 [node name="Properties" type="MarginContainer" parent="InspectCelestial/TabContainer"]
-visible = false
 show_behind_parent = true
 layout_mode = 2
 theme_override_constants/margin_top = -3
@@ -294,3 +295,12 @@ theme_override_constants/margin_top = -3
 layout_mode = 2
 theme = ExtResource("2_cr7my")
 theme_type_variation = &"InteriorPanel"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InspectCelestial/TabContainer/Properties/Panel"]
+offset_left = 15.0
+offset_top = 11.0
+offset_right = 231.0
+offset_bottom = 267.0
+theme = ExtResource("2_cr7my")
+bbcode_enabled = true
+text = "[b] Object Tags: [/b]"

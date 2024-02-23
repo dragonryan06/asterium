@@ -23,7 +23,7 @@ void fragment() {
 		vec4 tex = texture(TEXTURE, vec2(
 			0.5 * (px + 1.0) / aspect_ratio - TIME * rotation_speed*0.25,
 			0.5 * (py + 1.0)));
-		if (tex.r>ocean_coverage) {
+		if (tex.r>ocean_coverage || ocean_coverage==0.0) {
 			COLOR = tex*base_color;
 		}
 		else {

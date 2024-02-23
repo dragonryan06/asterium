@@ -83,10 +83,9 @@ func generate_planet(parent_star:Star) -> CelestialObject:
 	# initial ocean/atmosphere
 	var ocean = Chemical.new()
 	var o_mat = Chemical.data["liquid"].keys().pick_random()
-	ocean.from_dictionary(o_mat,Chemical.data["liquid"][o_mat],Chemical.states.LIQUID)
+	ocean.from_dictionary(o_mat,Chemical.data["liquid"][o_mat],Chemical.STATES.LIQUID)
 	ocean.comp_percent = 1.0
 	planet.get_node("Composition/Ocean").add_child(ocean)
-	ocean.temperature = data["base_temperature"]
 	data["ocean_coverage_percent"] = randf_range(0.0,1.0)
 	
 	planet.get_node("Sprite").texture.noise.seed = randi()

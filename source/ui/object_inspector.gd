@@ -2,6 +2,7 @@ extends Control
 
 @onready var matter_icons = preload("res://assets/ui/matterstate_icons.png")
 @onready var celestial_icons = preload("res://assets/ui/celestialobject_icons.png")
+@onready var tags = ResourceManager.load_json("res://source/globals/tags.json").data
 
 ## format notation:
 ## {xyz} = obj.get(xyz)
@@ -59,11 +60,12 @@ func show_inspect(obj:GenericObject) -> void:
 			$InspectCelestial/TabContainer/Overview/Panel/RichTextLabel.text = formatify(formats["star"]["overview"],obj)
 			$InspectCelestial/TabContainer/Description/Panel/RichTextLabel.text = formatify(formats["star"]["description"],obj)
 			make_composition_tree(obj)
+			$InspectCelestial/TabContainer/Properties/Panel/RichTextLabel.text = "[b]Object Tags:[/b]\n"+str(obj.tags).replace("[","").replace("]","").replace(",","\n")
 		elif obj is TerrestrialPlanet:
 			$InspectCelestial/TabContainer/Overview/Panel/RichTextLabel.text = formatify(formats["terrestrial_planet"]["overview"],obj)
-			$InspectCelestial/TabContainer/Description/Panel/RichTextLabel.text = formatify(formats["terrestrial_planet"]["description"],obj)
+			$InspectCelestial/TabContainer/Description/Panel/RichTextLabel.text = formatify(tags["terrestrial_planet"]["FROZEN_OCEAN"]["flavortext"][0],obj)#formatify(formats["terrestrial_planet"]["description"],obj)
 			make_composition_tree(obj)
-			
+			$InspectCelestial/TabContainer/Properties/Panel/RichTextLabel.text = "[b]Object Tags:[/b]\n"+str(obj.tags).replace("[","").replace("]","").replace(",","\n")
 		var tween = get_tree().create_tween().set_parallel()
 		tween.tween_property($InspectCelestial,"modulate",Color(1,1,1,1),0.25)
 
@@ -77,15 +79,24 @@ func formatify(text:String,obj:Node) -> String:
 			if varname.substr(1).find("$")==-1:
 				obj = obj.get_node(varname.substr(1,varname.find(".")-1))
 			elif varname.substr(1).find("$*"):
-				obj = obj.get_node(varname.substr(1,varname.find("$*")-1)).get_child(int(varname.substr(varname.find("$*")+2,1)))
+				if obj.get_node(varname.substr(1,varname.find("$*")-1)).get_child_count()-1==int(varname.substr(varname.find("$*")+2,1)):
+					obj = obj.get_node(varname.substr(1,varname.find("$*")-1)).get_child(int(varname.substr(varname.find("$*")+2,1)))
+				else:
+					obj = null
 		while varname.find(".")!=-1:
 			if val!=null:
 				val = val.get(varname.split(".")[0])
 			else:
-				val = obj.get(varname.split(".")[1])
+				if obj!=null:
+					val = obj.get(varname.split(".")[1])
+				else:
+					val = null
 			varname = varname.substr(varname.find(".")+1)
 		if varname.find(".")==-1:
-			val = obj.get(varname)
+			if obj!=null:
+				val = obj.get(varname)
+			else:
+				val = null
 		if val is float:
 			val = snapped(val,0.001)
 		if val is Color:
@@ -179,13 +190,13 @@ func create_substance_tree_item(subitem:TreeItem,o:Substance) -> void:
 	var rect : Rect2i
 	if o is Chemical:
 		match o.state:
-			Chemical.states.SOLID:
+			Chemical.STATES.SOLID:
 				rect = Rect2i(0,0,18,18)
-			Chemical.states.LIQUID:
+			Chemical.STATES.LIQUID:
 				rect = Rect2i(18,0,18,18)
-			Chemical.states.GAS:
+			Chemical.STATES.GAS:
 				rect = Rect2i(0,18,18,18)
-			Chemical.states.PLASMA:
+			Chemical.STATES.PLASMA:
 				rect = Rect2i(18,18,18,18)
 	elif o is Rock:
 		rect = Rect2i(0,0,18,18)

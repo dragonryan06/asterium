@@ -40,7 +40,7 @@ func setup(data:Dictionary) -> void:
 	for k in data.keys():
 		set(k,data[k])
 	var comp = Chemical.new()
-	comp.from_dictionary("stardust",Chemical.data["plasma"]["stardust"],Chemical.states.PLASMA)
+	comp.from_dictionary("stardust",Chemical.data["plasma"]["stardust"],Chemical.STATES.PLASMA)
 	comp.temperature = temperature
 	comp.comp_percent = 1.0
 	$Composition.add_child(comp)
