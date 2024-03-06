@@ -2,7 +2,6 @@ extends Control
 
 @onready var matter_icons = preload("res://assets/ui/matterstate_icons.png")
 @onready var celestial_icons = preload("res://assets/ui/celestialobject_icons.png")
-@onready var tags = ResourceManager.load_json("res://source/globals/tags.json").data
 
 ## format notation:
 ## {xyz} = obj.get(xyz)
@@ -63,7 +62,6 @@ func show_inspect(obj:GenericObject) -> void:
 			$InspectCelestial/TabContainer/Properties/Panel/RichTextLabel.text = "[b]Object Tags:[/b]\n"+str(obj.tags).replace("[","").replace("]","").replace(",","\n")
 		elif obj is TerrestrialPlanet:
 			$InspectCelestial/TabContainer/Overview/Panel/RichTextLabel.text = formatify(formats["terrestrial_planet"]["overview"],obj)
-			$InspectCelestial/TabContainer/Description/Panel/RichTextLabel.text = formatify(tags["terrestrial_planet"]["FROZEN_OCEAN"]["flavortext"][0],obj)#formatify(formats["terrestrial_planet"]["description"],obj)
 			make_composition_tree(obj)
 			$InspectCelestial/TabContainer/Properties/Panel/RichTextLabel.text = "[b]Object Tags:[/b]\n"+str(obj.tags).replace("[","").replace("]","").replace(",","\n")
 		var tween = get_tree().create_tween().set_parallel()

@@ -1,7 +1,7 @@
 extends Node2D
 
 const _Star = preload("res://source/objects/celestial/star.tscn")
-const _Terrestrial = preload("res://source/objects/celestial/terrestrial_planet.tscn")
+const _Planet = preload("res://source/objects/celestial/planet.tscn")
 
 # thoughts:
 # perhaps some Curve resources should be saved to skew the probability and allow for some extremely rare edge case things
@@ -45,7 +45,7 @@ func generate_star() -> Star:
 
 func generate_planet(parent_star:Star) -> CelestialObject:
 	## THIS IS JUST FOR TERRESTRIAL
-	var planet = _Terrestrial.instantiate()
+	var planet = _Planet.instantiate()
 	planet.object_inspector = $HUD/ObjectInspector
 	var data = {}
 	

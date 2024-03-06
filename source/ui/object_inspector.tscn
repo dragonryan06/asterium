@@ -297,6 +297,7 @@ theme = ExtResource("2_cr7my")
 theme_type_variation = &"InteriorPanel"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="InspectCelestial/TabContainer/Properties/Panel"]
+layout_mode = 0
 offset_left = 15.0
 offset_top = 11.0
 offset_right = 231.0
