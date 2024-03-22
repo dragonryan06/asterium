@@ -1,19 +1,29 @@
 {
-	"planet": {
-		"terrestrial": {
-			"radius_min":0.30,
-			"radius_max":2.0
-		},
-		"gaseous": {
-			"radius_min":2.0,
-			"radius_max":12.0
+	"common":{
+		"barren":{
+			"basic":{
+				"name":"Barren world",
+				"base_sentence":"{PlanetName} is desolate and rocky, and ultimately featureless. Its surface implies a slow and uniform freeze to mineral rocks of primarily {ultramafic | mafic | intermediate | felsic}, igneous origin.",
+				"radius_min":0.30,
+				"radius_max":2.0,
+			},
+			"geology":{
+				"primary_rock_type":"igneous",
+				"magnetic_field_table":{"none":0.85,"weak":0.10,"strong":0.05},
+				"base_weathering_factor":0.0
+			},
+			"systems":{
+				"atmosphere_type_table":{"none":0.25,"negligible":0.15,"thin":0.60},
+				"ocean_coverage_min":0.0,
+				"ocean_coverage_max":0.0,
+				"weather_type_table":{"none":0.9,"geomagnetic_storms":0.1},
+			}
 		}
 	},
-	"moon": {
-		"radius_min":0.01,
-		"radius_max":0.5
+	"rare":{
+		
 	},
-	"worldclass": {
+	"anomalous":{
 		
 	}
 }

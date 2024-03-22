@@ -14,9 +14,9 @@ var rock_data : Dictionary
 var name_data : Dictionary
 
 func _ready():
-	star_data = ResourceManager.load_json("res://source/globals/generation/star.json").data
-	planet_data = ResourceManager.load_json("res://source/globals/generation/planet.json").data
-	rock_data = ResourceManager.load_json("res://source/globals/rock.json").data
+	star_data = ResourceManager.load_json("res://source/globals/generation/stars.json").data
+	planet_data = ResourceManager.load_json("res://source/globals/generation/planets.json").data
+	rock_data = ResourceManager.load_json("res://source/globals/rocks.json").data
 	name_data = ResourceManager.load_json("res://source/globals/generation/random_names.json").data
 
 func generate_star() -> Star:

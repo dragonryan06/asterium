@@ -1,7 +1,7 @@
 extends Substance
 class_name Chemical
 
-static var data = ResourceManager.load_json("res://source/globals/chemical.json").data
+static var data = ResourceManager.load_json("res://source/globals/chemicals.json").data
 
 enum STATES {
 	SOLID,

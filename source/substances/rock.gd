@@ -1,7 +1,7 @@
 extends Substance
 class_name Rock
 
-static var data = ResourceManager.load_json("res://source/globals/rock.json").data
+static var data = ResourceManager.load_json("res://source/globals/rocks.json").data
 
 enum states {
 	SOLID,
