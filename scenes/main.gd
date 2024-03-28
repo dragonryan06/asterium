@@ -11,7 +11,7 @@ func play() -> void:
 	var mm = $"Main Menu"
 	remove_child(mm)
 	mm.queue_free()
-	var PlanetGeneration = load("res://source/planet_generation.tscn")
+	var PlanetGeneration = load("res://scenes/planet_generation.tscn")
 	var pg = PlanetGeneration.instantiate()
 	pg.get_node("Camera2D").enabled = false
 	add_child(pg)

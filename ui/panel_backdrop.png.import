@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ci5x42i6frx2q"
-path="res://.godot/imported/panel_backdrop.png-095936b37f254e68877da57271a4c736.ctex"
+path="res://.godot/imported/panel_backdrop.png-7efa370287343990977d92230b5da546.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/panel_backdrop.png"
-dest_files=["res://.godot/imported/panel_backdrop.png-095936b37f254e68877da57271a4c736.ctex"]
+source_file="res://ui/panel_backdrop.png"
+dest_files=["res://.godot/imported/panel_backdrop.png-7efa370287343990977d92230b5da546.ctex"]
 
 [params]
 

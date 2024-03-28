@@ -1,7 +1,7 @@
 extends Control
 
-@onready var matter_icons = preload("res://assets/ui/matterstate_icons.png")
-@onready var celestial_icons = preload("res://assets/ui/celestialobject_icons.png")
+@onready var matter_icons = preload("res://ui/matterstate_icons.png")
+@onready var celestial_icons = preload("res://ui/celestialobject_icons.png")
 
 ## format notation:
 ## {xyz} = obj.get(xyz)
@@ -34,7 +34,7 @@ func _ready():
 	for i in range($InspectCelestial/TabContainer.get_child_count()):
 		$InspectCelestial/TabContainer.set_tab_title(i,"")
 	var tex = AtlasTexture.new()
-	tex.atlas = load("res://assets/ui/inspector_tab_icons.png")
+	tex.atlas = load("res://ui/inspector_tab_icons.png")
 	tex.region = Rect2(0,24,24,24)
 	$InspectCelestial/TabContainer.set_tab_icon(0,tex)
 	tex = tex.duplicate()

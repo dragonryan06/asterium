@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cj8yr0m0pkqln"]
 
-[ext_resource type="Script" path="res://source/objects/celestial/planet.gd" id="1_m3qu6"]
-[ext_resource type="Shader" path="res://source/shaders/planetsprite.gdshader" id="2_fxpsy"]
+[ext_resource type="Script" path="res://core/space/planet.gd" id="1_m3qu6"]
+[ext_resource type="Shader" path="res://core/space/shaders/planetsprite.gdshader" id="2_fxpsy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cbs8x"]
 shader = ExtResource("2_fxpsy")

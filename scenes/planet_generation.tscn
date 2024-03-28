@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://b8nk8farod758"]
 
-[ext_resource type="Script" path="res://source/planet_generation.gd" id="1_w0wtp"]
-[ext_resource type="Script" path="res://source/standard_camera.gd" id="2_kie41"]
-[ext_resource type="Script" path="res://source/ui/grid.gd" id="3_ejyy7"]
-[ext_resource type="PackedScene" uid="uid://biq41mroccyk2" path="res://source/ui/object_inspector.tscn" id="3_ptwlh"]
-[ext_resource type="Curve" uid="uid://lm1fa4pk1xum" path="res://assets/ui/grid_fade_curve.tres" id="4_rvhi6"]
+[ext_resource type="Script" path="res://scenes/planet_generation.gd" id="1_w0wtp"]
+[ext_resource type="Script" path="res://scenes/standard_camera.gd" id="2_kie41"]
+[ext_resource type="Script" path="res://ui/grid.gd" id="3_ejyy7"]
+[ext_resource type="PackedScene" uid="uid://biq41mroccyk2" path="res://ui/object_inspector.tscn" id="3_ptwlh"]
+[ext_resource type="Curve" uid="uid://lm1fa4pk1xum" path="res://ui/grid_fade_curve.tres" id="4_rvhi6"]
 
 [sub_resource type="Environment" id="Environment_14p7s"]
 background_mode = 3

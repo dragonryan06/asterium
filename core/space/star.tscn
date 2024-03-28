@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://c7e3tuv5e8nju"]
 
-[ext_resource type="Script" path="res://source/objects/celestial/star.gd" id="1_i0e3g"]
-[ext_resource type="Gradient" uid="uid://c7e5qxvhcopkf" path="res://assets/star_spectrum.tres" id="2_qpb65"]
-[ext_resource type="Shader" path="res://source/shaders/starsprite.gdshader" id="3_ms3mq"]
+[ext_resource type="Script" path="res://core/space/star.gd" id="1_i0e3g"]
+[ext_resource type="Gradient" uid="uid://c7e5qxvhcopkf" path="res://core/space/star_spectrum.tres" id="2_qpb65"]
+[ext_resource type="Shader" path="res://core/space/shaders/starsprite.gdshader" id="3_ms3mq"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_l7yco"]
 frequency = 0.05

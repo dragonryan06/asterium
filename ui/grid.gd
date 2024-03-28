@@ -5,7 +5,7 @@ extends Node2D
 @export var fade_curve : Curve
 @export var color = Color(0.25,0.25,1.0,1.0)
 
-const font = preload("res://assets/fonts/PixelOperator8-Bold.ttf")
+const font = preload("res://fonts/PixelOperator8-Bold.ttf")
 
 func _ready() -> void:
 	get_parent().camera_changed.connect(_on_camera_changed)

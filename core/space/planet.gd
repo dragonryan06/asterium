@@ -8,7 +8,7 @@ enum TAGS {
 	FROZEN_OCEAN
 }
 
-var chemical_data = ResourceManager.load_json("res://source/globals/chemicals.json").data
+var chemical_data = ResourceManager.load_json("res://gamedata/chemicals.json").data
 
 ## The temperature of this world from solar radiation
 var base_temperature : float 

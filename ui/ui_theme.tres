@@ -1,9 +1,9 @@
 [gd_resource type="Theme" load_steps=17 format=3 uid="uid://b8ljuij7sans3"]
 
-[ext_resource type="FontFile" uid="uid://dnpsjacgpflbl" path="res://assets/fonts/PixelOperator.ttf" id="1_ti0ik"]
-[ext_resource type="Texture2D" uid="uid://ci5x42i6frx2q" path="res://assets/ui/panel_backdrop.png" id="1_yrdsr"]
-[ext_resource type="FontFile" uid="uid://c5j20n3msj3bg" path="res://assets/fonts/PixelOperator-Bold.ttf" id="2_gyqef"]
-[ext_resource type="Texture2D" uid="uid://dq0wxw4wnl0yt" path="res://assets/ui/tab_backgrounds.png" id="2_nnuke"]
+[ext_resource type="FontFile" uid="uid://dnpsjacgpflbl" path="res://fonts/PixelOperator.ttf" id="1_ti0ik"]
+[ext_resource type="Texture2D" uid="uid://ci5x42i6frx2q" path="res://ui/panel_backdrop.png" id="1_yrdsr"]
+[ext_resource type="FontFile" uid="uid://c5j20n3msj3bg" path="res://fonts/PixelOperator-Bold.ttf" id="2_gyqef"]
+[ext_resource type="Texture2D" uid="uid://dq0wxw4wnl0yt" path="res://ui/tab_backgrounds.png" id="2_nnuke"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7abht"]
 atlas = ExtResource("1_yrdsr")

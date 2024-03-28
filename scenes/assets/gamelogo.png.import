@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dujsyb6e78av8"
-path="res://.godot/imported/gamelogo.png-ae3e431e9be9e7ab950c84cd4e8c54ab.ctex"
+path="res://.godot/imported/gamelogo.png-e015c2a8020adce97dc2a56cade9b8ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gamelogo.png"
-dest_files=["res://.godot/imported/gamelogo.png-ae3e431e9be9e7ab950c84cd4e8c54ab.ctex"]
+source_file="res://scenes/assets/gamelogo.png"
+dest_files=["res://.godot/imported/gamelogo.png-e015c2a8020adce97dc2a56cade9b8ab.ctex"]
 
 [params]
 

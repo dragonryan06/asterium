@@ -1,10 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://7hmixo30hi33"]
+[gd_scene load_steps=18 format=3 uid="uid://7hmixo30hi33"]
 
-[ext_resource type="Script" path="res://source/main_menu.gd" id="1_7mvos"]
-[ext_resource type="Shader" path="res://source/shaders/stardrop.gdshader" id="1_jql27"]
-[ext_resource type="Texture2D" uid="uid://dujsyb6e78av8" path="res://assets/gamelogo.png" id="2_274ln"]
-[ext_resource type="FontFile" uid="uid://dnpsjacgpflbl" path="res://assets/fonts/PixelOperator.ttf" id="3_lr3ci"]
-[ext_resource type="FontFile" uid="uid://c5j20n3msj3bg" path="res://assets/fonts/PixelOperator-Bold.ttf" id="4_gmdjo"]
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_7mvos"]
+[ext_resource type="Shader" path="res://core/space/shaders/stardrop.gdshader" id="1_jql27"]
+[ext_resource type="Texture2D" uid="uid://dujsyb6e78av8" path="res://scenes/assets/gamelogo.png" id="2_274ln"]
+[ext_resource type="FontFile" uid="uid://c5j20n3msj3bg" path="res://fonts/PixelOperator-Bold.ttf" id="4_gmdjo"]
+[ext_resource type="Theme" uid="uid://b8ljuij7sans3" path="res://ui/ui_theme.tres" id="4_tpi3u"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ysga7"]
 seed = 1
@@ -35,10 +35,6 @@ shader_parameter/brightness = SubResource("NoiseTexture2D_yifhf")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtyi1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jxoiw"]
-
-[sub_resource type="Theme" id="Theme_heo2k"]
-default_font = ExtResource("3_lr3ci")
-default_font_size = 24
 
 [sub_resource type="Environment" id="Environment_826rr"]
 background_mode = 3
@@ -114,7 +110,7 @@ offset_top = -18.0
 offset_right = 72.0
 offset_bottom = 55.0
 grow_horizontal = 2
-theme = SubResource("Theme_heo2k")
+theme = ExtResource("4_tpi3u")
 theme_override_fonts/font = ExtResource("4_gmdjo")
 theme_override_font_sizes/font_size = 72
 text = "PLAY"

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://biq41mroccyk2"]
 
-[ext_resource type="Script" path="res://source/ui/object_inspector.gd" id="1_6wfxm"]
-[ext_resource type="Theme" uid="uid://b8ljuij7sans3" path="res://assets/ui/ui_theme.tres" id="2_cr7my"]
-[ext_resource type="StyleBox" uid="uid://cryglg1n6wl06" path="res://assets/ui/dialog_stylebox.tres" id="3_f1olx"]
+[ext_resource type="Script" path="res://ui/object_inspector.gd" id="1_6wfxm"]
+[ext_resource type="Theme" uid="uid://b8ljuij7sans3" path="res://ui/ui_theme.tres" id="2_cr7my"]
+[ext_resource type="StyleBox" uid="uid://cryglg1n6wl06" path="res://ui/dialog_stylebox.tres" id="3_f1olx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kkhxj"]
 

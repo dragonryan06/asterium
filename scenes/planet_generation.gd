@@ -1,7 +1,7 @@
 extends Node2D
 
-const _Star = preload("res://source/objects/celestial/star.tscn")
-const _Planet = preload("res://source/objects/celestial/planet.tscn")
+const _Star = preload("res://core/space/star.tscn")
+const _Planet = preload("res://core/space/planet.tscn")
 
 # thoughts:
 # perhaps some Curve resources should be saved to skew the probability and allow for some extremely rare edge case things
@@ -14,10 +14,10 @@ var rock_data : Dictionary
 var name_data : Dictionary
 
 func _ready():
-	star_data = ResourceManager.load_json("res://source/globals/generation/stars.json").data
-	planet_data = ResourceManager.load_json("res://source/globals/generation/planets.json").data
-	rock_data = ResourceManager.load_json("res://source/globals/rocks.json").data
-	name_data = ResourceManager.load_json("res://source/globals/generation/random_names.json").data
+	star_data = ResourceManager.load_json("res://gamedata/stars.json").data
+	planet_data = ResourceManager.load_json("res://gamedata/planets.json").data
+	rock_data = ResourceManager.load_json("res://gamedata/rocks.json").data
+	name_data = ResourceManager.load_json("res://gamedata/random_names.json").data
 
 func generate_star() -> Star:
 	var star = _Star.instantiate()
