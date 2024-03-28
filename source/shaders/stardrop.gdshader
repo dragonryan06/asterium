@@ -38,7 +38,7 @@ void fragment() {
 	else {
 		output = vec4(0.0,0.0,0.0,1.0);
 	}
-	vec4 final = output+star_density*8.0*brightmap;
+	vec4 final = output+star_density*2.1*brightmap;
 	if (output==vec4(0.0,0.0,0.0,1.0)) {
 		final.b*=0.85;
 	}
