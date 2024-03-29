@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://f5teo1hwq36u"]
+
+[ext_resource type="Script" path="res://core/chemistry/solution.gd" id="1_b7bof"]
+
+[node name="Solution" type="Node"]
+script = ExtResource("1_b7bof")
+
+[connection signal="child_order_changed" from="." to="." method="_on_child_order_changed"]
