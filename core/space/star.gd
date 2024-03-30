@@ -39,11 +39,6 @@ func setup(data:Dictionary) -> void:
 	$Sprite.material = $Sprite.material.duplicate()
 	for k in data.keys():
 		set(k,data[k])
-	var comp = Chemical.new()
-	comp.from_dictionary("stardust",Chemical.data["plasma"]["stardust"],Chemical.STATES.PLASMA)
-	comp.temperature = temperature
-	comp.comp_percent = 1.0
-	$Composition.add_child(comp)
 
 func _draw() -> void:
 	for p in $Satellites.get_children():

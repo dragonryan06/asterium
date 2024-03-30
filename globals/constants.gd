@@ -13,3 +13,6 @@ static func romanify(number:int) -> String:
 			number-=val
 			roman+=ROMAN_NUMERALS[val]
 	return roman
+
+static func get_reagent_data() -> Dictionary:
+	return ResourceManager.load_json("res://gamedata/chemistry/reagents.json").data
