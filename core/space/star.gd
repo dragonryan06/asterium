@@ -40,6 +40,10 @@ func setup(data:Dictionary) -> void:
 	for k in data.keys():
 		set(k,data[k])
 
+func _ready():
+	$InspectComponent.tt_title_text = obj_title
+	$InspectComponent.tt_subtitle_text = obj_subtitle
+
 func _draw() -> void:
 	for p in $Satellites.get_children():
 		draw_arc(position,p.orbital_radius*2048,0,TAU,128,Color("white"))

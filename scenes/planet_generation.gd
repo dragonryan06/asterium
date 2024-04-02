@@ -1,8 +1,6 @@
 extends Node2D
 
 const _Star = preload("res://core/space/star.tscn")
-const _Planet = preload("res://core/space/planet.tscn")
-const _Reagent = preload("res://core/chemistry/reagent.tscn")
 
 # thoughts:
 # perhaps some Curve resources should be saved to skew the probability and allow for some extremely rare edge case things
@@ -41,7 +39,7 @@ func generate_star() -> Star:
 	data["chromaticity"]=star_data["main-sequence"][solar_class]["chromaticity"]
 	data["temperature"]=randi_range(star_data["main-sequence"][solar_class]["temp_min"],star_data["main-sequence"][solar_class]["temp_max"])
 	
-	var composition = _Reagent.instantiate()
+	var composition = Reagent.new()
 	composition.name = "CompositionComponent"
 	composition.construct_from(Constants.get_reagent_data()["hydrogen"])
 	composition.temperature = data["temperature"]

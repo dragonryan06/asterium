@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmh2pwhi2nuue"
-path="res://.godot/imported/celestialobject_icons.png-806bb25007ac420e2323b4235849bcfe.ctex"
+uid="uid://bar4ywno1rx3m"
+path="res://.godot/imported/matterstate_icons.png-2bf57c5837650d3dd412389edeaa65d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/celestialobject_icons.png"
-dest_files=["res://.godot/imported/celestialobject_icons.png-806bb25007ac420e2323b4235849bcfe.ctex"]
+source_file="res://ui/assets/matterstate_icons.png"
+dest_files=["res://.godot/imported/matterstate_icons.png-2bf57c5837650d3dd412389edeaa65d2.ctex"]
 
 [params]
 

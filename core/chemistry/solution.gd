@@ -1,4 +1,5 @@
 extends Node
+class_name Solution
 
 # The name of this Solution (assumes largest reagent's name if solution has no other name)
 var solution_name

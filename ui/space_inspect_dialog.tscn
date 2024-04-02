@@ -1,0 +1,140 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8jqplo11nmab"]
+
+[ext_resource type="Theme" uid="uid://b8ljuij7sans3" path="res://ui/ui_theme.tres" id="1_qpc1l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kkhxj"]
+
+[node name="SpaceInspectDialog" type="PanelContainer"]
+texture_filter = 1
+anchors_preset = -1
+anchor_right = 1.07031
+anchor_bottom = 1.0
+offset_left = -270.0
+offset_top = -419.0
+offset_right = -1234.0
+offset_bottom = -644.0
+theme = ExtResource("1_qpc1l")
+
+[node name="UpperPanel" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = -12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpperPanel"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="UpperPanel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qpc1l")
+theme_override_font_sizes/font_size = 32
+text = "[BodyName]"
+
+[node name="Subtitle" type="Label" parent="UpperPanel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qpc1l")
+theme_override_font_sizes/font_size = 16
+text = "[BodyType]"
+
+[node name="InnerPanel" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = -20
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = -20
+theme_override_constants/margin_bottom = -20
+
+[node name="TabContainer" type="TabContainer" parent="InnerPanel"]
+layout_mode = 2
+theme = ExtResource("1_qpc1l")
+
+[node name="Overview" type="MarginContainer" parent="InnerPanel/TabContainer"]
+show_behind_parent = true
+layout_mode = 2
+theme_override_constants/margin_top = -3
+
+[node name="Panel" type="Panel" parent="InnerPanel/TabContainer/Overview"]
+layout_mode = 2
+theme = ExtResource("1_qpc1l")
+theme_type_variation = &"InteriorPanel"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InnerPanel/TabContainer/Overview/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 11.0
+offset_right = -14.0
+offset_bottom = -43.0
+theme = ExtResource("1_qpc1l")
+bbcode_enabled = true
+text = "[color=#ff0000][b]This[/b] text is red![/color] [b]This[/b] text is white"
+
+[node name="Description" type="MarginContainer" parent="InnerPanel/TabContainer"]
+visible = false
+show_behind_parent = true
+layout_mode = 2
+theme_override_constants/margin_top = -3
+
+[node name="Panel" type="Panel" parent="InnerPanel/TabContainer/Description"]
+layout_mode = 2
+theme = ExtResource("1_qpc1l")
+theme_type_variation = &"InteriorPanel"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InnerPanel/TabContainer/Description/Panel"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 11.0
+offset_right = -14.0
+offset_bottom = -43.0
+theme = ExtResource("1_qpc1l")
+bbcode_enabled = true
+text = "[color=#ff0000][b]This[/b] text is red![/color] [b]This[/b] text is white"
+
+[node name="Composition" type="MarginContainer" parent="InnerPanel/TabContainer"]
+visible = false
+show_behind_parent = true
+layout_mode = 2
+theme_override_constants/margin_top = -3
+
+[node name="Panel" type="Panel" parent="InnerPanel/TabContainer/Composition"]
+layout_mode = 2
+theme = ExtResource("1_qpc1l")
+theme_type_variation = &"InteriorPanel"
+
+[node name="Tree" type="Tree" parent="InnerPanel/TabContainer/Composition/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 7.0
+offset_right = -11.0
+offset_bottom = -36.0
+focus_mode = 0
+theme = ExtResource("1_qpc1l")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kkhxj")
+
+[node name="Properties" type="MarginContainer" parent="InnerPanel/TabContainer"]
+visible = false
+show_behind_parent = true
+layout_mode = 2
+theme_override_constants/margin_top = -3
+
+[node name="Panel" type="Panel" parent="InnerPanel/TabContainer/Properties"]
+layout_mode = 2
+theme = ExtResource("1_qpc1l")
+theme_type_variation = &"InteriorPanel"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InnerPanel/TabContainer/Properties/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 11.0
+offset_right = -14.0
+offset_bottom = -43.0
+theme = ExtResource("1_qpc1l")
+bbcode_enabled = true
+text = "[b] Object Tags: [/b]"

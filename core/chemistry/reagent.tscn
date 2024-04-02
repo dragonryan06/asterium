@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cso43g0vaxe3y"]
-
-[ext_resource type="Script" path="res://core/chemistry/reagent.gd" id="1_1prhk"]
-
-[node name="Reagent" type="Node"]
-script = ExtResource("1_1prhk")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://biq41mroccyk2"]
+[gd_scene load_steps=6 format=3 uid="uid://biq41mroccyk2"]
 
 [ext_resource type="Script" path="res://ui/object_inspector.gd" id="1_6wfxm"]
 [ext_resource type="Theme" uid="uid://b8ljuij7sans3" path="res://ui/ui_theme.tres" id="2_cr7my"]
-[ext_resource type="StyleBox" uid="uid://cryglg1n6wl06" path="res://ui/dialog_stylebox.tres" id="3_f1olx"]
+[ext_resource type="PackedScene" uid="uid://p7hmorb070qb" path="res://ui/tooltip.tscn" id="2_jvoko"]
+[ext_resource type="StyleBox" uid="uid://cryglg1n6wl06" path="res://ui/assets/dialog_stylebox.tres" id="3_f1olx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kkhxj"]
 
@@ -17,42 +18,8 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_6wfxm")
 
-[node name="Tooltip" type="Panel" parent="."]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-offset_left = -215.0
-offset_top = -67.0
-theme = ExtResource("2_cr7my")
-
-[node name="Title" type="Label" parent="Tooltip"]
-layout_mode = 1
-offset_left = 31.0
-offset_top = 4.0
-offset_right = 182.0
-offset_bottom = 52.0
-theme = ExtResource("2_cr7my")
-theme_override_font_sizes/font_size = 24
-text = "Title"
-
-[node name="Subtitle" type="Label" parent="Tooltip"]
-layout_mode = 1
-offset_left = 12.0
-offset_top = 29.0
-offset_right = 149.0
-offset_bottom = 61.0
-theme = ExtResource("2_cr7my")
-theme_override_font_sizes/font_size = 16
-text = "Subtitle"
-
-[node name="Label" type="Label" parent="Tooltip"]
+[node name="Tooltip" parent="." instance=ExtResource("2_jvoko")]
 layout_mode = 0
-offset_left = 60.0
-offset_top = 48.0
-offset_right = 195.0
-offset_bottom = 64.0
-theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
-theme_override_font_sizes/font_size = 10
-text = "(Shift+LMB to Inspect)"
 
 [node name="InspectCelestialOld" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ct75w4jnq6dgt"
-path="res://.godot/imported/inspector_tab_icons.png-fbe5109dccefe4a431505ec591e79b31.ctex"
+path="res://.godot/imported/inspector_tab_icons.png-97ef9b7165c38ec1f3ea69e7b6be9aaa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/inspector_tab_icons.png"
-dest_files=["res://.godot/imported/inspector_tab_icons.png-fbe5109dccefe4a431505ec591e79b31.ctex"]
+source_file="res://ui/assets/inspector_tab_icons.png"
+dest_files=["res://.godot/imported/inspector_tab_icons.png-97ef9b7165c38ec1f3ea69e7b6be9aaa.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 extends Control
 
-@onready var matter_icons = preload("res://ui/matterstate_icons.png")
-@onready var celestial_icons = preload("res://ui/celestialobject_icons.png")
+@onready var matter_icons = preload("res://ui/assets/matterstate_icons.png")
+@onready var celestial_icons = preload("res://ui/assets/celestialobject_icons.png")
 
 ## format notation:
 ## {xyz} = obj.get(xyz)

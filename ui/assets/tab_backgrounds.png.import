@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ci5x42i6frx2q"
-path="res://.godot/imported/panel_backdrop.png-7efa370287343990977d92230b5da546.ctex"
+uid="uid://dq0wxw4wnl0yt"
+path="res://.godot/imported/tab_backgrounds.png-17a5f443e6070ae9390d632c9699dcd9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/panel_backdrop.png"
-dest_files=["res://.godot/imported/panel_backdrop.png-7efa370287343990977d92230b5da546.ctex"]
+source_file="res://ui/assets/tab_backgrounds.png"
+dest_files=["res://.godot/imported/tab_backgrounds.png-17a5f443e6070ae9390d632c9699dcd9.ctex"]
 
 [params]
 
