@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8jqplo11nmab"]
+[gd_scene load_steps=4 format=3 uid="uid://c8jqplo11nmab"]
 
-[ext_resource type="Theme" uid="uid://b8ljuij7sans3" path="res://ui/ui_theme.tres" id="1_qpc1l"]
+[ext_resource type="Theme" uid="uid://b8ljuij7sans3" path="res://ui/ui_theme.tres" id="1_46tws"]
+[ext_resource type="Script" path="res://ui/dialogs/space_inspect_dialog.gd" id="2_15pva"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kkhxj"]
 
 [node name="SpaceInspectDialog" type="PanelContainer"]
+modulate = Color(1, 1, 1, 0)
 texture_filter = 1
+custom_minimum_size = Vector2(269, 423)
 anchors_preset = -1
 anchor_right = 1.07031
 anchor_bottom = 1.0
@@ -13,7 +16,8 @@ offset_left = -270.0
 offset_top = -419.0
 offset_right = -1234.0
 offset_bottom = -644.0
-theme = ExtResource("1_qpc1l")
+theme = ExtResource("1_46tws")
+script = ExtResource("2_15pva")
 
 [node name="UpperPanel" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -24,13 +28,13 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="UpperPanel/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_qpc1l")
+theme = ExtResource("1_46tws")
 theme_override_font_sizes/font_size = 32
 text = "[BodyName]"
 
 [node name="Subtitle" type="Label" parent="UpperPanel/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_qpc1l")
+theme = ExtResource("1_46tws")
 theme_override_font_sizes/font_size = 16
 text = "[BodyType]"
 
@@ -43,7 +47,7 @@ theme_override_constants/margin_bottom = -20
 
 [node name="TabContainer" type="TabContainer" parent="InnerPanel"]
 layout_mode = 2
-theme = ExtResource("1_qpc1l")
+theme = ExtResource("1_46tws")
 
 [node name="Overview" type="MarginContainer" parent="InnerPanel/TabContainer"]
 show_behind_parent = true
@@ -52,7 +56,7 @@ theme_override_constants/margin_top = -3
 
 [node name="Panel" type="Panel" parent="InnerPanel/TabContainer/Overview"]
 layout_mode = 2
-theme = ExtResource("1_qpc1l")
+theme = ExtResource("1_46tws")
 theme_type_variation = &"InteriorPanel"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="InnerPanel/TabContainer/Overview/Panel"]
@@ -64,7 +68,9 @@ offset_left = 15.0
 offset_top = 11.0
 offset_right = -14.0
 offset_bottom = -43.0
-theme = ExtResource("1_qpc1l")
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_46tws")
 bbcode_enabled = true
 text = "[color=#ff0000][b]This[/b] text is red![/color] [b]This[/b] text is white"
 
@@ -76,7 +82,7 @@ theme_override_constants/margin_top = -3
 
 [node name="Panel" type="Panel" parent="InnerPanel/TabContainer/Description"]
 layout_mode = 2
-theme = ExtResource("1_qpc1l")
+theme = ExtResource("1_46tws")
 theme_type_variation = &"InteriorPanel"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="InnerPanel/TabContainer/Description/Panel"]
@@ -87,7 +93,7 @@ offset_left = 15.0
 offset_top = 11.0
 offset_right = -14.0
 offset_bottom = -43.0
-theme = ExtResource("1_qpc1l")
+theme = ExtResource("1_46tws")
 bbcode_enabled = true
 text = "[color=#ff0000][b]This[/b] text is red![/color] [b]This[/b] text is white"
 
@@ -99,7 +105,7 @@ theme_override_constants/margin_top = -3
 
 [node name="Panel" type="Panel" parent="InnerPanel/TabContainer/Composition"]
 layout_mode = 2
-theme = ExtResource("1_qpc1l")
+theme = ExtResource("1_46tws")
 theme_type_variation = &"InteriorPanel"
 
 [node name="Tree" type="Tree" parent="InnerPanel/TabContainer/Composition/Panel"]
@@ -111,8 +117,10 @@ offset_left = 4.0
 offset_top = 7.0
 offset_right = -11.0
 offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
 focus_mode = 0
-theme = ExtResource("1_qpc1l")
+theme = ExtResource("1_46tws")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_kkhxj")
 
 [node name="Properties" type="MarginContainer" parent="InnerPanel/TabContainer"]
@@ -123,7 +131,7 @@ theme_override_constants/margin_top = -3
 
 [node name="Panel" type="Panel" parent="InnerPanel/TabContainer/Properties"]
 layout_mode = 2
-theme = ExtResource("1_qpc1l")
+theme = ExtResource("1_46tws")
 theme_type_variation = &"InteriorPanel"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="InnerPanel/TabContainer/Properties/Panel"]
@@ -135,6 +143,8 @@ offset_left = 15.0
 offset_top = 11.0
 offset_right = -14.0
 offset_bottom = -43.0
-theme = ExtResource("1_qpc1l")
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_46tws")
 bbcode_enabled = true
 text = "[b] Object Tags: [/b]"

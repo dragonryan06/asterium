@@ -12,7 +12,7 @@ var planet_data : Dictionary
 var rock_data : Dictionary
 var name_data : Dictionary
 
-func _ready():
+func _ready() -> void:
 	star_data = ResourceManager.load_json("res://gamedata/stars.json").data
 	planet_data = ResourceManager.load_json("res://gamedata/planets.json").data
 	rock_data = ResourceManager.load_json("res://gamedata/rocks.json").data
@@ -20,14 +20,13 @@ func _ready():
 
 func generate_star() -> Star:
 	var star = _Star.instantiate()
-	star.object_inspector = $HUD/ObjectInspector
 	var solar_class = star_data["main-sequence"].keys().pick_random()
 	var data = {}
 	if randi_range(0,1)==0:
-		data["obj_title"]=str(randi_range(1,9))+"-"+Constants.ALPHABET.pick_random()+Constants.ALPHABET.pick_random()+"-"+str(randi_range(0,9))+""+str(randi_range(0,9))+""+str(randi_range(0,9))
+		data["obj_name"]=str(randi_range(1,9))+"-"+Constants.ALPHABET.pick_random()+Constants.ALPHABET.pick_random()+"-"+str(randi_range(0,9))+""+str(randi_range(0,9))+""+str(randi_range(0,9))
 	else:
-		data["obj_title"]=name_data["star"]["prefix"].pick_random()+name_data["star"]["suffix"].pick_random()
-	data["obj_subtitle"]=solar_class+"-class Main Sequence Star"
+		data["obj_name"]=name_data["star"]["prefix"].pick_random()+name_data["star"]["suffix"].pick_random()
+	data["obj_class"]=solar_class+"-class Main Sequence Star"
 	
 	data["mass"]=randf_range(star_data["main-sequence"][solar_class]["mass_min"],star_data["main-sequence"][solar_class]["mass_max"])
 	data["radius"]=randf_range(star_data["main-sequence"][solar_class]["radius_min"],star_data["main-sequence"][solar_class]["radius_max"])
@@ -110,7 +109,7 @@ func generate_system():
 		#planet.obj_subtitle = "world type"
 		#star.get_node("Satellites").add_child(planet)
 	
-	star.camera_focus_object.connect($Camera2D._on_camera_focus_object)
+	#star.camera_focus_object.connect($Camera2D._on_camera_focus_object)
 	add_child(star)
 
 func _on_generate_pressed():

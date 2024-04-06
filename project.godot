@@ -18,7 +18,6 @@ config/icon="res://scenes/assets/tempgameicon.png"
 [display]
 
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 
 [file_customization]
 

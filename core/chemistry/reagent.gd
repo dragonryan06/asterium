@@ -1,3 +1,4 @@
+@icon("res://editor/Reagent.svg")
 extends Node
 class_name Reagent
 
@@ -13,6 +14,9 @@ enum TAGS {
 	GREENHOUSE_GAS,
 	MINERAL
 }
+
+# name of Reagent to autoload
+@export var load_initial : String
 
 # The name of this Reagent
 var reagent_name : String
@@ -39,6 +43,10 @@ var temperature : float
 var state : int
 # The amount, in kg, there is of this Reagent
 var mass : float
+
+func _ready():
+	if load_initial != "":
+		construct_from(Constants.get_reagent_data()[load_initial])
 
 # Initialize values from res://gamedata/ json dictionaries
 func construct_from(data:Dictionary) -> void:

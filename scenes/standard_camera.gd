@@ -60,7 +60,7 @@ func _physics_process(delta):
 func _update_camera(_null):
 	camera_changed.emit()
 
-func _on_camera_focus_object(object:GenericObject) -> void:
+func _on_camera_focus_object(object:Node2D) -> void:
 	var tween = get_tree().create_tween().set_parallel()
 	tween.tween_property(self,"position",object.position,0.5).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(self,"zoom",Vector2(0.1,0.1),0.5).set_trans(Tween.TRANS_CUBIC)

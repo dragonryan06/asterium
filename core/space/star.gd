@@ -4,8 +4,9 @@ class_name Star
 ## Cold-hot color gradient to use
 @export var spectrum : Gradient
 
-## This Star's vega-relative chromaticity (based on class)
+## This Star's vega-relative chromaticity and it's exact color represented in hex (based on class)
 var chromaticity : String
+var chromaticity_color : String
 ## This Star's surface temperature, in K
 var temperature : int : set=_set_temperature
 ## This Star's luminosity (divided by the stefan-boltzmann constant), determined from temperature
@@ -27,8 +28,10 @@ func _set_temperature(val:int) -> void:
 	if val>30000:
 		val = 30000
 	var normVal = (float(val)-2400.0)/(30000.0-2400.0)
-	$Sprite.get_material().set_shader_parameter("base_color",spectrum.sample(normVal))
-	$Sprite/PointLight2D.color = spectrum.sample(normVal)
+	var color = spectrum.sample(normVal)
+	$Sprite.get_material().set_shader_parameter("base_color",color)
+	$Sprite/PointLight2D.color = color
+	chromaticity_color = color.to_html(false)
 	# formula from https://www.astronomy.ohio-state.edu/thompson.1847/1144/Lecture9.html
 	# because this value is internal and used only for temperature where the stefan-boltzmann constant is divided back out, it is being divided out in advance.
 	luminosity = 4.0*PI*pow(radius*Constants.M_IN_SR,2.0)*pow(temperature,4.0)
@@ -41,8 +44,8 @@ func setup(data:Dictionary) -> void:
 		set(k,data[k])
 
 func _ready():
-	$InspectComponent.tt_title_text = obj_title
-	$InspectComponent.tt_subtitle_text = obj_subtitle
+	$InspectComponent.tt_title_text = obj_name
+	$InspectComponent.tt_subtitle_text = obj_class
 
 func _draw() -> void:
 	for p in $Satellites.get_children():
