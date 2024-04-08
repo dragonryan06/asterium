@@ -2,11 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://b8ljuij7sans3" path="res://ui/ui_theme.tres" id="1_46tws"]
 [ext_resource type="Script" path="res://ui/dialogs/space_inspect_dialog.gd" id="2_15pva"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kkhxj"]
+[ext_resource type="PackedScene" uid="uid://tlrpls1pjncb" path="res://ui/panes/solution_info_pane.tscn" id="3_8suiw"]
 
 [node name="SpaceInspectDialog" type="PanelContainer"]
-modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 custom_minimum_size = Vector2(269, 423)
 anchors_preset = -1
@@ -48,8 +46,11 @@ theme_override_constants/margin_bottom = -20
 [node name="TabContainer" type="TabContainer" parent="InnerPanel"]
 layout_mode = 2
 theme = ExtResource("1_46tws")
+tab_alignment = 1
+current_tab = 2
 
 [node name="Overview" type="MarginContainer" parent="InnerPanel/TabContainer"]
+visible = false
 show_behind_parent = true
 layout_mode = 2
 theme_override_constants/margin_top = -3
@@ -98,30 +99,26 @@ bbcode_enabled = true
 text = "[color=#ff0000][b]This[/b] text is red![/color] [b]This[/b] text is white"
 
 [node name="Composition" type="MarginContainer" parent="InnerPanel/TabContainer"]
-visible = false
 show_behind_parent = true
 layout_mode = 2
-theme_override_constants/margin_top = -3
+theme_override_constants/margin_top = -4
 
-[node name="Panel" type="Panel" parent="InnerPanel/TabContainer/Composition"]
+[node name="PanelContainer" type="PanelContainer" parent="InnerPanel/TabContainer/Composition"]
 layout_mode = 2
 theme = ExtResource("1_46tws")
 theme_type_variation = &"InteriorPanel"
 
-[node name="Tree" type="Tree" parent="InnerPanel/TabContainer/Composition/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 7.0
-offset_right = -11.0
-offset_bottom = -36.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 0
-theme = ExtResource("1_46tws")
-theme_override_styles/panel = SubResource("StyleBoxEmpty_kkhxj")
+[node name="MarginContainer" type="MarginContainer" parent="InnerPanel/TabContainer/Composition/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -20
+theme_override_constants/margin_top = -16
+theme_override_constants/margin_right = -16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="SolutionInfoPane" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_8suiw")]
+layout_mode = 2
 
 [node name="Properties" type="MarginContainer" parent="InnerPanel/TabContainer"]
 visible = false

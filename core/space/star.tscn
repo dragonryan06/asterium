@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://c7e3tuv5e8nju"]
+[gd_scene load_steps=16 format=3 uid="uid://c7e3tuv5e8nju"]
 
 [ext_resource type="Script" path="res://core/space/star.gd" id="1_i0e3g"]
 [ext_resource type="Gradient" uid="uid://c7e5qxvhcopkf" path="res://core/space/star_spectrum.tres" id="2_qpb65"]
 [ext_resource type="Shader" path="res://core/space/shaders/starsprite.gdshader" id="3_ms3mq"]
+[ext_resource type="Script" path="res://core/chemistry/solution.gd" id="4_0rtq8"]
 [ext_resource type="Script" path="res://ui/components/inspect_component.gd" id="4_bb0qx"]
 [ext_resource type="Script" path="res://core/chemistry/reagent.gd" id="5_jb3ve"]
 
@@ -77,6 +78,21 @@ energy = 0.7
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_ymo3g")
 
+[node name="Composition" type="Node" parent="."]
+script = ExtResource("4_0rtq8")
+solution_name = "Stardust"
+solution_color = Color(1, 0, 1, 1)
+mass_unit = "M*"
+composition = [0.75, 0.25]
+
+[node name="Hydrogen" type="Node" parent="Composition"]
+script = ExtResource("5_jb3ve")
+load_initial = "hydrogen"
+
+[node name="Helium" type="Node" parent="Composition"]
+script = ExtResource("5_jb3ve")
+load_initial = "helium"
+
 [node name="Satellites" type="Node" parent="."]
 
 [node name="InspectComponent" type="CanvasLayer" parent="." node_paths=PackedStringArray("trigger_area")]
@@ -86,9 +102,6 @@ can_camera_focus = true
 tt_title_text = "Star Name"
 tt_subtitle_text = "Solar class"
 inspect_dialog_scene = "res://ui/dialogs/space_inspect_dialog.tscn"
-
-[node name="Composition" type="Node" parent="."]
-script = ExtResource("5_jb3ve")
 
 [connection signal="input_event" from="Sprite/Hitbox" to="." method="_on_hitbox_input_event"]
 [connection signal="mouse_entered" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_entered"]

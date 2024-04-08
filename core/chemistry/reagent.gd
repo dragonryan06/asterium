@@ -2,6 +2,7 @@
 extends Node
 class_name Reagent
 
+const STATE_DESCRIPTORS = ["solid *","liquid *","gaseous *","* plasma","* - unknown state"]
 enum STATES {
 	SOLID,
 	LIQUID,
@@ -16,7 +17,10 @@ enum TAGS {
 }
 
 # name of Reagent to autoload
-@export var load_initial : String
+@export var load_initial : String : 
+	set(val):
+		construct_from(Constants.get_reagent_data()[val])
+		load_initial = val
 
 # The name of this Reagent
 var reagent_name : String
@@ -28,7 +32,7 @@ var boil_point : float
 var ionize_point : float
 # The density, in kg/m^3 of this Reagent
 var density : float
-# The specific heat capacity, in J/(kg K) of this Reagent
+# The specific heat capacity, in kJ/(kg K) of this Reagent
 var specific_heat : float
 # The color this Reagent is represented by in UI
 var ui_color : Color
@@ -38,15 +42,22 @@ var color : Color
 var reactions : Dictionary
 
 # The temperature, in K of this Reagent
-var temperature : float
+var temperature : float = -1 : set=_set_temp
 # The state this Reagent is currently in (see STATES)
-var state : int
+var state : int = -1
 # The amount, in kg, there is of this Reagent
-var mass : float
+var mass : float = -1
 
-func _ready():
-	if load_initial != "":
-		construct_from(Constants.get_reagent_data()[load_initial])
+func _set_temp(new) -> void:
+	temperature = new
+	if temperature>ionize_point:
+		state = STATES.PLASMA
+	elif temperature>boil_point:
+		state = STATES.GAS
+	elif temperature>melt_point:
+		state = STATES.LIQUID
+	elif temperature<=melt_point:
+		state = STATES.SOLID
 
 # Initialize values from res://gamedata/ json dictionaries
 func construct_from(data:Dictionary) -> void:
@@ -59,7 +70,3 @@ func construct_from(data:Dictionary) -> void:
 	ui_color = Color.from_string(data["ui_color"],Color(1.0,0.0,1.0))
 	color = Color.from_string(data["color"],Color(1.0,0.0,1.0))
 	reactions = data["reactions"]
-	
-	temperature = -1
-	state = -1
-	mass = -1

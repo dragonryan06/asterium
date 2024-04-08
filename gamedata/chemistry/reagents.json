@@ -38,6 +38,18 @@
 		},
 		"tags": []
 	},
+	"helium":{
+		"reagent_name":"helium",
+		"ui_color":"#fca100",
+		"color":"CLEAR",
+		"melt_point":-1,
+		"boil_point":4.222,
+		"ionize_point":12000.0,
+		"density":0.2,
+		"specific_heat":5.2,
+		"reactions": {},
+		"tags": []
+	},
 	"oxygen":{
 		"reagent_name":"oxygen",
 		"ui_color":"#05a8ff",

@@ -7,7 +7,7 @@ var obj_name : String
 # This CelestialObject's classification
 var obj_class : String
 # This CelestialObject's mass, in its subclass's own relative unit system
-var mass : float
+var mass : float : set=_set_mass
 # This CelestialObject's radius, in its subclass's own relative unit system
 var radius : float : set=_set_radius
 # If null, this CelestialObject is the core of its own system
@@ -24,6 +24,10 @@ var tags : Array
 ## Flavortext, etc.
 # This CelestialObject's Description
 var description : String
+
+# overriden by some subclasses
+func _set_mass(val:float) -> void:
+	mass = val
 
 func _set_radius(val:float) -> void:
 	radius = val

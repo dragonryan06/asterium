@@ -1,14 +1,34 @@
+@icon("res://editor/Solution.svg")
 extends Node
 class_name Solution
 
 # The name of this Solution (assumes largest reagent's name if solution has no other name)
-var solution_name
+@export var solution_name : String
+# The ui color of this Solution (assumes largest reagent's color if none)
+@export var solution_color : Color = Color(0.0,0.0,0.0,0.0)
 # The total mass of this Solution
-var mass : float
+@export var mass : float
+@export var mass_unit : String
 # The percentages (0.0 -> 1.0) that each child Reagent makes up of the whole mass
-var composition : Array
-# Whether this solution is homogenous or heterogenous
-var homogenous : bool
+@export var composition : Array
+# If this Solution is homogenous, it's largest Reagent is a solvent, and all others are solute. Otherwise, it is just a mix.
+@export var homogenous : bool
+
+func _ready():
+	if solution_name=="":
+		solution_name = get_largest_component().reagent_name+" Solution"
+	if solution_color==Color(0.0,0.0,0.0,0.0):
+		solution_color = get_largest_component().ui_color
+
+func set_temperature(new:float) -> void:
+	# implement specific heat insulation stuff here
+	for c in get_children():
+		c.temperature = new
+
+func get_largest_component() -> Reagent:
+	var sorted = composition.duplicate()
+	sorted.sort()
+	return get_child(composition.find(sorted[-1]))
 
 func _on_child_order_changed():
 	pass # Replace with function body.
