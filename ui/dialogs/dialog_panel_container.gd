@@ -9,8 +9,18 @@ enum EDGES {NW,N,NE,E,SE,S,SW,W}
 var dragging = false
 var edge = -1
 
+# if left null, connecting_line just wont be used
+var connecting_target : CanvasItem
+var connecting_line : ConnectingLine
+
 func _init() -> void:
 	gui_input.connect(_on_gui_input)
+	connecting_line = ConnectingLine.new()
+	add_child(connecting_line)
+
+func _process(_delta) -> void:
+	if connecting_target!=null:
+		connecting_line.connect_nodes(self,connecting_target)
 
 func _on_gui_input(event:InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():

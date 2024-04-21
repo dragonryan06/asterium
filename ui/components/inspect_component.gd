@@ -87,6 +87,7 @@ func create_inspect_dialog():
 	add_child(id)
 	id.name = "InspectDialog"
 	id.position = get_viewport().get_mouse_position()
+	id.connecting_target = get_parent()
 	id.setup_data(get_parent())
 	var tween = get_tree().create_tween()
 	tween.tween_property(id,"modulate",Color(1,1,1,1),0.25)
