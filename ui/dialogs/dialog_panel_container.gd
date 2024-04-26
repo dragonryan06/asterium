@@ -3,6 +3,9 @@ class_name DialogPanelContainer
 
 # PanelContainer but now with awesome interactivity! The possibilities!!!
 
+signal destroying_dialog
+signal destroying_subdialog(which:DialogPanelContainer)
+
 const EDGE_WIDTH = 10
 enum EDGES {NW,N,NE,E,SE,S,SW,W}
 

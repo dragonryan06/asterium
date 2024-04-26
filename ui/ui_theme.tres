@@ -1,9 +1,17 @@
-[gd_resource type="Theme" load_steps=19 format=3 uid="uid://b8ljuij7sans3"]
+[gd_resource type="Theme" load_steps=21 format=3 uid="uid://b8ljuij7sans3"]
 
 [ext_resource type="FontFile" uid="uid://dnpsjacgpflbl" path="res://fonts/PixelOperator.ttf" id="1_ti0ik"]
+[ext_resource type="Texture2D" uid="uid://cqa1hwp4g4bc3" path="res://ui/assets/generic_inbox.png" id="1_w4a2l"]
 [ext_resource type="Texture2D" uid="uid://ci5x42i6frx2q" path="res://ui/assets/panel_backdrop.png" id="1_yrdsr"]
 [ext_resource type="FontFile" uid="uid://c5j20n3msj3bg" path="res://fonts/PixelOperator-Bold.ttf" id="2_gyqef"]
 [ext_resource type="Texture2D" uid="uid://dq0wxw4wnl0yt" path="res://ui/assets/tab_backgrounds.png" id="2_nnuke"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jpbyq"]
+texture = ExtResource("1_w4a2l")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7abht"]
 atlas = ExtResource("1_yrdsr")
@@ -73,6 +81,8 @@ texture_margin_right = 16.0
 
 [resource]
 default_font = ExtResource("1_ti0ik")
+GenericInbox/base_type = &"PanelContainer"
+GenericInbox/styles/panel = SubResource("StyleBoxTexture_jpbyq")
 InteriorPanel/base_type = &"Panel"
 InteriorPanel/styles/panel = SubResource("StyleBoxTexture_lefp0")
 Panel/styles/panel = SubResource("StyleBoxTexture_7nogv")

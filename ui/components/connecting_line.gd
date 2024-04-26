@@ -9,6 +9,13 @@ func _ready() -> void:
 	var current_scene = get_tree().current_scene
 	get_parent().remove_child.call_deferred(self)
 	current_scene.get_node("Background").add_child.call_deferred(self)
+	modulate=Color("#dcdcdc")
+
+func _fade_out_and_die() -> void:
+	var tween = get_tree().create_tween()
+	await tween.tween_property(self,"modulate",Color(1,1,1,0),0.25).finished
+	get_parent().remove_child(self)
+	queue_free()
 
 func connect_nodes(node_a:CanvasItem,node_b:CanvasItem) -> void:
 	clear_points()

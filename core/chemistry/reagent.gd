@@ -16,6 +16,28 @@ enum TAGS {
 	MINERAL
 }
 
+static func get_state_icon(r:Reagent) -> AtlasTexture:
+	var rect: Rect2i
+	match r.state:
+		Reagent.STATES.SOLID:
+			rect = Rect2i(0,0,18,18)
+		Reagent.STATES.LIQUID:
+			rect = Rect2i(18,0,18,18)
+		Reagent.STATES.GAS:
+			rect = Rect2i(0,18,18,18)
+		Reagent.STATES.PLASMA:
+			rect = Rect2i(18,18,18,18)
+		_:
+			rect = Rect2i(0,0,0,0)
+	var tex = AtlasTexture.new()
+	if rect.size.x != 0:
+		tex.atlas = load("res://ui/assets/matterstate_icons.png")
+		tex.region = rect
+	else:
+		tex.atlas = load("res://ui/assets/question_icon.png")
+		tex.region = Rect2i(0,0,16,16)
+	return tex
+
 # name of Reagent to autoload
 @export var load_initial : String : 
 	set(val):

@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8jqplo11nmab"]
+[gd_scene load_steps=6 format=3 uid="uid://c8jqplo11nmab"]
 
 [ext_resource type="Theme" uid="uid://b8ljuij7sans3" path="res://ui/ui_theme.tres" id="1_46tws"]
 [ext_resource type="Script" path="res://ui/dialogs/space_inspect_dialog.gd" id="2_15pva"]
-[ext_resource type="PackedScene" uid="uid://tlrpls1pjncb" path="res://ui/panes/solution_info_pane.tscn" id="3_8suiw"]
+[ext_resource type="Texture2D" uid="uid://bar4ywno1rx3m" path="res://ui/assets/matterstate_icons.png" id="3_0pqbq"]
+[ext_resource type="Texture2D" uid="uid://b05b6xq7mxbdc" path="res://ui/assets/solution_icon.png" id="3_unrf3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ygl4"]
+atlas = ExtResource("3_0pqbq")
+region = Rect2(0, 18, 18, 18)
 
 [node name="SpaceInspectDialog" type="PanelContainer"]
+modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 custom_minimum_size = Vector2(269, 423)
 anchors_preset = -1
@@ -117,8 +123,55 @@ theme_override_constants/margin_right = -16
 [node name="VBoxContainer" type="VBoxContainer" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="SolutionInfoPane" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_8suiw")]
+[node name="SolutionName" type="PanelContainer" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_46tws")
+theme_type_variation = &"GenericInbox"
+
+[node name="MarginContainer" type="MarginContainer" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer/SolutionName"]
+layout_mode = 2
+theme_override_constants/margin_left = -6
+theme_override_constants/margin_top = -10
+theme_override_constants/margin_bottom = -8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer/SolutionName/MarginContainer"]
+layout_mode = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer/SolutionName/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer/SolutionName/MarginContainer/HBoxContainer/AspectRatioContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = SubResource("AtlasTexture_7ygl4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer/SolutionName/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="Header" type="RichTextLabel" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer/SolutionName/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 13.5)
+layout_mode = 2
+bbcode_enabled = true
+text = "Composition"
+scroll_active = false
+
+[node name="Footer" type="RichTextLabel" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer/SolutionName/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 13.5)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Stardust"
+scroll_active = false
+
+[node name="TextureButton" type="TextureButton" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer/SolutionName/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Inspect"
+toggle_mode = true
+texture_normal = ExtResource("3_unrf3")
 
 [node name="Properties" type="MarginContainer" parent="InnerPanel/TabContainer"]
 visible = false

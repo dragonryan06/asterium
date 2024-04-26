@@ -84,6 +84,7 @@ func destroy_tooltip():
 
 func create_inspect_dialog():
 	var id = _InspectDialog.instantiate()
+	id.destroying_dialog.connect(id.connecting_line._fade_out_and_die)
 	add_child(id)
 	id.name = "InspectDialog"
 	id.position = get_viewport().get_mouse_position()
@@ -94,6 +95,7 @@ func create_inspect_dialog():
 
 func destroy_inspect_dialog():
 	var id = get_node("InspectDialog")
+	id.destroying_dialog.emit()
 	var tween = get_tree().create_tween()
 	await tween.tween_property(id,"modulate",Color(1,1,1,0),0.25).finished
 	remove_child(id)
