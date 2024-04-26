@@ -35,7 +35,8 @@ func _input(event):
 		var pp = PhysicsPointQueryParameters2D.new()
 		pp.collide_with_areas = true
 		pp.position = trigger_area.get_global_mouse_position()
-		if trigger_area.get_world_2d().direct_space_state.intersect_point(pp,1):
+		var intersect = trigger_area.get_world_2d().direct_space_state.intersect_point(pp,1)
+		if not intersect.is_empty() and intersect[0].collider==trigger_area:
 			if not inspecting:
 				destroy_tooltip()
 				create_inspect_dialog()

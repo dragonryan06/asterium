@@ -1,6 +1,7 @@
 extends Node2D
 
 const _Star = preload("res://core/space/star.tscn")
+const _Planet = preload("res://core/space/planet.tscn")
 
 # thoughts:
 # perhaps some Curve resources should be saved to skew the probability and allow for some extremely rare edge case things
@@ -47,7 +48,20 @@ func generate_star() -> Star:
 	star.setup(data)
 	return star
 
-
+func generate_planet(parent_star:Star) -> Planet:
+	var planet = _Planet.instantiate()
+	var base = planet_data["common"]["barren"]
+	var data = {}
+	
+	data["orbital_parent"] = parent_star
+	data["orbital_radius"] = randf_range(0.5,1.0)+parent_star.radius
+	data["obj_class"] = base["basic"]["name"]
+	data["description"] = base["basic"]["base_sentence"]
+	data["radius"] = randf_range(base["basic"]["radius_min"],base["basic"]["radius_max"])
+	planet.setup(data)
+	
+	
+	return planet
 
 #func generate_planet(parent_star:Star) -> CelestialObject:
 	### THIS IS JUST FOR TERRESTRIAL
@@ -100,6 +114,14 @@ func generate_star() -> Star:
 
 func generate_system():
 	var star = generate_star()
+	
+	var planet = generate_planet(star)
+	#planet.camera_focus_object.connect($Camera2D._on_camera_focus_object)
+	var angle = randf_range(0,TAU)
+	planet.position = Vector2(planet.orbital_radius*cos(angle)*2048,planet.orbital_radius*sin(angle)*2048)
+	planet.obj_name=star.obj_name+" - "+Constants.romanify(1)
+	star.get_node("Satellites").add_child(planet)
+	
 	#for i in range(0,randi_range(3,6)):
 		#var planet = generate_planet(star)
 		#planet.camera_focus_object.connect($Camera2D._on_camera_focus_object)

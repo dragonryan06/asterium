@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cj8yr0m0pkqln"]
+[gd_scene load_steps=8 format=3 uid="uid://cj8yr0m0pkqln"]
 
 [ext_resource type="Script" path="res://core/space/planet.gd" id="1_m3qu6"]
 [ext_resource type="Shader" path="res://core/space/shaders/planetsprite.gdshader" id="2_fxpsy"]
+[ext_resource type="Script" path="res://ui/components/inspect_component.gd" id="3_06rrq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cbs8x"]
 shader = ExtResource("2_fxpsy")
@@ -23,7 +24,7 @@ noise = SubResource("FastNoiseLite_ka5ry")
 [sub_resource type="CircleShape2D" id="CircleShape2D_2h0o0"]
 radius = 0.228207
 
-[node name="TerrestrialPlanet" type="Node2D"]
+[node name="Planet" type="Node2D"]
 script = ExtResource("1_m3qu6")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -39,15 +40,14 @@ scale = Vector2(128, 64)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Hitbox"]
 shape = SubResource("CircleShape2D_2h0o0")
 
-[node name="Composition" type="Node" parent="."]
-
-[node name="Ocean" type="Node" parent="Composition"]
-
-[node name="Surface" type="Node" parent="Composition"]
-
-[node name="Atmosphere" type="Node" parent="Composition"]
+[node name="InspectComponent" type="CanvasLayer" parent="." node_paths=PackedStringArray("trigger_area")]
+script = ExtResource("3_06rrq")
+trigger_area = NodePath("../Sprite/Hitbox")
+can_camera_focus = true
+tt_title_text = "Planet Name"
+tt_subtitle_text = "World Class"
+inspect_dialog_scene = "res://ui/dialogs/space_inspect_dialog.tscn"
 
 [connection signal="input_event" from="Sprite/Hitbox" to="." method="_on_hitbox_input_event"]
 [connection signal="mouse_entered" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_entered"]
 [connection signal="mouse_exited" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_exited"]
-[connection signal="child_order_changed" from="Composition" to="." method="_on_composition_child_order_changed"]
