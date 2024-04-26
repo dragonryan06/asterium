@@ -62,20 +62,20 @@ func _on_comp_node_inspect(solution:Solution) -> void:
 		destroying_subdialog.emit(dialog)
 		var tween = get_tree().create_tween()
 		await tween.tween_property(dialog,"modulate",Color(1,1,1,0),0.25).finished
-		remove_child(dialog)
+		$Subdialogs.remove_child(dialog)
 		dialog.queue_free()
 	else:
 		dialog = _SolutionInfoDialog.instantiate()
 		dialog.name = solution.name
 		dialog.setup_data(solution)
 		dialog.connecting_target=self
-		add_child(dialog)
+		$Subdialogs.add_child(dialog)
 	return
 
 func _on_destroying_subdialog(which:DialogPanelContainer) -> void:
 	if which==null:
 		# if the parent dialog is dying, this method is called with null, so we kill all connectors
-		for c in get_children():
+		for c in $Subdialogs.get_children():
 			if "connecting_line" in c:
 				c.connecting_line._fade_out_and_die()
 	else:

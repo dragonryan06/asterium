@@ -198,3 +198,5 @@ grow_vertical = 2
 theme = ExtResource("1_46tws")
 bbcode_enabled = true
 text = "[b] Object Tags: [/b]"
+
+[node name="Subdialogs" type="Node" parent="."]
