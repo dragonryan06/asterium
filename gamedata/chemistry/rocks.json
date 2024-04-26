@@ -1,0 +1,68 @@
+{
+	"igneous": {
+		"granite": {
+			"base_color":"#b39b9a",
+			"ratios":{
+				"feldspar":0.57,
+				"quartz":0.33,
+				"mica":0.07,
+				"amphibole":0.03
+			}
+		},
+		"rhyolite": {
+			"base_color":"#B4B1B2",
+			"ratios":{
+				"quartz":0.66,
+				"feldspar":0.20,
+				"amphibole":0.08,
+				"mica":0.05
+			}
+		},
+		"diorite": {
+			"base_color":"#495251",
+			"ratios":{
+				"feldspar":0.34,
+				"amphibole":0.31,
+				"pyroxene":0.14,
+				"quartz":0.11,
+				"mica":0.10
+			}
+		},
+		"andesite": {
+			"base_color":"#37393C",
+			"ratios":{
+				"feldspar":0.42,
+				"amphibole":0.29,
+				"pyroxene":0.21,
+				"mica":0.08
+			}
+		},
+		"gabbro": {
+			"base_color":"#1D1E14",
+			"ratios":{
+				"pyroxene":0.62,
+				"feldspar":0.31,
+				"amphibole":0.05,
+				"mica":0.02
+			}
+		},
+		"basalt": {
+			"base_color":"#1F1F29",
+			"ratios":{
+				"pyroxene":0.61,
+				"olivine":0.21,
+				"feldspar":0.15,
+				"amphibole":0.03
+			}
+		},
+		"peridotite": {
+			"base_color":"#343923",
+			"ratios":{
+				"olivine":0.57,
+				"pyroxene":0.43
+			}
+		}
+	},
+	"sedimentary": {},
+	"metamorphic": {}
+}

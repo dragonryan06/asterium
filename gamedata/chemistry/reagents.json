@@ -61,5 +61,95 @@
 		"specific_heat":0.9,
 		"reactions": {},
 		"tags": []
+	},
+	"feldspar":{
+		"reagent_name":"feldspar",
+		"ui_color":"",
+		"color":"",
+		"melt_point":1273.2,
+		"boil_point":-1,
+		"ionize_point":-1,
+		"density":2.6,
+		"specific_heat":0.7,
+		"reactions": {},
+		"tags": [
+			"MINERAL",
+			"ROCK_FORMING"
+		]
+	},
+	"quartz":{
+		"reagent_name":"quartz",
+		"ui_color":"",
+		"color":"",
+		"melt_point":1943.2,
+		"boil_point":-1,
+		"ionize_point":-1,
+		"density":2.7,
+		"specific_heat":0.7,
+		"reactions": {},
+		"tags": [
+			"MINERAL",
+			"ROCK_FORMING"
+		]
+	},
+	"mica":{
+		"reagent_name":"mica",
+		"ui_color":"",
+		"color":"",
+		"melt_point":1573.2,
+		"boil_point":-1,
+		"ionize_point":-1,
+		"density":2.8,
+		"specific_heat":0.7,
+		"reactions": {},
+		"tags": [
+			"MINERAL",
+			"ROCK_FORMING"
+		]
+	},
+	"amphibole":{
+		"reagent_name":"amphibole",
+		"ui_color":"",
+		"color":"",
+		"melt_point":1253.2,
+		"boil_point":-1,
+		"ionize_point":-1,
+		"density":3.0,
+		"specific_heat":0.7,
+		"reactions": {},
+		"tags": [
+			"MINERAL",
+			"ROCK_FORMING"
+		]
+	},
+	"pyroxene":{
+		"reagent_name":"pyroxene",
+		"ui_color":"",
+		"color":"",
+		"melt_point":1426.2,
+		"boil_point":-1,
+		"ionize_point":-1,
+		"density":5.5,
+		"specific_heat":0.7,
+		"reactions": {},
+		"tags": [
+			"MINERAL",
+			"ROCK_FORMING"
+		]
+	},
+	"olivine":{
+		"reagent_name":"olivine",
+		"ui_color":"",
+		"color":"",
+		"melt_point":2163.2,
+		"boil_point":-1,
+		"ionize_point":-1,
+		"density":3.4,
+		"specific_heat":0.7,
+		"reactions": {},
+		"tags": [
+			"MINERAL",
+			"ROCK_FORMING"
+		]
 	}
 }

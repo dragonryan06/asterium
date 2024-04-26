@@ -16,7 +16,7 @@ var name_data : Dictionary
 func _ready() -> void:
 	star_data = ResourceManager.load_json("res://gamedata/stars.json").data
 	planet_data = ResourceManager.load_json("res://gamedata/planets.json").data
-	rock_data = ResourceManager.load_json("res://gamedata/rocks.json").data
+	rock_data = ResourceManager.load_json("res://gamedata/chemistry/rocks.json").data
 	name_data = ResourceManager.load_json("res://gamedata/random_names.json").data
 
 func generate_star() -> Star:
@@ -60,6 +60,17 @@ func generate_planet(parent_star:Star) -> Planet:
 	data["radius"] = randf_range(base["basic"]["radius_min"],base["basic"]["radius_max"])
 	planet.setup(data)
 	
+	var surface = Solution.new()
+	var rock_type = rock_data[base["geology"]["primary_rock_type"]]
+	surface.solution_name = rock_type.keys().pick_random()
+	for mineral in rock_type[surface.solution_name]["ratios"]:
+		var reagent = Reagent.new()
+		reagent.construct_from(Constants.get_reagent_data()[mineral])
+		surface.composition.append(rock_type[surface.solution_name]["ratios"][mineral])
+		surface.add_child(reagent)
+		print(reagent)
+	planet.add_child(surface)
+	planet.print_tree_pretty()
 	
 	return planet
 
