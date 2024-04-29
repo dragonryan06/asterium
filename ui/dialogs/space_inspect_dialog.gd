@@ -57,7 +57,7 @@ func setup_data(target:CelestialObject) -> void:
 	base.queue_free()
 
 func _on_comp_node_inspect(solution:Solution) -> void:
-	var dialog = get_node_or_null(NodePath(solution.name))
+	var dialog = get_node_or_null(NodePath("Subdialogs/"+solution.name))
 	if dialog!=null:
 		destroying_subdialog.emit(dialog)
 		var tween = get_tree().create_tween()
@@ -68,6 +68,7 @@ func _on_comp_node_inspect(solution:Solution) -> void:
 		dialog = _SolutionInfoDialog.instantiate()
 		dialog.name = solution.name
 		dialog.setup_data(solution)
+		dialog.position = get_global_mouse_position()-Vector2(100,100)
 		dialog.connecting_target=self
 		$Subdialogs.add_child(dialog)
 	return

@@ -60,17 +60,21 @@ func generate_planet(parent_star:Star) -> Planet:
 	data["radius"] = randf_range(base["basic"]["radius_min"],base["basic"]["radius_max"])
 	planet.setup(data)
 	
+	var albedo = 0.0
+	data["base_temperature"] = pow((parent_star.luminosity*(1.0-albedo))/(16.0*PI*pow(data["orbital_radius"]*Constants.M_IN_AU,2.0)),0.25)
+	
 	var surface = Solution.new()
+	surface.name = "Bedrock"
 	var rock_type = rock_data[base["geology"]["primary_rock_type"]]
-	surface.solution_name = rock_type.keys().pick_random()
-	for mineral in rock_type[surface.solution_name]["ratios"]:
+	surface.solution_name = rock_type.keys().pick_random().capitalize()
+	for mineral in rock_type[surface.solution_name.to_lower()]["ratios"]:
 		var reagent = Reagent.new()
 		reagent.construct_from(Constants.get_reagent_data()[mineral])
-		surface.composition.append(rock_type[surface.solution_name]["ratios"][mineral])
+		surface.composition.append(rock_type[surface.solution_name.to_lower()]["ratios"][mineral])
 		surface.add_child(reagent)
-		print(reagent)
+	surface.solution_color = rock_type[surface.solution_name.to_lower()]["base_color"]
+	surface.set_temperature(data["base_temperature"])
 	planet.add_child(surface)
-	planet.print_tree_pretty()
 	
 	return planet
 

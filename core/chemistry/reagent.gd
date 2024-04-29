@@ -13,7 +13,8 @@ enum TAGS {
 	OCEANIC_SOLVENT,
 	OCEANIC_SOLUTE,
 	GREENHOUSE_GAS,
-	MINERAL
+	MINERAL,
+	ROCK_FORMING
 }
 
 static func get_state_icon(r:Reagent) -> AtlasTexture:
@@ -62,6 +63,8 @@ var ui_color : Color
 var color : Color
 # The interactions this Reagent has at certain temperatures in the presence of other Reagents.
 var reactions : Dictionary
+# This Reagent's tags
+var tags : Array
 
 # The temperature, in K of this Reagent
 var temperature : float = -1 : set=_set_temp
@@ -72,13 +75,13 @@ var mass : float = -1
 
 func _set_temp(new) -> void:
 	temperature = new
-	if temperature>ionize_point:
+	if ionize_point!=-1 and temperature>ionize_point:
 		state = STATES.PLASMA
-	elif temperature>boil_point:
+	elif boil_point!=-1 and temperature>boil_point:
 		state = STATES.GAS
-	elif temperature>melt_point:
+	elif melt_point!=-1 and temperature>melt_point:
 		state = STATES.LIQUID
-	elif temperature<=melt_point:
+	elif melt_point!=-1 and temperature<=melt_point:
 		state = STATES.SOLID
 
 # Initialize values from res://gamedata/ json dictionaries
@@ -92,3 +95,6 @@ func construct_from(data:Dictionary) -> void:
 	ui_color = Color.from_string(data["ui_color"],Color(1.0,0.0,1.0))
 	color = Color.from_string(data["color"],Color(1.0,0.0,1.0))
 	reactions = data["reactions"]
+	var tags = []
+	for t in data["tags"]:
+		tags.append(TAGS.keys().find(t))
