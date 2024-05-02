@@ -13,6 +13,11 @@
 				"inputs":{"electric_energy":15.2},
 				"outputs":{"hydrogen":2,"oxygen":1},
 				"output_temperature":343.2
+			},
+			"carbonation": {
+				"inputs":{"carbon_dioxide":1},
+				"outputs":{"carbonic_acid":1},
+				"output_temperature":-1
 			}
 		},
 		"tags": [
@@ -48,7 +53,9 @@
 		"density":0.2,
 		"specific_heat":5.2,
 		"reactions": {},
-		"tags": []
+		"tags": [
+			"NOBLE_GAS"
+		]
 	},
 	"oxygen":{
 		"reagent_name":"oxygen",
@@ -150,6 +157,114 @@
 		"tags": [
 			"MINERAL",
 			"ROCK_FORMING"
+		]
+	},
+	"nitrogen":{
+		"reagent_name":"nitrogen",
+		"color":"CLEAR",
+		"ui_color":"#ff9900",
+		"melt_point":63.2,
+		"boil_point":77.4,
+		"ionize_point":4000.0,
+		"density":1.3,
+		"specific_heat":1.0,
+		"reactions": {
+			"fixation":{
+				"inputs":{"hydrogen":3,"energy":640},
+				"outputs":{"ammonia":1},
+				"output_temperature":-1
+			}
+		},
+		"tags": [
+			"BASE_GAS"
+		]
+	},
+	"ammonia":{
+		"reagent_name":"ammonia",
+		"color":"CLEAR",
+		"ui_color":"#fcce88",
+		"melt_point":195.4,
+		"boil_point":239.8,
+		"ionize_point":10000.0,
+		"density":0.7,
+		"specific_heat":2.2,
+		"reactions":{
+			"combustion":{
+				"inputs":{"oxygen":1,"temperature":405,"spark":true},
+				"outputs":{"nitrogen":1,"water":1},
+				"output_temperature":600
+			}
+		},
+		"tags": [
+			"BASE_GAS"
+		]
+	},
+	"carbon_dioxide":{
+		"reagent_name":"carbon_dioxide",
+		"color":"CLEAR",
+		"ui_color":"#4c4c4c",
+		"melt_point":194.7,
+		"boil_point":-1,
+		"ionize_point":-1,
+		"density":2.0,
+		"specific_heat":0.8,
+		"reactions":{},
+		"tags": [
+			"GREENHOUSE_GAS"
+		]
+	},
+	"sulfur_dioxide":{
+		"reagent_name":"sulfur_dioxide",
+		"color":"CLEAR",
+		"ui_color":"#ffff00",
+		"melt_point":201.0,
+		"boil_point":263.0,
+		"ionize_point":-1,
+		"density":2.6,
+		"specific_heat":1.0,
+		"reactions":{},
+		"tags": [
+			"BASE_GAS"
+		]
+	},
+	"sulfuric_acid":{
+		"reagent_name":"sulfuric_acid",
+		"color":"#ffff00",
+		"ui_color":"#ffff00",
+		"melt_point":283.5,
+		"boil_point":-1,
+		"ionize_point":-1,
+		"density":1.8,
+		"specific_heat":1.4,
+		"reactions":{
+			"decomposition":{
+				"inputs":{"temperature":400.0},
+				"outputs":{"sulfur_dioxide":1,"water":1},
+				"output_temperature":-1
+			}
+		},
+		"tags": [
+			"OCEANIC_SOLVENT"
+		]
+	},
+	"carbonic_acid":{
+		"reagent_name":"carbonic_acid",
+		"color":"CLEAR",
+		"ui_color":"#ff0000",
+		"melt_point":220,
+		"boil_point":400,
+		"ionize_point":-1,
+		"density":1.7,
+		"specific_heat":3.0,
+		"reactions":{
+			"decomposition":{
+				"inputs":{"water":1.0},
+				"outputs":{"water":2.0,"carbon_dioxide":1.0},
+				"output_temperature":-1
+			}
+		},
+		"tags": [
+			"OCEANIC_SOLVENT"
 		]
 	}
 }

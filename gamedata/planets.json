@@ -1,105 +1,164 @@
 {
-	"common":{
-		"barren":{
-			"basic":{
-				"name":"Barren world",
-				"base_sentence":"{PlanetName} is desolate and rocky, and ultimately featureless. Its surface implies a slow and uniform freeze to mineral rocks of primarily {ultramafic | mafic | intermediate | felsic}, igneous origin.",
-				"radius_min":0.30,
-				"radius_max":2.0
+	"common": {
+		"barren": {
+			"basic": {
+				"name": "Barren world",
+				"base_sentence": "{PlanetName} is desolate and rocky, and ultimately featureless. Its surface implies a slow and uniform freeze to mineral rocks of primarily {ultramafic | mafic | intermediate | felsic}, igneous origin.",
+				"radius_min": 0.3,
+				"radius_max": 2
 			},
-			"geology":{
-				"primary_rock_type":"igneous",
-				"magnetic_field_table":{"none":0.85,"weak":0.10,"strong":0.05},
-				"base_weathering_factor":0.0
+			"geology": {
+				"primary_rock_type": "igneous",
+				"magnetic_field_table": {
+					"none": 0.85,
+					"weak": 0.1,
+					"strong": 0.05
+				},
+				"base_weathering_factor": 0
 			},
-			"systems":{
-				"atmosphere_type_table":{"none":0.25,"negligible":0.15,"thin":0.60},
-				"ocean_coverage_min":0.0,
-				"ocean_coverage_max":0.0,
-				"weather_type_table":{"none":0.9,"geomagnetic_storms":0.1}
+			"systems": {
+				"atmosphere_type_table": {
+					"none": 0.25,
+					"negligible": 0.15,
+					"thin": 0.6
+				},
+				"atmosphere_content_table": {
+					"BASE_GAS": 0.5,
+					"GREENHOUSE_GAS": 0.4,
+					"NOBLE_GAS": 0.1
+				},
+				"ocean_coverage_min": 0,
+				"ocean_coverage_max": 0,
+				"weather_type_table": {
+					"none": 0.9,
+					"geomagnetic_storms": 0.1
+				}
 			}
 		},
-		"dust":{
-			"basic":{
-				"name":"Dust world",
-				"base_sentence":"{PlanetName} is buried in a thick layer of sediment, covering its surface in vast, endless dunes. The mechanism which performed such acts of weathering is long gone, without so much of a trace left behind.",
-				"radius_min":0.30,
-				"radius_max":2.0
+		"dust": {
+			"basic": {
+				"name": "Dust world",
+				"base_sentence": "{PlanetName} is buried in a thick layer of sediment, covering its surface in vast, endless dunes. The mechanism which performed such acts of weathering is long gone, without so much of a trace left behind.",
+				"radius_min": 0.3,
+				"radius_max": 2
 			},
-			"geology":{
-				"primary_rock_type":"sedimentary",
-				"magnetic_field_table":{"weak":0.25,"faint":0.25,"moderate":0.5},
-				"base_weathering_factor":0.8
+			"geology": {
+				"primary_rock_type": "sedimentary",
+				"magnetic_field_table": {
+					"weak": 0.25,
+					"faint": 0.25,
+					"moderate": 0.5
+				},
+				"base_weathering_factor": 0.8
 			},
-			"systems":{
-				"atmosphere_type_table":{"thin":0.25,"moderate":0.5,"thick":0.25},
-				"ocean_coverage_min":0.0,
-				"ocean_coverage_max":0.0,
-				"weather_type_table":{"none":0.3,"sandstorms":0.6,"perpetual_sandstorms":0.1}
+			"systems": {
+				"atmosphere_type_table": {
+					"thin": 0.25,
+					"moderate": 0.5,
+					"thick": 0.25
+				},
+				"ocean_coverage_min": 0,
+				"ocean_coverage_max": 0,
+				"weather_type_table": {
+					"none": 0.3,
+					"sandstorms": 0.6,
+					"perpetual_sandstorms": 0.1
+				}
 			}
 		},
-		"scarred":{
-			"basic":{
-				"name":"Scarred world",
-				"base_sentence":"{PlanetName} is pock-marked with craters and impact zones, varying greatly in size from tiny bowls to large magma seas. As such, its composition is highly varied, it being a product of its debris-filled neighborhood.",
-				"radius_min":0.30,
-				"radius_max":2.0
+		"scarred": {
+			"basic": {
+				"name": "Scarred world",
+				"base_sentence": "{PlanetName} is pock-marked with craters and impact zones, varying greatly in size from tiny bowls to large magma seas. As such, its composition is highly varied, it being a product of its debris-filled neighborhood.",
+				"radius_min": 0.3,
+				"radius_max": 2
 			},
-			"geology":{
-				"primary_rock_type":"metamorphic",
-				"magnetic_field_table":{"weak":0.3,"strong":0.3,"very_strong":0.1},
-				"base_weathering_factor":0.1
+			"geology": {
+				"primary_rock_type": "metamorphic",
+				"magnetic_field_table": {
+					"weak": 0.3,
+					"strong": 0.3,
+					"very_strong": 0.1
+				},
+				"base_weathering_factor": 0.1
 			},
-			"systems":{
-				"atmosphere_type_table":{"negligible":0.6,"thin":0.2,"moderate":0.2},
-				"ocean_coverage_min":0.0,
-				"ocean_coverage_max":0.1,
-				"weather_type_table":{"none":0.25,"meteoric_showers":0.75}
+			"systems": {
+				"atmosphere_type_table": {
+					"negligible": 0.6,
+					"thin": 0.2,
+					"moderate": 0.2
+				},
+				"ocean_coverage_min": 0,
+				"ocean_coverage_max": 0.1,
+				"weather_type_table": {
+					"none": 0.25,
+					"meteoric_showers": 0.75
+				}
 			}
 		},
-		"boiling":{
-			"basic":{
-				"name":"Boiling world",
-				"base_sentence":"The ground on {PlanetName} is rapidly shifting. Intense subterranean heat clashing against the impenetrable cold of space has started a cycle of powerful and quick convection currents, driving constant quakes and volcanism in its shallow crust.",
-				"radius_min":0.30,
-				"radius_max":2.0
+		"boiling": {
+			"basic": {
+				"name": "Boiling world",
+				"base_sentence": "The ground on {PlanetName} is rapidly shifting. Intense subterranean heat clashing against the impenetrable cold of space has started a cycle of powerful and quick convection currents, driving constant quakes and volcanism in its shallow crust.",
+				"radius_min": 0.3,
+				"radius_max": 2
 			},
-			"geology":{
-				"primary_rock_type":"igneous",
-				"magnetic_field_table":{"weak":0.3,"moderate":0.4,"strong":0.3},
-				"base_weathering_factor":0.0
+			"geology": {
+				"primary_rock_type": "igneous",
+				"magnetic_field_table": {
+					"weak": 0.3,
+					"moderate": 0.4,
+					"strong": 0.3
+				},
+				"base_weathering_factor": 0
 			},
-			"systems":{
-				"atmosphere_type_table":{"thin":0.5,"moderate":0.5},
-				"ocean_coverage_max":0.0,
-				"ocean_coverage_min":0.0,
-				"weather_type_table":{"volcanic_storms":0.5,"megaquakes":0.5}
+			"systems": {
+				"atmosphere_type_table": {
+					"thin": 0.5,
+					"moderate": 0.5
+				},
+				"ocean_coverage_max": 0,
+				"ocean_coverage_min": 0,
+				"weather_type_table": {
+					"volcanic_storms": 0.5,
+					"megaquakes": 0.5
+				}
 			}
 		},
-		"ocean":{
-			"basic":{
-				"name":"Ocean world",
-				"base_sentence":"{PlanetName}'s surface is almost completely coverd in a massive panthalassic sea of {$Composition/Ocean.name}. As a result, the world's geology is defined by erosion and undersea weather.",
-				"radius_min":0.30,
-				"radius_max":2.0
+		"ocean": {
+			"basic": {
+				"name": "Ocean world",
+				"base_sentence": "{PlanetName}'s surface is almost completely coverd in a massive panthalassic sea of {$Composition/Ocean.name}. As a result, the world's geology is defined by erosion and undersea weather.",
+				"radius_min": 0.3,
+				"radius_max": 2
 			},
-			"geology":{
-				"primary_rock_type":"sedimentary",
-				"magnetic_field_table":{"none":0.4,"weak":0.2,"moderate":0.3},
-				"base_weathering_factor":0.7
+			"geology": {
+				"primary_rock_type": "sedimentary",
+				"magnetic_field_table": {
+					"none": 0.4,
+					"weak": 0.2,
+					"moderate": 0.3
+				},
+				"base_weathering_factor": 0.7
 			},
-			"systems":{
-				"atmosphere_type_table":{"moderate":0.6,"thick":0.4},
-				"ocean_coverage_max":1.0,
-				"ocean_coverage_min":0.7,
-				"weather_type_table":{"monsoons":0.4,"undersea_storms":0.6}
+			"systems": {
+				"atmosphere_type_table": {
+					"moderate": 0.6,
+					"thick": 0.4
+				},
+				"ocean_coverage_max": 1,
+				"ocean_coverage_min": 0.7,
+				"weather_type_table": {
+					"monsoons": 0.4,
+					"undersea_storms": 0.6
+				}
 			}
 		}
 	},
-	"rare":{
-		
+	"rare": {
+
 	},
-	"anomalous":{
-		
+	"anomalous": {
+
 	}
 }

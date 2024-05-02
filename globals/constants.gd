@@ -17,3 +17,12 @@ static func romanify(number:int) -> String:
 
 static func get_reagent_data() -> Dictionary:
 	return ResourceManager.load_json("res://gamedata/chemistry/reagents.json").data
+
+static func pick_random(table:Dictionary):
+	var point = randf()
+	var cursor = 0.0
+	for i in range(len(table.values())):
+		cursor+=table.values()[i]
+		if cursor >= point:
+			return table.keys()[i]
+	return "func pick_random() on constants.gd recieved confusing data!"

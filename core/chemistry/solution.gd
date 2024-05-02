@@ -16,7 +16,7 @@ class_name Solution
 
 func _ready():
 	if solution_name=="":
-		solution_name = get_largest_component().reagent_name+" Solution"
+		solution_name = get_largest_component().reagent_name.replace("_"," ").capitalize()+" Solution"
 	if solution_color==Color(0.0,0.0,0.0,0.0):
 		solution_color = get_largest_component().ui_color
 
@@ -26,9 +26,7 @@ func set_temperature(new:float) -> void:
 		c.temperature = new
 
 func get_largest_component() -> Reagent:
+	# this will error out if you forget to set composition! :)
 	var sorted = composition.duplicate()
 	sorted.sort()
 	return get_child(composition.find(sorted[-1]))
-
-func _on_child_order_changed():
-	pass # Replace with function body.

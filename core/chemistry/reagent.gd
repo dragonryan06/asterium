@@ -14,7 +14,9 @@ enum TAGS {
 	OCEANIC_SOLUTE,
 	GREENHOUSE_GAS,
 	MINERAL,
-	ROCK_FORMING
+	ROCK_FORMING,
+	BASE_GAS,
+	NOBLE_GAS
 }
 
 static func get_state_icon(r:Reagent) -> AtlasTexture:

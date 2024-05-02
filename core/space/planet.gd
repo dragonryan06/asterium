@@ -8,18 +8,15 @@ enum TAGS {
 	FROZEN_OCEAN
 }
 
-var chemical_data = ResourceManager.load_json("res://gamedata/chemicals.json").data
+#var chemical_data = ResourceManager.load_json("res://gamedata/chemicals.json").data
 
-## The temperature of this world from solar radiation
-var base_temperature : float 
-## The other minerals found within the rock in the form of ores (mineral_richness 100% means there is no parent rock)
-var mineral_composition : Dictionary
-var mineral_richness : float
-## Primary gases in atmosphere
-var gas_composition : Dictionary
-var gas_density : float
-
+var base_temperature : float
 var ocean_coverage_percent : float : set=_set_ocean_coverage_percent
+
+# currently just for description
+var weather : String
+var magfield : String
+var atm_desc : String
 
 #func _ready():
 	#$Sprite.get_material().set_shader_parameter("base_color",$Composition/Surface.get_child(0).base_color)

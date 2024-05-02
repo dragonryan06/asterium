@@ -12,12 +12,14 @@ var star_data : Dictionary
 var planet_data : Dictionary
 var rock_data : Dictionary
 var name_data : Dictionary
+var reagent_data : Dictionary
 
 func _ready() -> void:
 	star_data = ResourceManager.load_json("res://gamedata/stars.json").data
 	planet_data = ResourceManager.load_json("res://gamedata/planets.json").data
 	rock_data = ResourceManager.load_json("res://gamedata/chemistry/rocks.json").data
 	name_data = ResourceManager.load_json("res://gamedata/random_names.json").data
+	reagent_data = Constants.get_reagent_data()
 
 func generate_star() -> Star:
 	var star = _Star.instantiate()
@@ -41,7 +43,7 @@ func generate_star() -> Star:
 	
 	var composition = Reagent.new()
 	composition.name = "CompositionComponent"
-	composition.construct_from(Constants.get_reagent_data()["hydrogen"])
+	composition.construct_from(reagent_data["hydrogen"])
 	composition.temperature = data["temperature"]
 	star.add_child(composition)
 	
@@ -53,6 +55,7 @@ func generate_planet(parent_star:Star) -> Planet:
 	var base = planet_data["common"]["barren"]
 	var data = {}
 	
+	# basic
 	data["orbital_parent"] = parent_star
 	data["orbital_radius"] = randf_range(0.5,1.0)+parent_star.radius
 	data["obj_class"] = base["basic"]["name"]
@@ -60,21 +63,70 @@ func generate_planet(parent_star:Star) -> Planet:
 	data["radius"] = randf_range(base["basic"]["radius_min"],base["basic"]["radius_max"])
 	planet.setup(data)
 	
+	# temperature
 	var albedo = 0.0
 	data["base_temperature"] = pow((parent_star.luminosity*(1.0-albedo))/(16.0*PI*pow(data["orbital_radius"]*Constants.M_IN_AU,2.0)),0.25)
 	
+	# geology
 	var surface = Solution.new()
 	surface.name = "Bedrock"
 	var rock_type = rock_data[base["geology"]["primary_rock_type"]]
 	surface.solution_name = rock_type.keys().pick_random().capitalize()
 	for mineral in rock_type[surface.solution_name.to_lower()]["ratios"]:
 		var reagent = Reagent.new()
-		reagent.construct_from(Constants.get_reagent_data()[mineral])
+		reagent.construct_from(reagent_data[mineral])
 		surface.composition.append(rock_type[surface.solution_name.to_lower()]["ratios"][mineral])
 		surface.add_child(reagent)
 	surface.solution_color = rock_type[surface.solution_name.to_lower()]["base_color"]
 	surface.set_temperature(data["base_temperature"])
 	planet.add_child(surface)
+	
+	# ocean
+	if base["systems"]["ocean_coverage_max"]>0.0:
+		print("oceans not yet implemented")
+	
+	# atmosphere
+	var atm = Constants.pick_random(base["systems"]["atmosphere_type_table"])
+	data["atm_desc"] = atm
+	if atm!="none":
+		var atmosphere = Solution.new()
+		atmosphere.name = "Atmosphere"
+		# might change this later, for now just make 3 rolls for primary components
+		var total_comp = 0
+		var names = []
+		for i in range(3):
+			var r = Reagent.new()
+			var tag = Constants.pick_random(base["systems"]["atmosphere_content_table"])
+			var list = []
+			for t in reagent_data.values():
+				if t["tags"].has(tag):
+					list.append(t)
+			var r_name = list.pick_random()["reagent_name"]
+			if r_name not in names:
+				r.construct_from(list.pick_random())
+				atmosphere.add_child(r)
+			if i!=2:
+				var rand = randi_range(0,100-total_comp)
+				if r_name not in names:
+					atmosphere.composition.append(float(rand)/100.0)
+				else:
+					atmosphere.composition[names.find(r_name)]+=float(rand)/100.0
+				total_comp+=rand
+			else:
+				if r_name not in names:
+					atmosphere.composition.append(float(100-total_comp)/100.0)
+				else:
+					atmosphere.composition[names.find(r_name)]+=float(100-total_comp)/100.0
+			names.append(r_name)
+		planet.add_child(atmosphere)
+	
+	# weather, other flavor
+	var magfield = Constants.pick_random(base["geology"]["magnetic_field_table"])
+	data["magfield"] = magfield
+	var weather = Constants.pick_random(base["systems"]["weather_type_table"])
+	data["weather"] = weather
+	
+	# descriptions
 	
 	return planet
 
@@ -83,7 +135,7 @@ func generate_planet(parent_star:Star) -> Planet:
 	#var planet = _Planet.instantiate()
 	#planet.object_inspector = $HUD/ObjectInspector
 	#var data = {}
-	#
+	#weather
 	#data["radius"] = randf_range(planet_data["planet"]["terrestrial"]["radius_min"],planet_data["planet"]["terrestrial"]["radius_max"])
 	#data["mass"] = ((4.0/3.0)*PI*pow(data["radius"],3.0))
 	#data["rotational_period"] = randf_range(-5,5)
