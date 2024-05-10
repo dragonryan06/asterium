@@ -10,7 +10,7 @@ enum TAGS {
 
 #var chemical_data = ResourceManager.load_json("res://gamedata/chemicals.json").data
 
-var base_temperature : float
+var temperature : float
 var ocean_coverage_percent : float : set=_set_ocean_coverage_percent
 
 # currently just for description

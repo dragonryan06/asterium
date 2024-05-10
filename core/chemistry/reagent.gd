@@ -10,13 +10,14 @@ enum STATES {
 	PLASMA
 }
 enum TAGS {
-	OCEANIC_SOLVENT,
+	THALASSOGEN,
 	OCEANIC_SOLUTE,
 	GREENHOUSE_GAS,
 	MINERAL,
 	ROCK_FORMING,
 	BASE_GAS,
-	NOBLE_GAS
+	NOBLE_GAS,
+	POISON
 }
 
 static func get_state_icon(r:Reagent) -> AtlasTexture:
@@ -44,8 +45,9 @@ static func get_state_icon(r:Reagent) -> AtlasTexture:
 # name of Reagent to autoload
 @export var load_initial : String : 
 	set(val):
-		construct_from(Constants.get_reagent_data()[val])
-		load_initial = val
+		if val!="":
+			construct_from(Constants.get_reagent_data()[val])
+			load_initial = val
 
 # The name of this Reagent
 var reagent_name : String
@@ -77,14 +79,23 @@ var mass : float = -1
 
 func _set_temp(new) -> void:
 	temperature = new
+	update_state()
+
+func update_state() -> void:
+	if !(get_parent() is Solution and get_parent().stasis):
+		state = check_state_change()
+
+func check_state_change() -> int:
+	var s = state
 	if ionize_point!=-1 and temperature>ionize_point:
-		state = STATES.PLASMA
+		s = STATES.PLASMA
 	elif boil_point!=-1 and temperature>boil_point:
-		state = STATES.GAS
+		s = STATES.GAS
 	elif melt_point!=-1 and temperature>melt_point:
-		state = STATES.LIQUID
+		s = STATES.LIQUID
 	elif melt_point!=-1 and temperature<=melt_point:
-		state = STATES.SOLID
+		s = STATES.SOLID
+	return s
 
 # Initialize values from res://gamedata/ json dictionaries
 func construct_from(data:Dictionary) -> void:

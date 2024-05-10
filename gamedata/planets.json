@@ -57,6 +57,11 @@
 					"moderate": 0.5,
 					"thick": 0.25
 				},
+				"atmosphere_content_table": {
+					"BASE_GAS": 0.65,
+					"GREENHOUSE_GAS": 0.25,
+					"NOBLE_GAS": 0.1
+				},
 				"ocean_coverage_min": 0,
 				"ocean_coverage_max": 0,
 				"weather_type_table": {
@@ -88,6 +93,11 @@
 					"thin": 0.2,
 					"moderate": 0.2
 				},
+				"atmosphere_content_table": {
+					"BASE_GAS": 0.6,
+					"GREENHOUSE_GAS": 0.2,
+					"NOBLE_GAS": 0.2
+				},
 				"ocean_coverage_min": 0,
 				"ocean_coverage_max": 0.1,
 				"weather_type_table": {
@@ -117,6 +127,11 @@
 					"thin": 0.5,
 					"moderate": 0.5
 				},
+				"atmosphere_content_table": {
+					"BASE_GAS": 0.6,
+					"GREENHOUSE_GAS": 0.1,
+					"NOBLE_GAS": 0.3
+				},
 				"ocean_coverage_max": 0,
 				"ocean_coverage_min": 0,
 				"weather_type_table": {
@@ -145,6 +160,11 @@
 				"atmosphere_type_table": {
 					"moderate": 0.6,
 					"thick": 0.4
+				},
+				"atmosphere_content_table": {
+					"BASE_GAS": 0.4,
+					"GREENHOUSE_GAS": 0.6,
+					"NOBLE_GAS": 0.1
 				},
 				"ocean_coverage_max": 1,
 				"ocean_coverage_min": 0.7,

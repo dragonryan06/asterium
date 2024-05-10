@@ -13,10 +13,12 @@ class_name Solution
 @export var composition : Array
 # If this Solution is homogenous, it's largest Reagent is a solvent, and all others are solute. Otherwise, it is just a mix.
 @export var homogenous : bool
+# If this Solution is in stasis, it will not check for state changes or reactions automatically
+@export var stasis : bool
 
 func _ready():
 	if solution_name=="":
-		solution_name = get_largest_component().reagent_name.replace("_"," ").capitalize()+" Solution"
+		solution_name = get_largest_component().reagent_name.capitalize().replace("_"," ")+" solution"
 	if solution_color==Color(0.0,0.0,0.0,0.0):
 		solution_color = get_largest_component().ui_color
 
@@ -30,3 +32,24 @@ func get_largest_component() -> Reagent:
 	var sorted = composition.duplicate()
 	sorted.sort()
 	return get_child(composition.find(sorted[-1]))
+
+func fix_percents() -> void:
+	# force composition to add to 1.0
+	var sum = 0.0
+	for i in composition:
+		sum+=i
+	if sum!=1.0:
+		for i in range(len(composition)):
+			composition[i]+=(1.0-sum)/float(len(composition))
+
+func add(what:Reagent,amt:float,as_percent:bool) -> void:
+	if as_percent:
+		var reagents = []
+		for r in get_children():
+			reagents.append(r.reagent_name)
+		if what.reagent_name in reagents:
+			composition[reagents.find(what.reagent_name)]+=amt
+		else:
+			add_child(what)
+			composition.append(amt)
+	# TODO: otherwise, amt is assumed to be in the mass units of the solution

@@ -51,8 +51,9 @@ func generate_star() -> Star:
 	return star
 
 func generate_planet(parent_star:Star) -> Planet:
+	print("-----------------------------")
 	var planet = _Planet.instantiate()
-	var base = planet_data["common"]["barren"]
+	var base = planet_data["common"]["ocean"]
 	var data = {}
 	
 	# basic
@@ -65,60 +66,105 @@ func generate_planet(parent_star:Star) -> Planet:
 	
 	# temperature
 	var albedo = 0.0
-	data["base_temperature"] = pow((parent_star.luminosity*(1.0-albedo))/(16.0*PI*pow(data["orbital_radius"]*Constants.M_IN_AU,2.0)),0.25)
+	data["temperature"] = pow((parent_star.luminosity*(1.0-albedo))/(16.0*PI*pow(data["orbital_radius"]*Constants.M_IN_AU,2.0)),0.25)
 	
 	# geology
 	var surface = Solution.new()
 	surface.name = "Bedrock"
 	var rock_type = rock_data[base["geology"]["primary_rock_type"]]
 	surface.solution_name = rock_type.keys().pick_random().capitalize()
-	for mineral in rock_type[surface.solution_name.to_lower()]["ratios"]:
+	print(surface.solution_name)
+	for mineral in rock_type[surface.solution_name.replace(" ","_").to_lower()]["ratios"]:
 		var reagent = Reagent.new()
 		reagent.construct_from(reagent_data[mineral])
-		surface.composition.append(rock_type[surface.solution_name.to_lower()]["ratios"][mineral])
+		surface.composition.append(rock_type[surface.solution_name.replace(" ","_").to_lower()]["ratios"][mineral])
 		surface.add_child(reagent)
-	surface.solution_color = rock_type[surface.solution_name.to_lower()]["base_color"]
-	surface.set_temperature(data["base_temperature"])
+	surface.solution_color = rock_type[surface.solution_name.replace(" ","_").to_lower()]["base_color"]
+	surface.set_temperature(data["temperature"])
 	planet.add_child(surface)
 	
 	# ocean
 	if base["systems"]["ocean_coverage_max"]>0.0:
-		print("oceans not yet implemented")
-	
+		var ocean = Solution.new()
+		ocean.name = "Ocean"
+		ocean.homogenous = true
+		ocean.stasis = true
+		# might change later, keep rerolling for a thalassogenic reagent liquid within +-50 K of planetary temp
+		const abritrary_roll_count = 3
+		var thalassogens = []
+		for t in reagent_data.values():
+			if t["tags"].has("THALASSOGEN"):
+				thalassogens.append(t)
+		
+		var i = 0
+		while i!=32: # surely after 32 tries theres no way to get a success like ever
+			var option = thalassogens.pick_random()
+			if abs(option["melt_point"]-data["temperature"])<50.0 or abs(option["boil_point"]-data["temperature"])<50.0 or (data["temperature"]<option["boil_point"] and data["temperature"]>option["melt_point"]):
+				var r = Reagent.new()
+				r.state = Reagent.STATES.LIQUID
+				r.construct_from(option)
+				ocean.add(r,1.0,true)
+				break
+			elif i==31:
+				print("FAILED TO GENERATE AN OCEAN: add some flavortext to this or something")
+				break
+			i+=1
+		ocean.set_temperature(data["temperature"])
+		planet.add_child(ocean)
+		
 	# atmosphere
 	var atm = Constants.pick_random(base["systems"]["atmosphere_type_table"])
 	data["atm_desc"] = atm
 	if atm!="none":
 		var atmosphere = Solution.new()
 		atmosphere.name = "Atmosphere"
+		atmosphere.homogenous = true
+		atmosphere.stasis = true
 		# might change this later, for now just make 3 rolls for primary components
+		const arbitrary_roll_count = 3
 		var total_comp = 0
-		var names = []
-		for i in range(3):
+		for i in range(arbitrary_roll_count):
 			var r = Reagent.new()
+			r.state = Reagent.STATES.GAS
 			var tag = Constants.pick_random(base["systems"]["atmosphere_content_table"])
 			var list = []
 			for t in reagent_data.values():
 				if t["tags"].has(tag):
 					list.append(t)
-			var r_name = list.pick_random()["reagent_name"]
-			if r_name not in names:
-				r.construct_from(list.pick_random())
-				atmosphere.add_child(r)
-			if i!=2:
+			var r_name = list.pick_random()["reagent_name"] # this should be just an "add_reagent" method, fix this later
+			r.construct_from(list.pick_random())
+			if i!=arbitrary_roll_count-1:
 				var rand = randi_range(0,100-total_comp)
-				if r_name not in names:
-					atmosphere.composition.append(float(rand)/100.0)
-				else:
-					atmosphere.composition[names.find(r_name)]+=float(rand)/100.0
+				atmosphere.add(r,float(rand)/100.0,true)
 				total_comp+=rand
 			else:
-				if r_name not in names:
-					atmosphere.composition.append(float(100-total_comp)/100.0)
-				else:
-					atmosphere.composition[names.find(r_name)]+=float(100-total_comp)/100.0
-			names.append(r_name)
+				atmosphere.add(r,float(100-total_comp)/100.0,true)
+		atmosphere.set_temperature(data["temperature"])
 		planet.add_child(atmosphere)
+		var precip = Solution.new()
+		precip.name = "Precipitation"
+		precip.homogenous = true
+		precip.stasis = true
+		for r in atmosphere.get_children():
+			if not (r.check_state_change()==Reagent.STATES.LIQUID or r.check_state_change()==Reagent.STATES.GAS):
+				var new_r = r.duplicate()
+				new_r.construct_from(reagent_data[r.reagent_name])
+				new_r.temperature = r.temperature
+				new_r.update_state()
+				precip.add(new_r,atmosphere.composition[r.get_index()],true)
+		if precip.get_child_count()!=0:
+			precip.fix_percents()
+			var precip_name = "ERROR"
+			match precip.get_largest_component().state:
+				Reagent.STATES.LIQUID:
+					precip_name = " rain"
+				Reagent.STATES.SOLID:
+					precip_name = " snow"
+			var n = precip.get_largest_component().reagent_name.replace("_"," ")
+			precip.solution_name = n.substr(0,1).capitalize()+n.substr(1)+precip_name
+			planet.add_child(precip)
+		print(atmosphere.name)
+		print(precip.solution_name)
 	
 	# weather, other flavor
 	var magfield = Constants.pick_random(base["geology"]["magnetic_field_table"])
@@ -166,7 +212,7 @@ func generate_planet(parent_star:Star) -> Planet:
 	#
 	## implementing albedo later, for now assuming that all planets are totally matte black
 	#var albedo = 0.0
-	#data["base_temperature"] = pow((parent_star.luminosity*(1.0-albedo))/(16.0*PI*pow(data["orbital_radius"]*Constants.M_IN_AU,2.0)),0.25)
+	#data["temperature"] = pow((parent_star.luminosity*(1.0-albedo))/(16.0*PI*pow(data["orbital_radius"]*Constants.M_IN_AU,2.0)),0.25)
 	## initial ocean/atmosphere
 	#var ocean = Chemical.new()
 	#var o_mat = Chemical.data["liquid"].keys().pick_random()

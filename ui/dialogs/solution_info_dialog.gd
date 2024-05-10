@@ -23,7 +23,8 @@ func setup_data(target:Solution) -> void:
 	for r:Reagent in target.get_children():
 		var item = tree.create_item(root)
 		item.set_icon(0,InspectComponent.recolor_icon(Reagent.get_state_icon(r),r.ui_color))
-		item.set_text(0,Reagent.STATE_DESCRIPTORS[r.state].replace("*",r.reagent_name.capitalize()).capitalize())
+		var text = Reagent.STATE_DESCRIPTORS[r.state].replace("*",r.reagent_name).replace("_"," ")
+		item.set_text(0,text[0].to_upper()+text.substr(1,-1))
 		item.set_text(1,str(target.composition[r.get_index()]*100))
 		item.set_custom_color(1,Color("#acacac"))
 		item.set_selectable(1,false)

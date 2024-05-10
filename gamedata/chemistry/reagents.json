@@ -21,7 +21,7 @@
 			}
 		},
 		"tags": [
-			"OCEANIC_SOLVENT",
+			"THALASSOGEN",
 			"GREENHOUSE_GAS"
 		]
 	},
@@ -41,7 +41,10 @@
 				"output_temperature":500.0
 			}
 		},
-		"tags": []
+		"tags": [
+			"BASE_GAS",
+			"THALASSOGEN"
+		]
 	},
 	"helium":{
 		"reagent_name":"helium",
@@ -67,7 +70,11 @@
 		"density":1.4,
 		"specific_heat":0.9,
 		"reactions": {},
-		"tags": []
+		"tags": [
+			"BASE_GAS",
+			"THALASSOGEN",
+			"OCEANIC_SOLUTE"
+		]
 	},
 	"feldspar":{
 		"reagent_name":"feldspar",
@@ -176,7 +183,8 @@
 			}
 		},
 		"tags": [
-			"BASE_GAS"
+			"BASE_GAS",
+			"THALASSOGEN"
 		]
 	},
 	"ammonia":{
@@ -196,7 +204,9 @@
 			}
 		},
 		"tags": [
-			"BASE_GAS"
+			"BASE_GAS",
+			"OCEANIC_SOLUTE",
+			"THALASSOGEN"
 		]
 	},
 	"carbon_dioxide":{
@@ -224,7 +234,8 @@
 		"specific_heat":1.0,
 		"reactions":{},
 		"tags": [
-			"BASE_GAS"
+			"BASE_GAS",
+			"THALASSOGEN"
 		]
 	},
 	"sulfuric_acid":{
@@ -244,7 +255,7 @@
 			}
 		},
 		"tags": [
-			"OCEANIC_SOLVENT"
+			"THALASSOGEN"
 		]
 	},
 	"carbonic_acid":{
@@ -264,7 +275,163 @@
 			}
 		},
 		"tags": [
-			"OCEANIC_SOLVENT"
+			"THALASSOGEN"
+		]
+	},
+	"calcite":{
+		"reagent_name":"calcite",
+		"color":"#DBC6AE",
+		"ui_color":"#DBC6AE",
+		"melt_point":1612.0,
+		"boil_point":-1,
+		"ionize_point":-1,
+		"density":2.7,
+		"specific_heat":0.8,
+		"reactions":{},
+		"tags": [
+			"MINERAL",
+			"ROCK_FORMING",
+			"OCEANIC_SOLUTE"
+		]
+	},
+	"magnesite":{
+		"reagent_name":"magnesite",
+		"color":"#CEB981",
+		"ui_color":"#CEB981",
+		"melt_point":623.2,
+		"boil_point":-1,
+		"ionize_point":-1,
+		"density":3.1,
+		"specific_heat":1.0,
+		"reactions":{},
+		"tags": [
+			"MINERAL",
+			"ROCK_FORMING",
+			"OCEANIC_SOLUTE"
+		]
+	},
+	"kaolinite":{
+		"reagent_name":"kaolinite",
+		"color":"#CD8D7D",
+		"ui_color":"#CD8D7D",
+		"melt_point":2123.0,
+		"boil_point":-1,
+		"ionize_point":-1,
+		"density":2.65,
+		"specific_heat":1.1,
+		"reactions":{},
+		"tags": [
+			"MINERAL",
+			"ROCK_FORMING"
+		]
+	},
+	"halite":{
+		"reagent_name":"halite",
+		"color":"#BCB3A3",
+		"ui_color":"#BCB3A3",
+		"melt_point":1074.0,
+		"boil_point":-1,
+		"ionize_point":-1,
+		"density":2.2,
+		"specific_heat":0.8,
+		"reactions":{},
+		"tags": [
+			"MINERAL",
+			"ROCK_FORMING",
+			"ORE",
+			"OCEANIC_SOLUTE"
+		]
+	},
+	"argon":{
+		"reagent_name":"argon",
+		"color":"CLEAR",
+		"ui_color":"#bf1782",
+		"melt_point":83.8,
+		"boil_point":87.3,
+		"ionize_point":10000.0,
+		"density":1.8,
+		"specific_heat":0.3,
+		"reactions":{},
+		"tags": [
+			"NOBLE_GAS",
+			"THALASSOGEN"
+		]
+	},
+	"neon":{
+		"reagent_name":"neon",
+		"color":"CLEAR",
+		"ui_color":"#ea00ff",
+		"melt_point":24.5,
+		"boil_point":27.2,
+		"ionize_point":-1,
+		"density":0.9,
+		"specific_heat":1.0,
+		"reactions":{},
+		"tags": [
+			"NOBLE_GAS",
+			"THALASSOGEN"
+		]
+	},
+	"methane":{
+		"reagent_name":"methane",
+		"color":"CLEAR",
+		"ui_color":"#00ff1a",
+		"melt_point":90.7,
+		"boil_point":111.6,
+		"ionize_point":-1,
+		"density":0.7,
+		"specific_heat":2.2,
+		"reactions":{},
+		"tags": [
+			"GREENHOUSE_GAS",
+			"THALASSOGEN"
+		]
+	},
+	"hydrogen_cyanide":{
+		"reagent_name":"hydrogen_cyanide",
+		"color":"CLEAR",
+		"ui_color":"#3ec78e",
+		"melt_point":259.9,
+		"boil_point":299.0,
+		"ionize_point":-1,
+		"density":0.7,
+		"specific_heat":1.3,
+		"reactions":{},
+		"tags": [
+			"BASE_GAS",
+			"THALASSOGEN",
+			"POISON"
+		]
+	},
+	"nitrogen_dioxide":{
+		"reagent_name":"nitrogen_dioxide",
+		"color":"#b03505",
+		"ui_color":"#ff4a03",
+		"melt_point":263.8,
+		"boil_point":294.3,
+		"ionize_point":-1,
+		"density":1.9,
+		"specific_heat":1.3,
+		"reactions":{},
+		"tags": [
+			"BASE_GAS",
+			"THALASSOGEN"
+		]
+	},
+	"hydrogen_sulfide":{
+		"reagent_name":"hydrogen_sulfide",
+		"color":"CLEAR",
+		"ui_color":"#fcf400",
+		"melt_point":187.7,
+		"boil_point":213.6,
+		"ionize_point":-1,
+		"density":1.5,
+		"specific_heat":1.0,
+		"reactions":{},
+		"tags": [
+			"BASE_GAS",
+			"THALASSOGEN",
+			"POISON"
 		]
 	}
 }
