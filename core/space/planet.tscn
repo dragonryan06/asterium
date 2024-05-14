@@ -2,27 +2,29 @@
 
 [ext_resource type="Script" path="res://core/space/planet.gd" id="1_m3qu6"]
 [ext_resource type="Shader" path="res://core/space/shaders/planetsprite.gdshader" id="2_fxpsy"]
+[ext_resource type="Texture2D" uid="uid://cuxh1d2127cq3" path="res://scenes/assets/icon.svg" id="2_xlwtg"]
 [ext_resource type="Script" path="res://ui/components/inspect_component.gd" id="3_06rrq"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cbs8x"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_26rer"]
 shader = ExtResource("2_fxpsy")
 shader_parameter/base_color = Vector4(1, 1, 1, 1)
-shader_parameter/aspect_ratio = 2.0
+shader_parameter/aspect_ratio = 3.0
 shader_parameter/rotation_speed = 1.0
 shader_parameter/as_shadow = false
-shader_parameter/ocean_color = Vector4(1, 0, 1, 1)
+shader_parameter/ocean_color = Vector4(0, 0, 0, 1)
 shader_parameter/ocean_coverage = 0.0
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ka5ry"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bk46s"]
-width = 128
-height = 64
-seamless = true
-noise = SubResource("FastNoiseLite_ka5ry")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2h0o0"]
 radius = 0.228207
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cddr2"]
+shader = ExtResource("2_fxpsy")
+shader_parameter/base_color = Vector4(1, 1, 1, 1)
+shader_parameter/aspect_ratio = 3.0
+shader_parameter/rotation_speed = 1.0
+shader_parameter/as_shadow = false
+shader_parameter/ocean_color = Vector4(0, 0, 0, 1)
+shader_parameter/ocean_coverage = 0.0
 
 [node name="Planet" type="Node2D"]
 script = ExtResource("1_m3qu6")
@@ -30,15 +32,21 @@ script = ExtResource("1_m3qu6")
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 texture_repeat = 2
-material = SubResource("ShaderMaterial_cbs8x")
-scale = Vector2(8, 16)
-texture = SubResource("NoiseTexture2D_bk46s")
+material = SubResource("ShaderMaterial_26rer")
+scale = Vector2(4, 16)
+texture = ExtResource("2_xlwtg")
 
 [node name="Hitbox" type="Area2D" parent="Sprite"]
-scale = Vector2(128, 64)
+scale = Vector2(128, 128)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Hitbox"]
+scale = Vector2(2, 1)
 shape = SubResource("CircleShape2D_2h0o0")
+
+[node name="OceanLayer" type="Sprite2D" parent="Sprite"]
+z_index = 1
+material = SubResource("ShaderMaterial_cddr2")
+use_parent_material = true
 
 [node name="InspectComponent" type="CanvasLayer" parent="." node_paths=PackedStringArray("trigger_area")]
 script = ExtResource("3_06rrq")

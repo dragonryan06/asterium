@@ -3,7 +3,7 @@ shader_type canvas_item;
 uniform vec4 base_color = vec4(1.0,1.0,1.0,1.0);
 uniform sampler2D corona_texture : filter_nearest, repeat_enable;
 
-uniform float aspect_ratio = 2.0;
+uniform float aspect_ratio = 1.0;
 uniform float rotation_speed = 0.3;
 uniform bool as_shadow = false;
 

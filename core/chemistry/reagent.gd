@@ -105,8 +105,8 @@ func construct_from(data:Dictionary) -> void:
 	ionize_point = data["ionize_point"]
 	density = data["density"]
 	specific_heat = data["specific_heat"]
-	ui_color = Color.from_string(data["ui_color"],Color(1.0,0.0,1.0))
-	color = Color.from_string(data["color"],Color(1.0,0.0,1.0))
+	ui_color = Color.from_string(data["ui_color"],Color(1.0,0.0,1.0,0.0))
+	color = Color.from_string(data["color"],Color(1.0,0.0,1.0,0.0))
 	reactions = data["reactions"]
 	var tags = []
 	for t in data["tags"]:

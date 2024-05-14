@@ -51,7 +51,6 @@ func generate_star() -> Star:
 	return star
 
 func generate_planet(parent_star:Star) -> Planet:
-	print("-----------------------------")
 	var planet = _Planet.instantiate()
 	var base = planet_data["common"]["ocean"]
 	var data = {}
@@ -62,7 +61,6 @@ func generate_planet(parent_star:Star) -> Planet:
 	data["obj_class"] = base["basic"]["name"]
 	data["description"] = base["basic"]["base_sentence"]
 	data["radius"] = randf_range(base["basic"]["radius_min"],base["basic"]["radius_max"])
-	planet.setup(data)
 	
 	# temperature
 	var albedo = 0.0
@@ -73,7 +71,6 @@ func generate_planet(parent_star:Star) -> Planet:
 	surface.name = "Bedrock"
 	var rock_type = rock_data[base["geology"]["primary_rock_type"]]
 	surface.solution_name = rock_type.keys().pick_random().capitalize()
-	print(surface.solution_name)
 	for mineral in rock_type[surface.solution_name.replace(" ","_").to_lower()]["ratios"]:
 		var reagent = Reagent.new()
 		reagent.construct_from(reagent_data[mineral])
@@ -90,12 +87,12 @@ func generate_planet(parent_star:Star) -> Planet:
 		ocean.homogenous = true
 		ocean.stasis = true
 		# might change later, keep rerolling for a thalassogenic reagent liquid within +-50 K of planetary temp
-		const abritrary_roll_count = 3
 		var thalassogens = []
 		for t in reagent_data.values():
 			if t["tags"].has("THALASSOGEN"):
 				thalassogens.append(t)
 		
+		var fail = false
 		var i = 0
 		while i!=32: # surely after 32 tries theres no way to get a success like ever
 			var option = thalassogens.pick_random()
@@ -106,11 +103,16 @@ func generate_planet(parent_star:Star) -> Planet:
 				ocean.add(r,1.0,true)
 				break
 			elif i==31:
-				print("FAILED TO GENERATE AN OCEAN: add some flavortext to this or something")
+				fail = true
 				break
 			i+=1
-		ocean.set_temperature(data["temperature"])
-		planet.add_child(ocean)
+		if !fail:
+			ocean.set_temperature(data["temperature"])
+			planet.ocean_coverage_percent = randf_range(base["systems"]["ocean_coverage_min"],base["systems"]["ocean_coverage_max"])
+			planet.add_child(ocean)
+		else:
+			ocean.queue_free()
+			data["obj_class"] = "Dessicated world"
 		
 	# atmosphere
 	var atm = Constants.pick_random(base["systems"]["atmosphere_type_table"])
@@ -131,7 +133,6 @@ func generate_planet(parent_star:Star) -> Planet:
 			for t in reagent_data.values():
 				if t["tags"].has(tag):
 					list.append(t)
-			var r_name = list.pick_random()["reagent_name"] # this should be just an "add_reagent" method, fix this later
 			r.construct_from(list.pick_random())
 			if i!=arbitrary_roll_count-1:
 				var rand = randi_range(0,100-total_comp)
@@ -163,8 +164,6 @@ func generate_planet(parent_star:Star) -> Planet:
 			var n = precip.get_largest_component().reagent_name.replace("_"," ")
 			precip.solution_name = n.substr(0,1).capitalize()+n.substr(1)+precip_name
 			planet.add_child(precip)
-		print(atmosphere.name)
-		print(precip.solution_name)
 	
 	# weather, other flavor
 	var magfield = Constants.pick_random(base["geology"]["magnetic_field_table"])
@@ -174,6 +173,31 @@ func generate_planet(parent_star:Star) -> Planet:
 	
 	# descriptions
 	
+	# graphics
+	var heightmap = FastNoiseLite.new()
+	heightmap.seed = randi()
+	heightmap.offset = Vector3(-128,-32,0)
+	
+	var terrain = heightmap.get_seamless_image(256,64,false,false,0.25)
+	terrain.convert(Image.FORMAT_RGBA8)
+	var oceans = Image.create(256,64,true,Image.FORMAT_RGBA8)
+	var atmos = Image.create(256,64,true,Image.FORMAT_RGBA8)
+	for y in range(terrain.get_height()):
+		for x in range(terrain.get_width()):
+			if terrain.get_pixel(x,y).r<planet.ocean_coverage_percent:
+				var clr = planet.get_node("Ocean").get_largest_component().color
+				if clr.a!=0.0:
+					oceans.set_pixel(x,y,clr)
+				else:
+					oceans.set_pixel(x,y,planet.get_node("Bedrock").solution_color+Color(0.25,0.25,0.25))
+			else:
+				oceans.set_pixel(x,y,Color("#000000",0.0))
+			terrain.set_pixel(x,y,terrain.get_pixel(x,y)*planet.get_node("Bedrock").solution_color)
+	
+	planet.get_node("Sprite").texture = ImageTexture.create_from_image(terrain)
+	planet.get_node("Sprite/OceanLayer").texture = ImageTexture.create_from_image(oceans)
+	
+	planet.setup(data)
 	return planet
 
 #func generate_planet(parent_star:Star) -> CelestialObject:
@@ -229,7 +253,6 @@ func generate_system():
 	var star = generate_star()
 	
 	var planet = generate_planet(star)
-	#planet.camera_focus_object.connect($Camera2D._on_camera_focus_object)
 	var angle = randf_range(0,TAU)
 	planet.position = Vector2(planet.orbital_radius*cos(angle)*2048,planet.orbital_radius*sin(angle)*2048)
 	planet.obj_name=star.obj_name+" - "+Constants.romanify(1)

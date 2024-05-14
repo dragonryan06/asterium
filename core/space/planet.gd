@@ -1,14 +1,13 @@
 extends CelestialObject
 class_name Planet
 
+## might wanna remove these
 enum TAGS {
 	# ocean has completely vaporized from base_temperature
 	BOILED_OCEAN,
 	# ocean has completely frozen from base_temperature
 	FROZEN_OCEAN
 }
-
-#var chemical_data = ResourceManager.load_json("res://gamedata/chemicals.json").data
 
 var temperature : float
 var ocean_coverage_percent : float : set=_set_ocean_coverage_percent
@@ -18,28 +17,33 @@ var weather : String
 var magfield : String
 var atm_desc : String
 
-#func _ready():
+func _ready():
+	pass
+	#var heightmap = FastNoiseLite.new()
+	#heightmap.seed = randi()
+	#
+	#$Sprite.texture = ImageTexture.create_from_image(heightmap.get_seamless_image(256,64,false,false,0.5))
+	#print(terrain.get_image())
+	#
+	#var img = ImageTexture.create_from_image(terrain.get_image())
+	#$Sprite.texture = img
+	
 	#$Sprite.get_material().set_shader_parameter("base_color",$Composition/Surface.get_child(0).base_color)
-	#for layer in $Composition.get_children():
-		#for substance in layer.get_children():
-			#if not substance.state_changed.is_connected(_on_state_change):
-				#substance.state_changed.connect(_on_state_change.bind(substance))
-			#substance.temperature = base_temperature
 
 func _set_ocean_coverage_percent(surface_coverage) -> void:
 	ocean_coverage_percent = surface_coverage
-	var color = Color(1.0,0.0,1.0,1.0)
-	if ocean_coverage_percent!=0:
-		color = $Composition/Ocean.get_child(0).base_color
-	if color.a == 0:
-		color = Color(0.5,0.5,0.5,1.0)
-	$Sprite.get_material().set_shader_parameter("ocean_color",Color(color))
-	$Sprite.get_material().set_shader_parameter("ocean_coverage",ocean_coverage_percent)
+	#var color = Color(1.0,0.0,1.0,1.0)
+	#if ocean_coverage_percent!=0:
+		#color = $Composition/Ocean.get_child(0).base_color
+	#if color.a == 0:
+		#color = Color(0.5,0.5,0.5,1.0)
+	#$Sprite.get_material().set_shader_parameter("ocean_color",Color(color))
+	#$Sprite.get_material().set_shader_parameter("ocean_coverage",ocean_coverage_percent)
 
 func setup(data:Dictionary) -> void:
 	# make unique material and texture
 	$Sprite.texture = $Sprite.texture.duplicate()
-	$Sprite.material = $Sprite.material.duplicate()
+	#$Sprite.material = $Sprite.material.duplicate()
 	for k in data.keys():
 		set(k,data[k])
 
