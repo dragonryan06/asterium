@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cj8yr0m0pkqln"]
+[gd_scene load_steps=17 format=3 uid="uid://cj8yr0m0pkqln"]
 
 [ext_resource type="Script" path="res://core/space/planet.gd" id="1_m3qu6"]
 [ext_resource type="Shader" path="res://core/space/shaders/planetsprite.gdshader" id="2_fxpsy"]
@@ -8,11 +8,9 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_26rer"]
 shader = ExtResource("2_fxpsy")
 shader_parameter/base_color = Vector4(1, 1, 1, 1)
-shader_parameter/aspect_ratio = 3.0
+shader_parameter/aspect_ratio = 1.0
 shader_parameter/rotation_speed = 1.0
-shader_parameter/as_shadow = false
-shader_parameter/ocean_color = Vector4(0, 0, 0, 1)
-shader_parameter/ocean_coverage = 0.0
+shader_parameter/light_direction_degrees = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2h0o0"]
 radius = 0.228207
@@ -20,14 +18,52 @@ radius = 0.228207
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cddr2"]
 shader = ExtResource("2_fxpsy")
 shader_parameter/base_color = Vector4(1, 1, 1, 1)
-shader_parameter/aspect_ratio = 3.0
+shader_parameter/aspect_ratio = 1.0
 shader_parameter/rotation_speed = 1.0
-shader_parameter/as_shadow = false
-shader_parameter/ocean_color = Vector4(0, 0, 0, 1)
-shader_parameter/ocean_coverage = 0.0
+shader_parameter/light_direction_degrees = 0.0
+
+[sub_resource type="Gradient" id="Gradient_cklas"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a6tav"]
+gradient = SubResource("Gradient_cklas")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ncjj"]
+shader = ExtResource("2_fxpsy")
+shader_parameter/base_color = Vector4(1, 1, 1, 1)
+shader_parameter/aspect_ratio = 3.0
+shader_parameter/rotation_speed = 0.2
+shader_parameter/light_direction_degrees = 0.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a3kp2"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xcaty"]
+width = 1024
+seamless = true
+noise = SubResource("FastNoiseLite_a3kp2")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_utrol"]
+width = 1024
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_a3kp2")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_nkd71"]
+diffuse_texture = SubResource("NoiseTexture2D_xcaty")
+normal_texture = SubResource("NoiseTexture2D_utrol")
+texture_filter = 3
+texture_repeat = 2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5d5yl"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_te2mw"]
+width = 1024
+seamless = true
+noise = SubResource("FastNoiseLite_5d5yl")
 
 [node name="Planet" type="Node2D"]
 script = ExtResource("1_m3qu6")
+metadata/_edit_vertical_guides_ = [-596.0]
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -55,6 +91,38 @@ can_camera_focus = true
 tt_title_text = "Planet Name"
 tt_subtitle_text = "World Class"
 inspect_dialog_scene = "res://ui/dialogs/space_inspect_dialog.tscn"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-1207, -690)
+energy = 9.36
+blend_mode = 2
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_a6tav")
+texture_scale = 16.0
+
+[node name="spritetest" type="Sprite2D" parent="."]
+light_mask = 2
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_1ncjj")
+position = Vector2(-1194, -918)
+scale = Vector2(0.5, 1)
+texture = SubResource("CanvasTexture_nkd71")
+
+[node name="ColorRect" type="ColorRect" parent="spritetest"]
+show_behind_parent = true
+offset_left = -330.0
+offset_top = -178.0
+offset_right = 310.0
+offset_bottom = 154.0
+color = Color(0, 0, 0, 1)
+
+[node name="oceanspritetest" type="Sprite2D" parent="spritetest"]
+visible = false
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_1ncjj")
+texture = SubResource("NoiseTexture2D_te2mw")
 
 [connection signal="input_event" from="Sprite/Hitbox" to="." method="_on_hitbox_input_event"]
 [connection signal="mouse_entered" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_entered"]
