@@ -1,12 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://cj8yr0m0pkqln"]
+[gd_scene load_steps=23 format=3 uid="uid://cj8yr0m0pkqln"]
 
 [ext_resource type="Script" path="res://core/space/planet.gd" id="1_m3qu6"]
-[ext_resource type="Shader" path="res://core/space/shaders/planetsprite.gdshader" id="2_fxpsy"]
+[ext_resource type="Shader" path="res://core/space/shaders/planet/surface.gdshader" id="2_aukfo"]
 [ext_resource type="Texture2D" uid="uid://cuxh1d2127cq3" path="res://scenes/assets/icon.svg" id="2_xlwtg"]
 [ext_resource type="Script" path="res://ui/components/inspect_component.gd" id="3_06rrq"]
+[ext_resource type="Shader" path="res://core/space/shaders/planet/ocean.gdshader" id="5_p5u1b"]
+[ext_resource type="Shader" path="res://core/space/shaders/planet/atmosphere.gdshader" id="6_py6qu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_26rer"]
-shader = ExtResource("2_fxpsy")
+shader = ExtResource("2_aukfo")
 shader_parameter/base_color = Vector4(1, 1, 1, 1)
 shader_parameter/aspect_ratio = 1.0
 shader_parameter/rotation_speed = 1.0
@@ -16,7 +18,7 @@ shader_parameter/light_direction_degrees = 0.0
 radius = 0.228207
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cddr2"]
-shader = ExtResource("2_fxpsy")
+shader = ExtResource("2_aukfo")
 shader_parameter/base_color = Vector4(1, 1, 1, 1)
 shader_parameter/aspect_ratio = 1.0
 shader_parameter/rotation_speed = 1.0
@@ -29,8 +31,8 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 gradient = SubResource("Gradient_cklas")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1ncjj"]
-shader = ExtResource("2_fxpsy")
-shader_parameter/base_color = Vector4(1, 1, 1, 1)
+shader = ExtResource("2_aukfo")
+shader_parameter/base_color = Vector4(0.09, 1, 0.34, 1)
 shader_parameter/aspect_ratio = 3.0
 shader_parameter/rotation_speed = 0.2
 shader_parameter/light_direction_degrees = 0.0
@@ -54,12 +56,38 @@ normal_texture = SubResource("NoiseTexture2D_utrol")
 texture_filter = 3
 texture_repeat = 2
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lkhdc"]
+shader = ExtResource("5_p5u1b")
+shader_parameter/base_color = Vector4(-1.415, -0.015, 1, 1)
+shader_parameter/aspect_ratio = 3.0
+shader_parameter/rotation_speed = 0.2
+shader_parameter/light_direction_degrees = 0.0
+shader_parameter/ocean_surface_coverage = 0.6
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5d5yl"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_te2mw"]
 width = 1024
 seamless = true
 noise = SubResource("FastNoiseLite_5d5yl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cuagt"]
+shader = ExtResource("6_py6qu")
+shader_parameter/base_color = Vector4(0.605, 0.855, 3.6, 1)
+shader_parameter/aspect_ratio = 3.0
+shader_parameter/rotation_speed = 0.15
+shader_parameter/light_direction_degrees = 0.0
+shader_parameter/cloud_coverage = 0.405
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_juk7g"]
+noise_type = 2
+seed = 3
+frequency = 0.025
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1ayuu"]
+width = 1024
+seamless = true
+noise = SubResource("FastNoiseLite_juk7g")
 
 [node name="Planet" type="Node2D"]
 script = ExtResource("1_m3qu6")
@@ -93,7 +121,7 @@ tt_subtitle_text = "World Class"
 inspect_dialog_scene = "res://ui/dialogs/space_inspect_dialog.tscn"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-1207, -690)
+position = Vector2(-1213, -823)
 energy = 9.36
 blend_mode = 2
 range_item_cull_mask = 2
@@ -105,7 +133,7 @@ light_mask = 2
 texture_filter = 1
 texture_repeat = 2
 material = SubResource("ShaderMaterial_1ncjj")
-position = Vector2(-1194, -918)
+position = Vector2(-1206, -1036)
 scale = Vector2(0.5, 1)
 texture = SubResource("CanvasTexture_nkd71")
 
@@ -116,13 +144,21 @@ offset_top = -178.0
 offset_right = 310.0
 offset_bottom = 154.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="oceanspritetest" type="Sprite2D" parent="spritetest"]
-visible = false
+light_mask = 2
 texture_filter = 1
 texture_repeat = 2
-material = SubResource("ShaderMaterial_1ncjj")
+material = SubResource("ShaderMaterial_lkhdc")
 texture = SubResource("NoiseTexture2D_te2mw")
+
+[node name="atmossprite" type="Sprite2D" parent="spritetest"]
+light_mask = 2
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_cuagt")
+texture = SubResource("NoiseTexture2D_1ayuu")
 
 [connection signal="input_event" from="Sprite/Hitbox" to="." method="_on_hitbox_input_event"]
 [connection signal="mouse_entered" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_entered"]
