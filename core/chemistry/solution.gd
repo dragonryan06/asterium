@@ -33,6 +33,17 @@ func get_largest_component() -> Reagent:
 	sorted.sort()
 	return get_child(composition.find(sorted[-1]))
 
+func get_true_color() -> Color:
+	var color = Color.TRANSPARENT
+	for r:Reagent in get_children():
+		if color == Color.TRANSPARENT:
+			color = r.color
+		else:
+			color = color.lerp(r.color,composition[composition.find(r.reagent_name)])
+	if color.a!=0.0:
+		color.a=1.0
+	return color
+
 func fix_percents() -> void:
 	# force composition to add to 1.0
 	var sum = 0.0

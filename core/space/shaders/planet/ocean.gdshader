@@ -27,7 +27,7 @@ vec4 tex_sphere(vec2 uv,vec4 color,sampler2D TEX) {
 			0.5 * (px + 1.0) / aspect_ratio - TIME * rotation_speed*0.25,
 			0.5 * (py + 1.0)));
 		if (tex.r<=ocean_surface_coverage) {
-			color = base_color*tex+0.25;
+			color = base_color*(0.5*tex)+0.5;
 		}
 		else {
 			color.a = 0.0;

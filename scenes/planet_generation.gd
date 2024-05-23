@@ -57,7 +57,10 @@ func generate_planet(parent_star:Star) -> Planet:
 	
 	# basic
 	data["orbital_parent"] = parent_star
-	data["orbital_radius"] = randf_range(0.5,1.0)+parent_star.radius
+	if parent_star.get_node("Satellites").get_child_count()==0:
+		data["orbital_radius"] = randf_range(0.5,1.0)+parent_star.radius
+	else:
+		data["orbital_radius"] = randf_range(0.5,1.0)+parent_star.get_node("Satellites").get_child(-1).orbital_radius
 	data["obj_class"] = base["basic"]["name"]
 	data["description"] = base["basic"]["base_sentence"]
 	data["radius"] = randf_range(base["basic"]["radius_min"],base["basic"]["radius_max"])
@@ -181,93 +184,55 @@ func generate_planet(parent_star:Star) -> Planet:
 	var terrain = heightmap.get_seamless_image(256,64,false,false,0.25)
 	terrain.convert(Image.FORMAT_RGBA8)
 	var oceans = Image.create(256,64,true,Image.FORMAT_RGBA8)
-	var atmos = Image.create(256,64,true,Image.FORMAT_RGBA8)
-	for y in range(terrain.get_height()):
-		for x in range(terrain.get_width()):
-			if terrain.get_pixel(x,y).r<planet.ocean_coverage_percent:
-				var clr = planet.get_node("Ocean").get_largest_component().color
-				if clr.a!=0.0:
-					oceans.set_pixel(x,y,clr)
-				else:
-					oceans.set_pixel(x,y,planet.get_node("Bedrock").solution_color+Color(0.25,0.25,0.25))
-			else:
-				oceans.set_pixel(x,y,Color("#000000",0.0))
-			terrain.set_pixel(x,y,terrain.get_pixel(x,y)*planet.get_node("Bedrock").solution_color)
+	#for y in range(terrain.get_height()):
+		#for x in range(terrain.get_width()):
+			#if terrain.get_pixel(x,y).r<planet.ocean_coverage_percent:
+				#var clr = planet.get_node("Ocean").get_largest_component().color
+				#if clr.a!=0.0:
+					#oceans.set_pixel(x,y,clr)
+				#else:
+					#oceans.set_pixel(x,y,planet.get_node("Bedrock").solution_color+Color(0.25,0.25,0.25))
+			#else:
+				#oceans.set_pixel(x,y,Color("#000000",0.0))
+			#terrain.set_pixel(x,y,terrain.get_pixel(x,y)*planet.get_node("Bedrock").solution_color)
+	
+	var clouds = FastNoiseLite.new()
+	clouds.noise_type = FastNoiseLite.TYPE_CELLULAR
+	clouds.seed = randi()
+	clouds.frequency = 0.015
+	var atmos = clouds.get_seamless_image(256,64)
+	
+	var rand_atm_tint = func() -> Color:
+		return Color(0.5*randf()+0.4,0.5*randf()+0.4,0.5*randf()+0.4,1.0)
+	var rand_ocn_tint = func() -> Color:
+		return Color(0.5*randf()+0.1,0.5*randf()+0.1,0.5*randf()+0.1,1.0)
 	
 	planet.get_node("Sprite").texture = ImageTexture.create_from_image(terrain)
-	planet.get_node("Sprite/OceanLayer").texture = ImageTexture.create_from_image(oceans)
+	planet.get_node("Sprite/Ocean").texture = planet.get_node("Sprite").texture
+	planet.get_node("Sprite/Atmosphere").texture = ImageTexture.create_from_image(atmos)
 	
 	planet.setup(data)
+	planet.get_node("Sprite/Atmosphere").get_material().set_shader_parameter("base_color",planet.get_node("Atmosphere").get_true_color()-Color(0.25,0.25,0.25,1.0)*rand_atm_tint.call())
+	if planet.has_node("Ocean"):
+		if planet.get_node("Ocean").get_true_color()==Color.TRANSPARENT:
+			planet.get_node("Sprite/Ocean").get_material().set_shader_parameter("base_color",rand_ocn_tint.call())
+		else:
+			planet.get_node("Sprite/Ocean").get_material().set_shader_parameter("base_color",planet.get_node("Ocean").get_true_color())
+	if planet.has_node("Precipitation"):
+		planet.get_node("Sprite/Atmosphere").get_material().set_shader_parameter("cloud_coverage",0.25*randf()+0.25)
+		planet.get_node("Sprite/Atmosphere").get_material().set_shader_parameter("rotation_speed",planet.get_node("Sprite/Ocean").get_material().get_shader_parameter("rotation_speed")-0.4)
 	return planet
-
-#func generate_planet(parent_star:Star) -> CelestialObject:
-	### THIS IS JUST FOR TERRESTRIAL
-	#var planet = _Planet.instantiate()
-	#planet.object_inspector = $HUD/ObjectInspector
-	#var data = {}
-	#weather
-	#data["radius"] = randf_range(planet_data["planet"]["terrestrial"]["radius_min"],planet_data["planet"]["terrestrial"]["radius_max"])
-	#data["mass"] = ((4.0/3.0)*PI*pow(data["radius"],3.0))
-	#data["rotational_period"] = randf_range(-5,5)
-	#data["orbital_parent"] = parent_star
-	#if len(parent_star.get_node("Satellites").get_children())==0:
-		#data["orbital_radius"] = randf_range(0.5,1.0)+parent_star.radius
-	#else:
-		#data["orbital_radius"] = parent_star.get_node("Satellites").get_children()[-1].orbital_radius+randf_range(0.5,1.0)+parent_star.radius
-	#
-	#var parent_rock = Rock.new()
-	## create initial mineral soup
-	#parent_rock.mafic_felsic_ratio = randf_range(0.0,1.0)
-	## cool magma into igneous rock
-	#var cool_time = Rock.cool_times.values().pick_random()
-	#var idx = 0
-	#var nearest_match = [1.0,-1]
-	#for rock in rock_data["igneous"].values():
-		#if rock["cooling_time"]==cool_time:
-			#if abs(rock["mafic_felsic_ratio"]-parent_rock.mafic_felsic_ratio)<nearest_match[0]:
-				#nearest_match[0] = abs(rock["mafic_felsic_ratio"]-parent_rock.mafic_felsic_ratio)
-				#nearest_match[1] = idx
-		#idx+=1
-	#parent_rock.name = rock_data["igneous"].keys()[nearest_match[1]]
-	#parent_rock.base_color = Color(rock_data["igneous"][parent_rock.name]["base_color"])+Color(randf_range(-0.005,0.005),randf_range(-0.005,0.005),randf_range(-0.005,0.005))
-	#parent_rock.item_color = Color(rock_data["igneous"][parent_rock.name]["base_color"])
-	#parent_rock.comp_percent = 1.0
-	#planet.get_node("Composition/Surface").add_child(parent_rock)
-	#
-	## implementing albedo later, for now assuming that all planets are totally matte black
-	#var albedo = 0.0
-	#data["temperature"] = pow((parent_star.luminosity*(1.0-albedo))/(16.0*PI*pow(data["orbital_radius"]*Constants.M_IN_AU,2.0)),0.25)
-	## initial ocean/atmosphere
-	#var ocean = Chemical.new()
-	#var o_mat = Chemical.data["liquid"].keys().pick_random()
-	#ocean.from_dictionary(o_mat,Chemical.data["liquid"][o_mat],Chemical.STATES.LIQUID)
-	#ocean.comp_percent = 1.0
-	#planet.get_node("Composition/Ocean").add_child(ocean)
-	#data["ocean_coverage_percent"] = randf_range(0.0,1.0)
-	#
-	#planet.get_node("Sprite").texture.noise.seed = randi()
-	#planet.setup(data)
-	#return planet
 
 func generate_system():
 	var star = generate_star()
 	
-	var planet = generate_planet(star)
-	var angle = randf_range(0,TAU)
-	planet.position = Vector2(planet.orbital_radius*cos(angle)*2048,planet.orbital_radius*sin(angle)*2048)
-	planet.obj_name=star.obj_name+" - "+Constants.romanify(1)
-	star.get_node("Satellites").add_child(planet)
+	for i in range(0,randi_range(3,6)):
+		var planet = generate_planet(star)
+		var angle = randf_range(0,TAU)
+		planet.position = Vector2(planet.orbital_radius*cos(angle)*2048,planet.orbital_radius*sin(angle)*2048)
+		planet.obj_name = star.obj_name+" - "+Constants.romanify(i+1)
+		star.get_node("Satellites").add_child(planet)
 	
-	#for i in range(0,randi_range(3,6)):
-		#var planet = generate_planet(star)
-		#planet.camera_focus_object.connect($Camera2D._on_camera_focus_object)
-		#var angle = randf_range(0,TAU)
-		#planet.position = Vector2(planet.orbital_radius*cos(angle)*2048,planet.orbital_radius*sin(angle)*2048)
-		#planet.obj_title = star.obj_title+" - "+Constants.romanify(i+1)
-		#planet.obj_subtitle = "world type"
-		#star.get_node("Satellites").add_child(planet)
-	
-	#star.camera_focus_object.connect($Camera2D._on_camera_focus_object)
 	add_child(star)
 
 func _on_generate_pressed():

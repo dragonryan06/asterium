@@ -31,6 +31,7 @@ func _set_mass(val:float) -> void:
 
 func _set_radius(val:float) -> void:
 	radius = val
+	$Sprite.scale = Vector2(4*snapped(radius,0.25),16*snapped(radius,0.25))
 	#$Sprite.texture.width = 128*snapped(radius,0.25)
 	#$Sprite.texture.height = 64*snapped(radius,0.25)
 	$Sprite/Hitbox.scale = Vector2(128*radius,64*radius)

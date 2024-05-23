@@ -8,6 +8,7 @@ uniform float rotation_speed = 1.0;
 // also make sure celestial fake lights are in layer 2
 uniform float light_direction_degrees = 0.0;
 
+uniform float atmosphere_density = 0.5;
 uniform float cloud_coverage = 0.0;
 
 vec4 atmos_sphere(vec2 uv,vec4 color,sampler2D TEX) {
@@ -18,9 +19,9 @@ vec4 atmos_sphere(vec2 uv,vec4 color,sampler2D TEX) {
 	color.rgb = base_color.rgb;
 	color.a = 0.0;
 	if (px*px+py*py>1.0 && px*px+py*py<1.4) {
-		color.a = mix(1.0,0.0,(px*px+py*py)-0.4);
+		color.a = mix(1.0,0.0,(px*px+py*py)-0.4)*2.0*atmosphere_density;
 	} else if (px*px+py*py<1.0){
-		color.a = mix(0.0,1.0,(px*px+py*py))*0.6;
+		color.a = mix(0.4,1.0,(px*px+py*py))*0.6*atmosphere_density;
 		
 		px = asin(px / sqrt(1.0 - py * py)) * 2.0 / PI;
 		py = asin(py) * 2.0 / PI;

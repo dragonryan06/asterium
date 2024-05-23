@@ -28,7 +28,7 @@
 	"hydrogen":{
 		"reagent_name":"hydrogen",
 		"ui_color":"#0000ff",
-		"color":"CLEAR",
+		"color":"TRANSPARENT",
 		"melt_point":14.0,
 		"boil_point":20.3,
 		"ionize_point":2000.0,
@@ -49,7 +49,7 @@
 	"helium":{
 		"reagent_name":"helium",
 		"ui_color":"#fca100",
-		"color":"CLEAR",
+		"color":"TRANSPARENT",
 		"melt_point":-1,
 		"boil_point":4.222,
 		"ionize_point":12000.0,
@@ -63,7 +63,7 @@
 	"oxygen":{
 		"reagent_name":"oxygen",
 		"ui_color":"#05a8ff",
-		"color":"CLEAR",
+		"color":"TRANSPARENT",
 		"melt_point":54.4,
 		"boil_point":90.2,
 		"ionize_point":4000.0,
@@ -168,7 +168,7 @@
 	},
 	"nitrogen":{
 		"reagent_name":"nitrogen",
-		"color":"CLEAR",
+		"color":"TRANSPARENT",
 		"ui_color":"#ff9900",
 		"melt_point":63.2,
 		"boil_point":77.4,
@@ -189,7 +189,7 @@
 	},
 	"ammonia":{
 		"reagent_name":"ammonia",
-		"color":"CLEAR",
+		"color":"TRANSPARENT",
 		"ui_color":"#fcce88",
 		"melt_point":195.4,
 		"boil_point":239.8,
@@ -211,7 +211,7 @@
 	},
 	"carbon_dioxide":{
 		"reagent_name":"carbon_dioxide",
-		"color":"CLEAR",
+		"color":"TRANSPARENT",
 		"ui_color":"#4c4c4c",
 		"melt_point":194.7,
 		"boil_point":-1,
@@ -225,7 +225,7 @@
 	},
 	"sulfur_dioxide":{
 		"reagent_name":"sulfur_dioxide",
-		"color":"CLEAR",
+		"color":"TRANSPARENT",
 		"ui_color":"#ffff00",
 		"melt_point":201.0,
 		"boil_point":263.0,
@@ -260,7 +260,7 @@
 	},
 	"carbonic_acid":{
 		"reagent_name":"carbonic_acid",
-		"color":"CLEAR",
+		"color":"TRANSPARENT",
 		"ui_color":"#ff0000",
 		"melt_point":220,
 		"boil_point":400,
@@ -344,7 +344,7 @@
 	},
 	"argon":{
 		"reagent_name":"argon",
-		"color":"CLEAR",
+		"color":"TRANSPARENT",
 		"ui_color":"#bf1782",
 		"melt_point":83.8,
 		"boil_point":87.3,
@@ -359,7 +359,7 @@
 	},
 	"neon":{
 		"reagent_name":"neon",
-		"color":"CLEAR",
+		"color":"TRANSPARENT",
 		"ui_color":"#ea00ff",
 		"melt_point":24.5,
 		"boil_point":27.2,
@@ -374,7 +374,7 @@
 	},
 	"methane":{
 		"reagent_name":"methane",
-		"color":"CLEAR",
+		"color":"TRANSPARENT",
 		"ui_color":"#00ff1a",
 		"melt_point":90.7,
 		"boil_point":111.6,
@@ -389,7 +389,7 @@
 	},
 	"hydrogen_cyanide":{
 		"reagent_name":"hydrogen_cyanide",
-		"color":"CLEAR",
+		"color":"TRANSPARENT",
 		"ui_color":"#3ec78e",
 		"melt_point":259.9,
 		"boil_point":299.0,
@@ -420,7 +420,7 @@
 	},
 	"hydrogen_sulfide":{
 		"reagent_name":"hydrogen_sulfide",
-		"color":"CLEAR",
+		"color":"TRANSPARENT",
 		"ui_color":"#fcf400",
 		"melt_point":187.7,
 		"boil_point":213.6,
