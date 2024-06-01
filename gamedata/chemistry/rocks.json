@@ -126,6 +126,11 @@
 		}
 	},
 	"metamorphic": {
-
+		"metamorphic_rock_not_implemented": {
+			"base_color": "#ff00ff",
+			"ratios": {
+				"quartz":1.0
+			}
+		}
 	}
 }

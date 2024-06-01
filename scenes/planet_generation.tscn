@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8nk8farod758"]
+[gd_scene load_steps=7 format=3 uid="uid://b8nk8farod758"]
 
 [ext_resource type="Script" path="res://scenes/planet_generation.gd" id="1_w0wtp"]
+[ext_resource type="Script" path="res://ui/ui_manager.gd" id="2_atq0q"]
 [ext_resource type="Script" path="res://scenes/standard_camera.gd" id="2_kie41"]
 [ext_resource type="Script" path="res://ui/grid.gd" id="3_ejyy7"]
 [ext_resource type="Curve" uid="uid://lm1fa4pk1xum" path="res://ui/assets/grid_fade_curve.tres" id="4_rvhi6"]
@@ -18,6 +19,9 @@ glow_hdr_threshold = 1.25
 
 [node name="PlanetGeneration" type="Node2D"]
 script = ExtResource("1_w0wtp")
+
+[node name="UIManager" type="Node" parent="."]
+script = ExtResource("2_atq0q")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("2_kie41")

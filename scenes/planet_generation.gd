@@ -52,7 +52,7 @@ func generate_star() -> Star:
 
 func generate_planet(parent_star:Star) -> Planet:
 	var planet = _Planet.instantiate()
-	var base = planet_data["common"]["ocean"]
+	var base = planet_data["common"][planet_data["common"].keys().pick_random()]
 	var data = {}
 	
 	# basic
@@ -64,6 +64,7 @@ func generate_planet(parent_star:Star) -> Planet:
 	data["obj_class"] = base["basic"]["name"]
 	data["description"] = base["basic"]["base_sentence"]
 	data["radius"] = randf_range(base["basic"]["radius_min"],base["basic"]["radius_max"])
+	data["rotational_period"] = randf_range(-5,5)
 	
 	# temperature
 	var albedo = 0.0
@@ -183,18 +184,6 @@ func generate_planet(parent_star:Star) -> Planet:
 	
 	var terrain = heightmap.get_seamless_image(256,64,false,false,0.25)
 	terrain.convert(Image.FORMAT_RGBA8)
-	var oceans = Image.create(256,64,true,Image.FORMAT_RGBA8)
-	#for y in range(terrain.get_height()):
-		#for x in range(terrain.get_width()):
-			#if terrain.get_pixel(x,y).r<planet.ocean_coverage_percent:
-				#var clr = planet.get_node("Ocean").get_largest_component().color
-				#if clr.a!=0.0:
-					#oceans.set_pixel(x,y,clr)
-				#else:
-					#oceans.set_pixel(x,y,planet.get_node("Bedrock").solution_color+Color(0.25,0.25,0.25))
-			#else:
-				#oceans.set_pixel(x,y,Color("#000000",0.0))
-			#terrain.set_pixel(x,y,terrain.get_pixel(x,y)*planet.get_node("Bedrock").solution_color)
 	
 	var clouds = FastNoiseLite.new()
 	clouds.noise_type = FastNoiseLite.TYPE_CELLULAR
@@ -212,10 +201,12 @@ func generate_planet(parent_star:Star) -> Planet:
 	planet.get_node("Sprite/Atmosphere").texture = ImageTexture.create_from_image(atmos)
 	
 	planet.setup(data)
-	planet.get_node("Sprite/Atmosphere").get_material().set_shader_parameter("base_color",planet.get_node("Atmosphere").get_true_color()-Color(0.25,0.25,0.25,1.0)*rand_atm_tint.call())
+	if planet.has_node("Atmosphere"):
+		planet.get_node("Sprite/Atmosphere").get_material().set_shader_parameter("base_color",planet.get_node("Atmosphere").get_true_color()-Color(0.25,0.25,0.25,1.0)*rand_atm_tint.call())
 	if planet.has_node("Ocean"):
 		if planet.get_node("Ocean").get_true_color()==Color.TRANSPARENT:
 			planet.get_node("Sprite/Ocean").get_material().set_shader_parameter("base_color",rand_ocn_tint.call())
+			planet.get_node("Sprite/Ocean").get_material().set_shader_parameter("rotation_speed",planet.get_node("Sprite").get_material().get_shader_parameter("rotation_speed"))
 		else:
 			planet.get_node("Sprite/Ocean").get_material().set_shader_parameter("base_color",planet.get_node("Ocean").get_true_color())
 	if planet.has_node("Precipitation"):
@@ -231,6 +222,7 @@ func generate_system():
 		var angle = randf_range(0,TAU)
 		planet.position = Vector2(planet.orbital_radius*cos(angle)*2048,planet.orbital_radius*sin(angle)*2048)
 		planet.obj_name = star.obj_name+" - "+Constants.romanify(i+1)
+		planet.get_node("InspectComponent").tt_title_text = planet.obj_name
 		star.get_node("Satellites").add_child(planet)
 	
 	add_child(star)

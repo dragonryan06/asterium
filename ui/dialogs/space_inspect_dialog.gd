@@ -9,8 +9,11 @@ extends DialogPanelContainer
 
 const text_formats = {
 	"star": {
-		"overview":"[color=#dddddd][b]Rotational Period:[/b][/color] {rotational_period} [color=#acacac]d[/color]\n[color=#dddddd][b]Chromaticity:[/b][/color] [color={chromaticity_color}]{chromaticity}[/color]\n[color=#dddddd][b]Surface Temperature:[/b][/color] {temperature} [color=#acacac]K[/color]\n[color=#dddddd][b]Radius:[/b][/color] {radius} [color=#acacac]R*[/color]\n[color=#dddddd][b]Mass:[/b][/color] {mass} [color=#acacac]M*[/color]",
+		"overview":"[color=#dddddd][b]Rotational Period:[/b][/color] {rotational_period} [color=#acacac]d[/color]\n[color=#dddddd][b]Radius:[/b][/color] {radius} [color=#acacac]R*[/color]\n[color=#dddddd][b]Mass:[/b][/color] {mass} [color=#acacac]M*[/color]\n[color=#dddddd][b]Chromaticity:[/b][/color] [color={chromaticity_color}]{chromaticity}[/color]\n[color=#dddddd][b]Surface Temperature:[/b][/color] {temperature} [color=#acacac]K[/color]",
 		# description would go here but i think it would be better to have the objects generate that for themselves and store it.
+	},
+	"planet": {
+		"overview":"[color=#dddddd][b]Rotational Period:[/b][/color] {rotational_period} [color=#acacac]d[/color]\n[color=#dddddd][b]Radius:[/b][/color] {radius} [color=#acacac]RE[/color]\n[color=#dddddd][b]Mass:[/b][/color] {mass} [color=#acacac]ME[/color]\n[color=#dddddd][b]Surface Temperature:[/b][/color] {temperature} [color=#acacac]K[/color]\n[color=#dddddd][b]Ocean:[/b][/color] {ocean_coverage_percent} [color=#acacac]% coverage[/color]\n[color=#dddddd][b]Atmosphere:[/b][/color] {atm_desc}\n[color=#dddddd][b]Weather:[/b][/color] {weather}\n[color=#dddddd][b]Magnetic Field:[/b][/color] {magfield}\n"
 	}
 }
 
@@ -41,7 +44,10 @@ func _ready() -> void:
 func setup_data(target:CelestialObject) -> void:
 	$UpperPanel/VBoxContainer/Title.text = target.obj_name
 	$UpperPanel/VBoxContainer/Subtitle.text = target.obj_class
-	$InnerPanel/TabContainer/Overview/Panel/RichTextLabel.text = _fill_blanks(text_formats["star"]["overview"],target)
+	if target is Star:
+		$InnerPanel/TabContainer/Overview/Panel/RichTextLabel.text = _fill_blanks(text_formats["star"]["overview"],target)
+	elif target is Planet:
+		$InnerPanel/TabContainer/Overview/Panel/RichTextLabel.text = _fill_blanks(text_formats["planet"]["overview"],target)
 	
 	var composition_container = $InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer
 	var base = composition_container.get_node("SolutionName")

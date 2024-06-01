@@ -53,10 +53,8 @@ theme_override_constants/margin_bottom = -20
 layout_mode = 2
 theme = ExtResource("1_46tws")
 tab_alignment = 1
-current_tab = 2
 
 [node name="Overview" type="MarginContainer" parent="InnerPanel/TabContainer"]
-visible = false
 show_behind_parent = true
 layout_mode = 2
 theme_override_constants/margin_top = -3
@@ -105,6 +103,7 @@ bbcode_enabled = true
 text = "[color=#ff0000][b]This[/b] text is red![/color] [b]This[/b] text is white"
 
 [node name="Composition" type="MarginContainer" parent="InnerPanel/TabContainer"]
+visible = false
 show_behind_parent = true
 layout_mode = 2
 theme_override_constants/margin_top = -4

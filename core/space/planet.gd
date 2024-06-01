@@ -29,8 +29,13 @@ func setup(data:Dictionary) -> void:
 	$Sprite/Ocean.material = $Sprite/Ocean.material.duplicate()
 	$Sprite/Atmosphere.texture = $Sprite/Atmosphere.texture.duplicate()
 	$Sprite/Atmosphere.material = $Sprite/Atmosphere.material.duplicate()
+	
 	for k in data.keys():
 		set(k,data[k])
+	
+	$InspectComponent.trigger_area = $Sprite/Hitbox
+	# cant set title here as obj_name is not yet known
+	$InspectComponent.tt_subtitle_text = obj_class
 
 #func _on_state_change(substance:Substance) -> void:
 	#if substance is Chemical:

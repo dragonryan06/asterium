@@ -23,7 +23,7 @@ shader_parameter/base_color = Vector4(1, 0, 1, 1)
 shader_parameter/aspect_ratio = 3.0
 shader_parameter/rotation_speed = 1.0
 shader_parameter/light_direction_degrees = 0.0
-shader_parameter/ocean_surface_coverage = 0.5
+shader_parameter/ocean_surface_coverage = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uidcm"]
 shader = ExtResource("6_py6qu")
@@ -69,3 +69,4 @@ inspect_dialog_scene = "res://ui/dialogs/space_inspect_dialog.tscn"
 [connection signal="input_event" from="Sprite/Hitbox" to="." method="_on_hitbox_input_event"]
 [connection signal="mouse_entered" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_entered"]
 [connection signal="mouse_exited" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_exited"]
+[connection signal="tree_entered" from="InspectComponent" to="InspectComponent" method="_on_tree_entered"]
