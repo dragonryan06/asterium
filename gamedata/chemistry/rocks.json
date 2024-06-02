@@ -126,10 +126,59 @@
 		}
 	},
 	"metamorphic": {
-		"metamorphic_rock_not_implemented": {
-			"base_color": "#ff00ff",
+		"quartzite": {
+			"base_color": "#AD928E",
 			"ratios": {
-				"quartz":1.0
+				"quartz":0.8,
+				"feldspar":0.2
+			}
+		},
+		"marble": {
+			"base_color": "#B0B2A5",
+			"ratios": {
+				"calcite":0.6,
+				"magnesite":0.2,
+				"quartz":0.2
+			}
+		},
+		"hornfels": {
+			"base_color": "#776A5A",
+			"ratios": {
+				"quartz":0.5,
+				"feldspar":0.3,
+				"pyroxene":0.2
+			}
+		},
+		"gneiss": {
+			"base_color": "#4B4A48",
+			"ratios": {
+				"quartz":0.6,
+				"feldspar":0.3,
+				"mica":0.1
+			}
+		},
+		"schist": {
+			"base_color": "#433D1F",
+			"ratios": {
+				"quartz":0.9,
+				"kaolinite":0.1
+			}
+		},
+		"phyllite": {
+			"base_color": "#58585C",
+			"ratios": {
+				"quartz":0.8,
+				"feldspar":0.1,
+				"kaolinite":0.1
+			}
+		},
+		"slate": {
+			"base_color": "#3B403C",
+			"ratios": {
+				"quartz":0.6,
+				"feldspar":0.2,
+				"kaolinite":0.1,
+				"calcite":0.1
 			}
 		}
 	}

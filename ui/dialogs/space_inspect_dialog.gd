@@ -95,5 +95,7 @@ func _fill_blanks(text:String,target:CelestialObject) -> String:
 		val = target.get(varname)
 		if val is float:
 			val = snapped(val,0.001)
+			if varname.find("percent")!=-1:
+				val*=100.0
 		text = text.substr(0,text.find("{"))+str(val)+text.substr(text.find("}")+1)
 	return text
