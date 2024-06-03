@@ -50,7 +50,7 @@ func generate_star() -> Star:
 	star.setup(data)
 	return star
 
-func generate_planet(parent_star:Star) -> Planet:
+func generate_planet(parent_star:Star,satellite_idx:int) -> Planet:
 	var planet = _Planet.instantiate()
 	var base = planet_data["common"][planet_data["common"].keys().pick_random()]
 	var data = {}
@@ -175,7 +175,6 @@ func generate_planet(parent_star:Star) -> Planet:
 	var weather = Constants.pick_random(base["systems"]["weather_type_table"])
 	data["weather"] = weather
 	
-	# descriptions
 	
 	# graphics
 	var heightmap = FastNoiseLite.new()
@@ -212,16 +211,21 @@ func generate_planet(parent_star:Star) -> Planet:
 	if planet.has_node("Precipitation"):
 		planet.get_node("Sprite/Atmosphere").get_material().set_shader_parameter("cloud_coverage",0.25*randf()+0.25)
 		planet.get_node("Sprite/Atmosphere").get_material().set_shader_parameter("rotation_speed",planet.get_node("Sprite/Ocean").get_material().get_shader_parameter("rotation_speed")-0.4)
+	
+	# descriptions
+	var prof = DescGen.make_planet_profile(planet,base,parent_star,satellite_idx)
+	planet.obj_name = prof["name"]
+	planet.description = prof["desc"]
+	
 	return planet
 
 func generate_system():
 	var star = generate_star()
 	
 	for i in range(0,randi_range(3,6)):
-		var planet = generate_planet(star)
+		var planet = generate_planet(star,i)
 		var angle = randf_range(0,TAU)
 		planet.position = Vector2(planet.orbital_radius*cos(angle)*2048,planet.orbital_radius*sin(angle)*2048)
-		planet.obj_name = star.obj_name+" - "+Constants.romanify(i+1)
 		planet.get_node("InspectComponent").tt_title_text = planet.obj_name
 		star.get_node("Satellites").add_child(planet)
 	

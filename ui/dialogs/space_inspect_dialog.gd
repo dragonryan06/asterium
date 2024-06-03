@@ -49,6 +49,8 @@ func setup_data(target:CelestialObject) -> void:
 	elif target is Planet:
 		$InnerPanel/TabContainer/Overview/Panel/RichTextLabel.text = _fill_blanks(text_formats["planet"]["overview"],target)
 	
+	$InnerPanel/TabContainer/Description/Panel/RichTextLabel.text = target.description
+	
 	var composition_container = $InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer
 	var base = composition_container.get_node("SolutionName")
 	for c in target.get_children():

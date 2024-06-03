@@ -119,6 +119,5 @@ func _on_tooltip_changed() -> void:
 	if not _tt_lock:
 		destroy_tooltip()
 
-
 func _on_tree_entered():
 	find_parent("root").get_child(0).find_child("UIManager").tooltip_changed.connect(_on_tooltip_changed)

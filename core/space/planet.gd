@@ -34,7 +34,7 @@ func setup(data:Dictionary) -> void:
 		set(k,data[k])
 	
 	$InspectComponent.trigger_area = $Sprite/Hitbox
-	# cant set title here as obj_name is not yet known
+	# can't set tt_title yet as obj_name is not yet known
 	$InspectComponent.tt_subtitle_text = obj_class
 
 #func _on_state_change(substance:Substance) -> void:
