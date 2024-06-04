@@ -21,8 +21,11 @@ static func _format(what:String,ctx:Dictionary) -> String:
 					if data.get(path[i]) is Callable:
 						data = data.get(path[i]).call()
 					else:
-						# the error is from dessicated worlds, it tries to check for an ocean anyway
 						data = data.get(path[i])
+						if path[i]=="reagent_name":
+							data = data.replace("_"," ")
+				if data is Color:
+					data = data.to_html(false)
 				what = what.substr(0,what.find("§"))+str(data)+what.substr(what.find("}")+1,-1)
 			"D":
 				match what.substr(what.find("{")+1,abs(what.find("{")-what.find("}")+1)):
@@ -31,7 +34,6 @@ static func _format(what:String,ctx:Dictionary) -> String:
 						for d in rock_data.keys():
 							if rock_data[d].has(ctx["planet"].get_node("Bedrock").solution_name.to_lower()):
 								what = what.substr(0,what.find("§"))+rock_data[d][ctx["planet"].get_node("Bedrock").solution_name.to_lower()]["descriptor"]+what.substr(what.find("}")+1,-1)
-						print(what)
 			_:
 				print("DescGen _format(String) found unknown code in\n"+what)
 				return what

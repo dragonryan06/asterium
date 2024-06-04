@@ -3,7 +3,7 @@
 		"barren": {
 			"basic": {
 				"name": "Barren world",
-				"base_sentence": "§V{out.name} is desolate, rocky, and ultimately featureless. Its surface implies a slow and uniform freeze to mineral rocks of primarily §D{ROCK_DESCRIPTOR}, igneous origin.",
+				"base_sentence": "§V{out.name} is desolate, rocky, and ultimately featureless. Its surface implies a slow and uniform freeze to mineral rocks of primarily §D{ROCK_DESCRIPTOR} igneous origin.",
 				"radius_min": 0.3,
 				"radius_max": 2
 			},
@@ -143,7 +143,7 @@
 		"ocean": {
 			"basic": {
 				"name": "Ocean world",
-				"base_sentence": "§V{out.name}'s surface is almost completely covered in a massive panthalassic sea of §V{$Ocean.get_largest_component.reagent_name}. As a result, the world's geology is defined by erosion and undersea weather.",
+				"base_sentence": "§V{out.name}'s surface is almost completely covered in a massive panthalassic sea of [b][color=§V{$Ocean.get_largest_component.ui_color}]§V{$Ocean.get_largest_component.reagent_name}[/color][/b]. As a result, the world's geology is defined by erosion and undersea weather.",
 				"radius_min": 0.3,
 				"radius_max": 2
 			},
@@ -180,5 +180,41 @@
 	},
 	"anomalous": {
 
+	},
+	"nongenerating": {
+		"dessicated": {
+			"basic": {
+				"name": "Dessicated world",
+				"base_sentence": "Dry, cracked and exposed, §V{out.name} clearly once possessed an all-encompassing ocean of some sort, but due to shifting solar phase, mega-asteroid impact, or otherwise, the liquid has since vacated the surface.",
+				"radius_min":0.3,
+				"radius_max":2
+			},
+			"geology": {
+				"primary_rock_type":"sedimentary",
+				"magnetic_field_table": {
+					"none": 0.4,
+					"weak": 0.2,
+					"moderate": 0.3
+				},
+				"base_weathering_factor": 0.1
+			},
+			"systems": {
+				"atmosphere_type_table": {
+					"thin":0.6,
+					"moderate": 0.2,
+					"thick": 0.2
+				},
+				"atmosphere_content_table": {
+					"BASE_GAS": 0.4,
+					"GREENHOUSE_GAS": 0.6,
+					"NOBLE_GAS": 0.1
+				},
+				"ocean_coverage_max": 0.0,
+				"ocean_coverage_min": 0.0,
+				"weather_type_table": {
+					"none":1.0
+				}
+			}
+		}
 	}
 }

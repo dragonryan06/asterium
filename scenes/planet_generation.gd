@@ -50,10 +50,13 @@ func generate_star() -> Star:
 	star.setup(data)
 	return star
 
-func generate_planet(parent_star:Star,satellite_idx:int) -> Planet:
+func generate_planet(parent_star:Star,satellite_idx:int,base=null) -> Planet:
 	var planet = _Planet.instantiate()
-	var base = planet_data["common"][planet_data["common"].keys().pick_random()]
 	var data = {}
+	if base==null:
+		base = planet_data["common"][planet_data["common"].keys().pick_random()]
+	else:
+		base = planet_data["nongenerating"][base]
 	
 	# basic
 	data["orbital_parent"] = parent_star
@@ -116,7 +119,7 @@ func generate_planet(parent_star:Star,satellite_idx:int) -> Planet:
 			planet.add_child(ocean)
 		else:
 			ocean.queue_free()
-			data["obj_class"] = "Dessicated world"
+			return generate_planet(parent_star,satellite_idx,"dessicated")
 		
 	# atmosphere
 	var atm = Constants.pick_random(base["systems"]["atmosphere_type_table"])
