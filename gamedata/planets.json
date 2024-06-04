@@ -82,7 +82,7 @@
 				"primary_rock_type": "metamorphic",
 				"magnetic_field_table": {
 					"weak": 0.3,
-					"strong": 0.3,
+					"strong": 0.6,
 					"very_strong": 0.1
 				},
 				"base_weathering_factor": 0.1
@@ -150,7 +150,7 @@
 			"geology": {
 				"primary_rock_type": "sedimentary",
 				"magnetic_field_table": {
-					"none": 0.4,
+					"none": 0.5,
 					"weak": 0.2,
 					"moderate": 0.3
 				},
