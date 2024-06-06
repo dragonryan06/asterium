@@ -9,7 +9,9 @@ func _ready() -> void:
 	var current_scene = get_tree().current_scene
 	get_parent().remove_child.call_deferred(self)
 	current_scene.get_node("Background").add_child.call_deferred(self)
-	modulate=Color("#dcdcdc")
+	#modulate=Color("#dcdcdc")
+	material = ShaderMaterial.new()
+	material.shader = load("res://ui/assets/invert_area_shader.gdshader")
 
 func _fade_out_and_die() -> void:
 	var tween = get_tree().create_tween()

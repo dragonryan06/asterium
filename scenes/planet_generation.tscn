@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8nk8farod758"]
+[gd_scene load_steps=8 format=3 uid="uid://b8nk8farod758"]
 
 [ext_resource type="Script" path="res://scenes/planet_generation.gd" id="1_w0wtp"]
 [ext_resource type="Script" path="res://ui/ui_manager.gd" id="2_atq0q"]
 [ext_resource type="Script" path="res://scenes/standard_camera.gd" id="2_kie41"]
 [ext_resource type="Script" path="res://ui/grid.gd" id="3_ejyy7"]
 [ext_resource type="Curve" uid="uid://lm1fa4pk1xum" path="res://ui/assets/grid_fade_curve.tres" id="4_rvhi6"]
+[ext_resource type="PackedScene" uid="uid://cefj0aj8uwijq" path="res://debug/frame_counter.tscn" id="6_fnwwd"]
 
 [sub_resource type="Environment" id="Environment_14p7s"]
 background_mode = 3
@@ -45,6 +46,8 @@ offset_bottom = -88.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "GENERATE A NEW STAR"
+
+[node name="FrameCounter" parent="HUD" instance=ExtResource("6_fnwwd")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_14p7s")
