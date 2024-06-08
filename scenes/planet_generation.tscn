@@ -49,6 +49,35 @@ text = "GENERATE A NEW STAR"
 
 [node name="FrameCounter" parent="HUD" instance=ExtResource("6_fnwwd")]
 
+[node name="WIPScreen" type="ColorRect" parent="HUD"]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.396078, 0.396078, 0.396078, 1)
+
+[node name="WIP" type="Label" parent="HUD/WIPScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Oops! Work in progress!"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="HUD/WIPScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "this is gonna be the galactic map :)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_14p7s")
 
