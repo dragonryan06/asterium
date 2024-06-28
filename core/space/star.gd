@@ -53,6 +53,6 @@ func _ready():
 	$InspectComponent.tt_title_text = obj_name
 	$InspectComponent.tt_subtitle_text = obj_class
 
-func _draw() -> void:
-	for p in $Satellites.get_children():
-		draw_arc(position,p.orbital_radius*2048,0,TAU,128,Color("white"))
+#func _draw() -> void:
+	#for p in $Satellites.get_children():
+		#draw_arc(position,p.orbital_radius*2048,0,TAU,128,Color("white"))
