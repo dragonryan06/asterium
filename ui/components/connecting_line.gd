@@ -1,15 +1,13 @@
 extends Line2D
 class_name ConnectingLine
 
-# NOTE: ConnectingLine will always float up to the top active scene's 'Background' CanvasLayer when added to any node.
-# im thinking there will be more nodes like this later, could call them Annotations or something
-# debug lines could work like this too, i just really like the Line2D node over having to spam queue_redraw to draw manually, feels more efficent
+# Eventually this could be like an AnnotationComponent, but essentially it looks for the local Camera2D's child ParallaxBackground/Background as a parent.
 
 func _ready() -> void:
 	var current_scene = get_tree().current_scene
 	get_parent().remove_child.call_deferred(self)
-	current_scene.get_node("Background").add_child.call_deferred(self)
-	#modulate=Color("#dcdcdc")
+	current_scene.get_node("Camera2D").get_node("ParallaxBackground/Background").add_child.call_deferred(self)
+	width = 4.0
 	material = ShaderMaterial.new()
 	material.shader = load("res://ui/assets/invert_area_shader.gdshader")
 

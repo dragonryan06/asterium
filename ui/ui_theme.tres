@@ -50,7 +50,6 @@ texture_margin_bottom = 32.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tg87m"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_thf5i"]
-load_path = "res://.godot/imported/tab_backgrounds.png-b87e8375b9a4b404f7dabce186962a5e.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iu6as"]
 atlas = SubResource("CompressedTexture2D_thf5i")
