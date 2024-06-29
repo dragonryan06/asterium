@@ -1,12 +1,44 @@
 extends Camera2D
 
 signal camera_changed
+signal camera_zoom_max(state:bool)
 
 const POS_SPEED = 20
 const ZOOM_SPEED = 0.01
 
 var pos_velocity = Vector2(0.0,0.0)
 var zoom_velocity = 0.0
+
+var zoom_maxxed = false
+var dragging = false
+
+func _input(event):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
+		Input.set_default_cursor_shape(Input.CURSOR_DRAG)
+		dragging = true
+	else:
+		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+		dragging = false
+	
+	if dragging and event is InputEventMouseMotion:
+		position-=event.relative*Vector2(1.0/zoom.x,1.0/zoom.y)
+		camera_changed.emit()
+	
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_UP:
+		print(zoom)
+		zoom += Vector2(ZOOM_SPEED,ZOOM_SPEED)
+		if zoom_maxxed:
+			camera_zoom_max.emit(false)
+			zoom_maxxed = false
+		camera_changed.emit()
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+		if 1.0/(zoom-Vector2(ZOOM_SPEED,ZOOM_SPEED)).x >= 250:
+			zoom = Vector2(0.001,0.001)
+			camera_zoom_max.emit(true)
+			zoom_maxxed = true
+		else:
+			zoom-=Vector2(ZOOM_SPEED,ZOOM_SPEED)
+		camera_changed.emit()
 
 func _physics_process(delta):
 	if Input.is_action_pressed("camera_move_up"):
