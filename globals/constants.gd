@@ -2,6 +2,8 @@
 extends Node
 class_name Constants
 
+const version = "Asterium alpha pre-v0.0.0"
+
 const M_IN_AU = 149000000000
 const M_IN_SR = 696000000
 const ALPHABET = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
