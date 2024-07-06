@@ -11,3 +11,6 @@ func _on_button_pressed(idx:int):
 			$UI/Settings.fly_in()
 		2:
 			get_tree().quit()
+
+func _process(delta):
+	$Camera2D.position+=delta*(get_viewport().get_mouse_position()-get_viewport().get_visible_rect().size*Vector2(0.5,0.5))

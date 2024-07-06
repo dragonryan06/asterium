@@ -15,13 +15,13 @@ func _ready():
 
 func play() -> void:
 	var swoosh = get_tree().create_tween()
-	swoosh.tween_property($"Main Menu/UI/Control","position",Vector2(0,-555),2).set_trans(Tween.TRANS_CUBIC)
+	swoosh.tween_property($MainMenu/UI,"offset",Vector2(0,2048),2).set_trans(Tween.TRANS_CUBIC)
 	await swoosh.finished
 	var fade = get_tree().create_tween()
-	fade.tween_property($FTB,"color",Color(0,0,0,1),2).set_trans(Tween.TRANS_SINE)
+	fade.tween_property($MainMenu/Camera2D/FTB/ColorRect,"modulate",Color(0,0,0,1),2).set_trans(Tween.TRANS_SINE)
 	await fade.finished
 	
-	var mm = $"Main Menu"
+	var mm = $MainMenu
 	remove_child(mm)
 	mm.queue_free()
 	var PlanetGeneration = load("res://scenes/planet_generation.tscn")
@@ -29,7 +29,6 @@ func play() -> void:
 	pg.get_node("Camera2D").enabled = false
 	add_child(pg)
 	
-	fade = get_tree().create_tween()
-	fade.tween_property($FTB,"color",Color(0,0,0,0),2).set_trans(Tween.TRANS_SINE)
-	await fade.finished
+	await get_tree().create_timer(2)
+	
 	pg.get_node("Camera2D").enabled = true

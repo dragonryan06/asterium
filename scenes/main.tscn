@@ -6,12 +6,4 @@
 [node name="Game" type="Node"]
 script = ExtResource("1_me805")
 
-[node name="FTB" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0)
-
-[node name="Main Menu" parent="." instance=ExtResource("1_qxr8v")]
+[node name="MainMenu" parent="." instance=ExtResource("1_qxr8v")]
