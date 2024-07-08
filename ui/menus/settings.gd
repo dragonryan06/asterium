@@ -17,13 +17,13 @@ var _resolutions = [
 
 func fly_in():
 	var tween = get_tree().create_tween().set_parallel()
-	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(self,"position",Vector2(252,0),0.5)
 	tween.tween_property(self,"modulate",Color(1.0,1.0,1.0,1.0),0.5)
 
 func fly_out():
 	var tween = get_tree().create_tween().set_parallel()
-	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(self,"position",Vector2(252,649),0.5)
 	tween.tween_property(self,"modulate",Color(1.0,1.0,1.0,0.0),0.5)
 
