@@ -13,7 +13,7 @@ func _ready():
 	get_viewport().content_scale_factor = settings.get_value("VIDEO","SCALE_FACTOR")
 	get_viewport().content_scale_stretch = settings.get_value("VIDEO","SCALE_STRETCH_MODE")
 
-func play() -> void:
+func play(scenepath:String) -> void:
 	var swoosh = get_tree().create_tween()
 	swoosh.tween_property($MainMenu/UI,"offset",Vector2(0,2048),2).set_trans(Tween.TRANS_CUBIC)
 	await swoosh.finished
@@ -24,11 +24,10 @@ func play() -> void:
 	var mm = $MainMenu
 	remove_child(mm)
 	mm.queue_free()
-	var PlanetGeneration = load("res://scenes/planet_generation.tscn")
-	var pg = PlanetGeneration.instantiate()
-	pg.get_node("Camera2D").enabled = false
-	add_child(pg)
+	var scene = load(scenepath).instantiate()
+	scene.get_node("Camera2D").enabled = false
+	add_child(scene)
 	
 	await get_tree().create_timer(2)
 	
-	pg.get_node("Camera2D").enabled = true
+	scene.get_node("Camera2D").enabled = true

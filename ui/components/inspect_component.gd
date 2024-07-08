@@ -81,7 +81,7 @@ func create_tooltip() -> void:
 	tt.position = get_viewport().get_mouse_position()
 	add_child(tt)
 	_tt_lock = true
-	find_parent("root").get_child(0).find_child("UIManager").tooltip_changed.emit()
+	find_parent("Game").get_child(0).find_child("UIManager").tooltip_changed.emit()
 	_tt_lock = false
 	var tween = get_tree().create_tween()
 	tween.tween_property(tt,"modulate",Color(1,1,1,1),0.25)
@@ -120,4 +120,4 @@ func _on_tooltip_changed() -> void:
 		destroy_tooltip()
 
 func _on_tree_entered():
-	find_parent("root").get_child(0).find_child("UIManager").tooltip_changed.connect(_on_tooltip_changed)
+	find_parent("Game").get_child(0).find_child("UIManager").tooltip_changed.connect(_on_tooltip_changed)
