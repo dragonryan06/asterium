@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var celestial_icons = preload("res://ui/assets/celestialobject_icons.png")
+
 const _Star = preload("res://core/space/star.tscn")
 const _Planet = preload("res://core/space/planet.tscn")
 
@@ -220,6 +222,8 @@ func generate_planet(parent_star:Star,satellite_idx:int,base=null) -> Planet:
 	planet.obj_name = prof["name"]
 	planet.description = prof["desc"]
 	
+	planet.ui_color = Color(base["basic"]["color_code"])
+	
 	return planet
 
 func generate_system():
@@ -234,10 +238,49 @@ func generate_system():
 	
 	add_child(star)
 
+static func recolor_icon(tex:Texture2D,color:Color) -> ImageTexture:
+	var img = tex.get_image()
+	for y in range(img.get_height()):
+		for x in range(img.get_width()):
+			img.set_pixel(x,y,img.get_pixel(x,y)*color)
+	return ImageTexture.create_from_image(img)
+
 func _on_generate_pressed():
 	for c in get_children():
 		if c.has_node("Sprite"):
 			c.queue_free()
 			remove_child(c)
 			break
+	$HUD/SidebarMenu/VBoxContainer/Title.text = "STARNAME System"
 	generate_system()
+	$Camera2D._on_camera_focus_object($Star)
+	$HUD/SidebarMenu/VBoxContainer/Title.text = $HUD/SidebarMenu/VBoxContainer/Title.text.replace("STARNAME",$Star.obj_name)
+	var tree = $HUD/SidebarMenu/VBoxContainer/HFlowContainer/MarginContainer/Tree
+	tree.clear()
+	var root = tree.create_item()
+	root.set_text(0,$Star.obj_name)
+	root.set_tooltip_text(0,$Star.obj_class)
+	var rtex = AtlasTexture.new()
+	rtex.atlas = celestial_icons
+	rtex.region = Rect2i(18,18,18,18)
+	root.set_icon(0,recolor_icon(rtex,Color($Star.chromaticity_color)))
+	root.set_metadata(0,$Star)
+	root.set_text(1,"dist.")
+	root.set_custom_color(1,Color("#999999"))
+	root.set_selectable(1,false)
+	root.set_tooltip_text(1,"Distance from orbital parent")
+	for s in $Star/Satellites.get_children():
+		var item = tree.create_item(root)
+		item.set_text(0,s.obj_name)
+		item.set_tooltip_text(0,s.obj_class)
+		var tex = AtlasTexture.new()
+		tex.atlas = celestial_icons
+		tex.region = Rect2i(0,0,18,18)
+		item.set_icon(0,recolor_icon(tex,s.ui_color))
+		item.set_metadata(0,s)
+		item.set_text(1,str(snapped(s.orbital_radius,0.1)).pad_decimals(1)+" AU")
+		item.set_custom_color(1,Color("#999999"))
+		item.set_selectable(1,false)
+
+func _on_tree_item_activated():
+	$Camera2D._on_camera_focus_object($HUD/SidebarMenu/VBoxContainer/HFlowContainer/MarginContainer/Tree.get_selected().get_metadata(0))

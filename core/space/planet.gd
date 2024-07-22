@@ -11,6 +11,7 @@ enum TAGS {
 
 var temperature : float
 var ocean_coverage_percent : float : set=_set_ocean_coverage_percent
+var ui_color : Color
 
 # currently just for description
 var weather : String

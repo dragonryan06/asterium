@@ -5,7 +5,8 @@
 				"name": "Barren world",
 				"base_sentence": "§V{out.name} is desolate, rocky, and ultimately featureless. Its surface implies a slow and uniform freeze to mineral rocks of primarily §D{ROCK_DESCRIPTOR} igneous origin.",
 				"radius_min": 0.3,
-				"radius_max": 2
+				"radius_max": 2,
+				"color_code":"#669999"
 			},
 			"geology": {
 				"primary_rock_type": "igneous",
@@ -40,7 +41,8 @@
 				"name": "Dust world",
 				"base_sentence": "§V{out.name} is buried in a thick layer of sediment, covering its surface in vast, endless dunes. The mechanism which performed such acts of weathering is long gone, without so much of a trace left behind.",
 				"radius_min": 0.3,
-				"radius_max": 2
+				"radius_max": 2,
+				"color_code":"#ffff00"
 			},
 			"geology": {
 				"primary_rock_type": "sedimentary",
@@ -76,7 +78,8 @@
 				"name": "Scarred world",
 				"base_sentence": "§V{out.name} is pock-marked with craters and impact zones, varying greatly in size from tiny bowls to large magma seas. As such, its composition is highly varied, it being a product of its debris-filled neighborhood.",
 				"radius_min": 0.3,
-				"radius_max": 2
+				"radius_max": 2,
+				"color_code":"#666699"
 			},
 			"geology": {
 				"primary_rock_type": "metamorphic",
@@ -111,7 +114,8 @@
 				"name": "Boiling world",
 				"base_sentence": "The ground on §V{out.name} is rapidly shifting. Intense subterranean heat clashing against the impenetrable cold of space has started a cycle of powerful and quick convection currents, driving constant quakes and volcanism in its shallow crust.",
 				"radius_min": 0.3,
-				"radius_max": 2
+				"radius_max": 2,
+				"color_code": "#ff0066"
 			},
 			"geology": {
 				"primary_rock_type": "igneous",
@@ -145,7 +149,8 @@
 				"name": "Ocean world",
 				"base_sentence": "§V{out.name}'s surface is almost completely covered in a massive panthalassic sea of [b][color=§V{$Ocean.get_largest_component.ui_color}]§V{$Ocean.get_largest_component.reagent_name}[/color][/b]. As a result, the world's geology is defined by erosion and undersea weather.",
 				"radius_min": 0.3,
-				"radius_max": 2
+				"radius_max": 2,
+				"color_code": "#0066ff"
 			},
 			"geology": {
 				"primary_rock_type": "sedimentary",
@@ -187,7 +192,8 @@
 				"name": "Dessicated world",
 				"base_sentence": "Dry, cracked and exposed, §V{out.name} clearly once possessed an all-encompassing ocean of some sort, but due to shifting solar phase, mega-asteroid impact, or otherwise, the liquid has since vacated the surface.",
 				"radius_min":0.3,
-				"radius_max":2
+				"radius_max":2,
+				"color_code":"#999966"
 			},
 			"geology": {
 				"primary_rock_type":"sedimentary",

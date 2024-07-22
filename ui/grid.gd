@@ -7,10 +7,6 @@ func _input(event):
 	if event.is_action_pressed("toggle_grid"):
 		visible = !visible
 
-func _get_camera_rect() -> Rect2:
-	var half_size = get_viewport_rect().size * 0.5 * 1.0/find_parent("Camera2D").zoom.x
-	return Rect2(find_parent("Camera2D").global_position-half_size,half_size*2.0)
-
 func _on_camera_changed() -> void:
 	var cam = find_parent("Camera2D")
 	material.set_shader_parameter("offset",cam.global_position)

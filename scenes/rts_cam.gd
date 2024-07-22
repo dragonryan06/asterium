@@ -4,7 +4,8 @@ signal camera_changed
 signal camera_zoom_max(state:bool)
 
 const POS_SPEED = 20
-const ZOOM_SPEED = 0.01
+const ZOOM_STEP = 0.2
+const ZOOM_SPEED = 1.0
 
 var pos_velocity = Vector2(0.0,0.0)
 var zoom_velocity = 0.0
@@ -25,20 +26,18 @@ func _input(event):
 		camera_changed.emit()
 	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_UP:
-		print(zoom)
-		zoom += Vector2(ZOOM_SPEED,ZOOM_SPEED)
-		if zoom_maxxed:
-			camera_zoom_max.emit(false)
-			zoom_maxxed = false
+		var tween = get_tree().create_tween().set_parallel()
+		tween.tween_property(self,"zoom",zoom+Vector2(ZOOM_STEP,ZOOM_STEP)*zoom,ZOOM_SPEED).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		tween.tween_method(_update_camera,null,null,ZOOM_SPEED)
+		await tween.finished
 		camera_changed.emit()
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-		if 1.0/(zoom-Vector2(ZOOM_SPEED,ZOOM_SPEED)).x >= 250:
-			zoom = Vector2(0.001,0.001)
-			camera_zoom_max.emit(true)
-			zoom_maxxed = true
-		else:
-			zoom-=Vector2(ZOOM_SPEED,ZOOM_SPEED)
-		camera_changed.emit()
+		if !zoom_maxxed:
+			var tween = get_tree().create_tween().set_parallel()
+			tween.tween_property(self,"zoom",zoom-Vector2(ZOOM_STEP,ZOOM_STEP)*zoom,ZOOM_SPEED).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+			tween.tween_method(_update_camera,null,null,ZOOM_SPEED)
+			await tween.finished
+			camera_changed.emit()
 
 func _physics_process(delta):
 	if Input.is_action_pressed("camera_move_up"):
@@ -50,9 +49,9 @@ func _physics_process(delta):
 	if Input.is_action_pressed("camera_move_right"):
 		pos_velocity.x+=POS_SPEED*1.0/zoom.x
 	if Input.is_action_pressed("camera_zoom_in"):
-		zoom_velocity+=ZOOM_SPEED
+		zoom_velocity+=ZOOM_STEP*zoom.x*5.0
 	if Input.is_action_pressed("camera_zoom_out"):
-		zoom_velocity-=ZOOM_SPEED
+		zoom_velocity-=ZOOM_STEP*zoom.x*5.0
 	
 	position+=pos_velocity*delta
 	if pos_velocity*delta!=Vector2(0.0,0.0):
@@ -87,6 +86,15 @@ func _physics_process(delta):
 		zoom_velocity+=0.5*ZOOM_SPEED
 	else:
 		zoom_velocity = 0
+	
+	if 1.0/zoom.x<100:
+		zoom_maxxed = false
+		camera_zoom_max.emit(false)
+	elif 1.0/zoom.x>=100:
+		zoom_velocity=0
+		zoom = Vector2(0.01,0.01)
+		zoom_maxxed = true
+		camera_zoom_max.emit(true)
 
 # this is so that tween_method() can call camera_changed.emit()
 func _update_camera(_null):

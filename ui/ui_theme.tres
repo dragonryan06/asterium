@@ -1,9 +1,10 @@
-[gd_resource type="Theme" load_steps=51 format=3 uid="uid://b8ljuij7sans3"]
+[gd_resource type="Theme" load_steps=56 format=3 uid="uid://b8ljuij7sans3"]
 
 [ext_resource type="Texture2D" uid="uid://d0ossy08npoqd" path="res://ui/assets/buttons.png" id="1_jjvqt"]
 [ext_resource type="FontFile" uid="uid://dnpsjacgpflbl" path="res://fonts/PixelOperator.ttf" id="1_ti0ik"]
 [ext_resource type="Texture2D" uid="uid://cqa1hwp4g4bc3" path="res://ui/assets/generic_inbox.png" id="1_w4a2l"]
 [ext_resource type="Texture2D" uid="uid://ci5x42i6frx2q" path="res://ui/assets/panel_backdrop.png" id="1_yrdsr"]
+[ext_resource type="Texture2D" uid="uid://dt2spgxahd7vu" path="res://ui/assets/expand_buttons.png" id="2_f0ge2"]
 [ext_resource type="FontFile" uid="uid://c5j20n3msj3bg" path="res://fonts/PixelOperator-Bold.ttf" id="2_gyqef"]
 [ext_resource type="Texture2D" uid="uid://b78cw2rrkv10y" path="res://ui/assets/extra_small_buttons.png" id="2_mdplw"]
 [ext_resource type="Texture2D" uid="uid://dq0wxw4wnl0yt" path="res://ui/assets/tab_backgrounds.png" id="2_nnuke"]
@@ -20,18 +21,9 @@ texture_margin_top = 32.0
 texture_margin_right = 32.0
 texture_margin_bottom = 32.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fu6gr"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_edw0w"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_igm25"]
-atlas = ExtResource("1_jjvqt")
-region = Rect2(128, 0, 128, 128)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8di0d"]
-texture = SubResource("AtlasTexture_igm25")
-texture_margin_left = 32.0
-texture_margin_top = 32.0
-texture_margin_right = 32.0
-texture_margin_bottom = 32.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jirjr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nimyw"]
 atlas = ExtResource("1_jjvqt")
@@ -54,6 +46,22 @@ texture_margin_left = 32.0
 texture_margin_top = 32.0
 texture_margin_right = 32.0
 texture_margin_bottom = 32.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5d3jc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3c2n"]
+atlas = ExtResource("2_f0ge2")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g5ukm"]
+texture = SubResource("AtlasTexture_t3c2n")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svveg"]
+atlas = ExtResource("2_f0ge2")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qnx47"]
+texture = SubResource("AtlasTexture_svveg")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_spvp8"]
 atlas = ExtResource("2_mdplw")
@@ -222,10 +230,15 @@ texture_margin_right = 16.0
 [resource]
 default_font = ExtResource("1_ti0ik")
 Button/styles/disabled = SubResource("StyleBoxTexture_okg20")
-Button/styles/focus = SubResource("StyleBoxEmpty_fu6gr")
-Button/styles/hover = SubResource("StyleBoxTexture_8di0d")
+Button/styles/focus = SubResource("StyleBoxEmpty_edw0w")
+Button/styles/hover = SubResource("StyleBoxEmpty_jirjr")
 Button/styles/normal = SubResource("StyleBoxTexture_535l3")
 Button/styles/pressed = SubResource("StyleBoxTexture_hx0hk")
+ExpandButton/base_type = &"Button"
+ExpandButton/styles/focus = SubResource("StyleBoxEmpty_5d3jc")
+ExpandButton/styles/hover = SubResource("StyleBoxTexture_g5ukm")
+ExpandButton/styles/normal = SubResource("StyleBoxTexture_g5ukm")
+ExpandButton/styles/pressed = SubResource("StyleBoxTexture_qnx47")
 ExtraSmallButton/base_type = &"Button"
 ExtraSmallButton/styles/disabled = SubResource("StyleBoxTexture_2v6ur")
 ExtraSmallButton/styles/focus = SubResource("StyleBoxEmpty_dja7j")
