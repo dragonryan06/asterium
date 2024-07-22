@@ -33,6 +33,7 @@ shader_parameter/rotation_speed = 1.0
 shader_parameter/light_direction_degrees = 0.0
 shader_parameter/atmosphere_density = 0.5
 shader_parameter/cloud_coverage = 0.0
+shader_parameter/cloud_tint = Vector3(1, 1, 1)
 
 [node name="Planet" type="Node2D"]
 script = ExtResource("1_m3qu6")
@@ -53,9 +54,11 @@ scale = Vector2(2, 1)
 shape = SubResource("CircleShape2D_2h0o0")
 
 [node name="Ocean" type="Sprite2D" parent="Sprite"]
+modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_x5mc5")
 
 [node name="Atmosphere" type="Sprite2D" parent="Sprite"]
+modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_uidcm")
 
 [node name="InspectComponent" type="CanvasLayer" parent="." node_paths=PackedStringArray("trigger_area")]

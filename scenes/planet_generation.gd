@@ -205,9 +205,13 @@ func generate_planet(parent_star:Star,satellite_idx:int,base=null) -> Planet:
 	planet.get_node("Sprite/Atmosphere").texture = ImageTexture.create_from_image(atmos)
 	
 	planet.setup(data)
-	if planet.has_node("Atmosphere"):
+	
+	planet.get_node("Sprite").get_material().set_shader_parameter("base_color",planet.get_node("Bedrock").get_true_color())
+	if planet.has_node("Atmosphere") and data["atm_desc"]!="none" and data["atm_desc"]!="negligible":
 		planet.get_node("Sprite/Atmosphere").get_material().set_shader_parameter("base_color",planet.get_node("Atmosphere").get_true_color()-Color(0.25,0.25,0.25,1.0)*rand_atm_tint.call())
+		planet.get_node("Sprite/Atmosphere").modulate.a = 1.0
 	if planet.has_node("Ocean"):
+		planet.get_node("Sprite/Ocean").modulate.a = 1.0
 		if planet.get_node("Ocean").get_true_color()==Color.TRANSPARENT:
 			planet.get_node("Sprite/Ocean").get_material().set_shader_parameter("base_color",rand_ocn_tint.call())
 			planet.get_node("Sprite/Ocean").get_material().set_shader_parameter("rotation_speed",planet.get_node("Sprite").get_material().get_shader_parameter("rotation_speed"))
@@ -215,6 +219,7 @@ func generate_planet(parent_star:Star,satellite_idx:int,base=null) -> Planet:
 			planet.get_node("Sprite/Ocean").get_material().set_shader_parameter("base_color",planet.get_node("Ocean").get_true_color())
 	if planet.has_node("Precipitation"):
 		planet.get_node("Sprite/Atmosphere").get_material().set_shader_parameter("cloud_coverage",0.25*randf()+0.25)
+		planet.get_node("Sprite/Atmosphere").get_material().set_shader_parameter("cloud_tint",planet.get_node("Precipitation").get_true_color())
 		planet.get_node("Sprite/Atmosphere").get_material().set_shader_parameter("rotation_speed",planet.get_node("Sprite/Ocean").get_material().get_shader_parameter("rotation_speed")-0.4)
 	
 	# descriptions

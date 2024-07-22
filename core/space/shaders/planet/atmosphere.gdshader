@@ -10,6 +10,7 @@ uniform float light_direction_degrees = 0.0;
 
 uniform float atmosphere_density = 0.5;
 uniform float cloud_coverage = 0.0;
+uniform vec3 cloud_tint = vec3(1.0,1.0,1.0);
 
 vec4 atmos_sphere(vec2 uv,vec4 color,sampler2D TEX) {
 	// modified cc0 code from https://godotshaders.com/shader/2d-spinning-sphere/
@@ -28,9 +29,8 @@ vec4 atmos_sphere(vec2 uv,vec4 color,sampler2D TEX) {
 		vec3 tex = texture(TEX, vec2(
 				0.5 * (px + 1.0) / aspect_ratio - TIME * rotation_speed*0.25,
 				0.5 * (py + 1.0))).rgb;
-		if (tex.r>1.0-cloud_coverage) {
-			color.rgb = 0.9*(tex+0.5);
-			color.a=1.0;
+		if (cloud_coverage!=0.0) {
+			color.rgba = vec4(1.0,1.0,1.0,0.5)*vec4(cloud_tint.r*2.0,cloud_tint.g*2.0,cloud_tint.b*2.0,1.0)*smoothstep(1.0-cloud_coverage-0.1,1.0-cloud_coverage+0.1,tex.r);
 		}
 	}
 	return color;

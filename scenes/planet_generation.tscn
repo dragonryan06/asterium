@@ -105,6 +105,8 @@ text = "Asterium Planet Generation Test"
 horizontal_alignment = 1
 
 [node name="FrameCounter" parent="HUD" instance=ExtResource("6_fnwwd")]
+top_level = true
+z_index = 1000
 
 [node name="WIPScreen" type="ColorRect" parent="HUD"]
 visible = false
