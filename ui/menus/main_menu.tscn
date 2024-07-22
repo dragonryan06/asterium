@@ -1,0 +1,259 @@
+[gd_scene load_steps=16 format=3 uid="uid://7hmixo30hi33"]
+
+[ext_resource type="Script" path="res://ui/menus/main_menu.gd" id="1_7mvos"]
+[ext_resource type="Texture2D" uid="uid://dujsyb6e78av8" path="res://scenes/assets/gamelogo.png" id="2_274ln"]
+[ext_resource type="PackedScene" uid="uid://c7hrv0tsxbsi2" path="res://core/space/stardrop.tscn" id="3_elged"]
+[ext_resource type="PackedScene" uid="uid://dkne4hft43a8" path="res://ui/menus/settings.tscn" id="4_0gaqt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4n807"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d5i3y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xl8sh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b8hnu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ssalb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mnph3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m8jrg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uywy4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_txalg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_knmgg"]
+
+[sub_resource type="Environment" id="Environment_8j2hn"]
+background_mode = 3
+tonemap_mode = 3
+tonemap_exposure = 1.25
+adjustment_enabled = true
+adjustment_brightness = 1.25
+adjustment_saturation = 1.25
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_7mvos")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="FTB" type="CanvasLayer" parent="Camera2D"]
+layer = 128
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/FTB"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Stardrop" parent="." instance=ExtResource("3_elged")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TopPage" type="MarginContainer" parent="UI"]
+offset_left = 333.0
+offset_right = 819.0
+offset_bottom = 648.0
+theme_override_constants/margin_top = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/TopPage"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Title" type="TextureRect" parent="UI/TopPage/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 256)
+layout_mode = 2
+texture = ExtResource("2_274ln")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/TopPage/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_right = 160
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/TopPage/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -24
+
+[node name="Play" type="Button" parent="UI/TopPage/VBoxContainer/MarginContainer/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 96)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0.498039, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4n807")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_d5i3y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_xl8sh")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_b8hnu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ssalb")
+text = "PLAY"
+
+[node name="Settings" type="Button" parent="UI/TopPage/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0.498039, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mnph3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_m8jrg")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uywy4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_txalg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_knmgg")
+text = "SETTINGS"
+
+[node name="Quit" type="Button" parent="UI/TopPage/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mnph3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_m8jrg")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uywy4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_txalg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_knmgg")
+text = "QUIT"
+
+[node name="SelectPage" type="MarginContainer" parent="UI"]
+offset_left = 333.0
+offset_top = -2048.0
+offset_right = 869.0
+offset_bottom = -1400.0
+theme_override_constants/margin_top = 64
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/SelectPage"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="PlanetGeneration" type="Button" parent="UI/SelectPage/VBoxContainer2"]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 96)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0.498039, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4n807")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_d5i3y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_xl8sh")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_b8hnu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ssalb")
+text = "PLANET GENERATION TEST"
+
+[node name="Label" type="Label" parent="UI/SelectPage/VBoxContainer2/PlanetGeneration"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -292.0
+offset_top = -32.0
+offset_right = 292.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.588235, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "Reroll and explore endless star systems"
+horizontal_alignment = 1
+
+[node name="ShipPhysics" type="Button" parent="UI/SelectPage/VBoxContainer2"]
+custom_minimum_size = Vector2(128, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0.498039, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mnph3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_m8jrg")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uywy4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_txalg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_knmgg")
+disabled = true
+text = "SHIP PHYSICS SANDBOX"
+
+[node name="Label" type="Label" parent="UI/SelectPage/VBoxContainer2/ShipPhysics"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -292.0
+offset_top = -32.0
+offset_right = 292.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.698039, 0.698039, 0.698039, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.588235, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "To be added in v0.1.0!"
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="UI/SelectPage/VBoxContainer2"]
+custom_minimum_size = Vector2(128, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mnph3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_m8jrg")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uywy4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_txalg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_knmgg")
+text = "BACK"
+
+[node name="Version" type="VBoxContainer" parent="UI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -116.0
+offset_top = -34.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = -2
+
+[node name="Asterium" type="Label" parent="UI/Version"]
+layout_mode = 2
+text = "VERSION INFO"
+horizontal_alignment = 2
+
+[node name="Godot" type="LinkButton" parent="UI/Version"]
+layout_mode = 2
+text = "GODOT VERSION INFO"
+uri = "https://github.com/godotengine"
+
+[node name="Repo" type="LinkButton" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+offset_right = 264.0
+offset_bottom = -4.0
+grow_vertical = 0
+text = "https://github.com/dragonryan06/asterium"
+uri = "https://github.com/dragonryan06/asterium"
+
+[node name="Settings" parent="UI" instance=ExtResource("4_0gaqt")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8j2hn")
+
+[connection signal="pressed" from="UI/TopPage/VBoxContainer/MarginContainer/VBoxContainer/Play" to="." method="_on_button_pressed" binds= [0]]
+[connection signal="pressed" from="UI/TopPage/VBoxContainer/MarginContainer/VBoxContainer/Settings" to="." method="_on_button_pressed" binds= [1]]
+[connection signal="pressed" from="UI/TopPage/VBoxContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_button_pressed" binds= [2]]
+[connection signal="pressed" from="UI/SelectPage/VBoxContainer2/PlanetGeneration" to="." method="_on_button_pressed" binds= [3]]
+[connection signal="pressed" from="UI/SelectPage/VBoxContainer2/ShipPhysics" to="." method="_on_button_pressed" binds= [4]]
+[connection signal="pressed" from="UI/SelectPage/VBoxContainer2/Back" to="." method="_on_button_pressed" binds= [5]]

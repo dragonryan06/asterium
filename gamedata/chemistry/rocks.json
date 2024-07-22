@@ -1,0 +1,206 @@
+{
+	"igneous": {
+		"granite": {
+			"base_color": "#b39b9a",
+			"ratios": {
+				"feldspar": 0.57,
+				"quartz": 0.33,
+				"mica": 0.07,
+				"amphibole": 0.03
+			},
+			"descriptor":"felsic"
+		},
+		"rhyolite": {
+			"base_color": "#B4B1B2",
+			"ratios": {
+				"quartz": 0.66,
+				"feldspar": 0.2,
+				"amphibole": 0.08,
+				"mica": 0.05
+			},
+			"descriptor":"felsic"
+		},
+		"diorite": {
+			"base_color": "#495251",
+			"ratios": {
+				"feldspar": 0.34,
+				"amphibole": 0.31,
+				"pyroxene": 0.14,
+				"quartz": 0.11,
+				"mica": 0.1
+			},
+			"descriptor":"intermediate"
+		},
+		"andesite": {
+			"base_color": "#37393C",
+			"ratios": {
+				"feldspar": 0.42,
+				"amphibole": 0.29,
+				"pyroxene": 0.21,
+				"mica": 0.08
+			},
+			"descriptor":"intermediate"
+		},
+		"gabbro": {
+			"base_color": "#1D1E14",
+			"ratios": {
+				"pyroxene": 0.62,
+				"feldspar": 0.31,
+				"amphibole": 0.05,
+				"mica": 0.02
+			},
+			"descriptor":"mafic"
+		},
+		"basalt": {
+			"base_color": "#1F1F29",
+			"ratios": {
+				"pyroxene": 0.61,
+				"olivine": 0.21,
+				"feldspar": 0.15,
+				"amphibole": 0.03
+			},
+			"descriptor":"mafic"
+		},
+		"peridotite": {
+			"base_color": "#343923",
+			"ratios": {
+				"olivine": 0.57,
+				"pyroxene": 0.43
+			},
+			"descriptor":"ultramafic"
+		}
+	},
+	"sedimentary": {
+		"sandstone": {
+			"base_color": "#C06536",
+			"ratios": {
+				"quartz": 0.78,
+				"feldspar": 0.11,
+				"calcite": 0.06,
+				"kaolinite": 0.05
+			},
+			"descriptor":"clastic"
+		},
+		"chert": {
+			"base_color": "#EADAD3",
+			"ratios": {
+				"quartz": 0.82,
+				"calcite": 0.1,
+				"feldspar": 0.08
+			},
+			"descriptor":"chemical"
+		},
+		"limestone": {
+			"base_color": "#B9B1AA",
+			"ratios": {
+				"calcite": 0.63,
+				"magnesite": 0.17,
+				"feldspar": 0.11,
+				"quartz": 0.09
+			},
+			"descriptor":"chemical"
+		},
+		"dolomite": {
+			"base_color": "#4A5A6A",
+			"ratios": {
+				"magnesite": 0.56,
+				"calcite": 0.24,
+				"feldspar": 0.13,
+				"quartz": 0.07
+			},
+			"descriptor":"chemical"
+		},
+		"conglomerate": {
+			"base_color": "#B29958",
+			"ratios": {
+				"kaolinite": 0.52,
+				"quartz": 0.26,
+				"feldspar": 0.12,
+				"calcite": 0.1
+			},
+			"descriptor":"clastic"
+		},
+		"breccia": {
+			"base_color": "#59523D",
+			"ratios": {
+				"quartz": 0.7,
+				"kaolinite": 0.23,
+				"calcite": 0.07
+			},
+			"descriptor":"clastic"
+		},
+		"rock_salt": {
+			"base_color": "#96534B",
+			"ratios": {
+				"halite": 0.63,
+				"magnesite": 0.27,
+				"feldspar": 0.1
+			},
+			"descriptor":"chemical"
+		}
+	},
+	"metamorphic": {
+		"quartzite": {
+			"base_color": "#AD928E",
+			"ratios": {
+				"quartz":0.8,
+				"feldspar":0.2
+			},
+			"descriptor":"non-foliated"
+		},
+		"marble": {
+			"base_color": "#B0B2A5",
+			"ratios": {
+				"calcite":0.6,
+				"magnesite":0.2,
+				"quartz":0.2
+			},
+			"descriptor":"non-foliated"
+		},
+		"hornfels": {
+			"base_color": "#776A5A",
+			"ratios": {
+				"quartz":0.5,
+				"feldspar":0.3,
+				"pyroxene":0.2
+			},
+			"descriptor":"non-foliated"
+		},
+		"gneiss": {
+			"base_color": "#4B4A48",
+			"ratios": {
+				"quartz":0.6,
+				"feldspar":0.3,
+				"mica":0.1
+			},
+			"descriptor":"foliated"
+		},
+		"schist": {
+			"base_color": "#433D1F",
+			"ratios": {
+				"quartz":0.9,
+				"kaolinite":0.1
+			},
+			"descriptor":"foliated"
+		},
+		"phyllite": {
+			"base_color": "#58585C",
+			"ratios": {
+				"quartz":0.8,
+				"feldspar":0.1,
+				"kaolinite":0.1
+			},
+			"descriptor":"foliated"
+		},
+		"slate": {
+			"base_color": "#3B403C",
+			"ratios": {
+				"quartz":0.6,
+				"feldspar":0.2,
+				"kaolinite":0.1,
+				"calcite":0.1
+			},
+			"descriptor":"foliated"
+		}
+	}
+}

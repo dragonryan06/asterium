@@ -1,0 +1,201 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8jqplo11nmab"]
+
+[ext_resource type="Theme" uid="uid://b8ljuij7sans3" path="res://ui/ui_theme.tres" id="1_46tws"]
+[ext_resource type="Script" path="res://ui/dialogs/space_inspect_dialog.gd" id="2_15pva"]
+[ext_resource type="Texture2D" uid="uid://bar4ywno1rx3m" path="res://ui/assets/matterstate_icons.png" id="3_0pqbq"]
+[ext_resource type="Texture2D" uid="uid://b05b6xq7mxbdc" path="res://ui/assets/solution_icon.png" id="3_unrf3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ygl4"]
+atlas = ExtResource("3_0pqbq")
+region = Rect2(0, 18, 18, 18)
+
+[node name="SpaceInspectDialog" type="PanelContainer"]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+custom_minimum_size = Vector2(269, 423)
+anchors_preset = -1
+anchor_right = 1.07031
+anchor_bottom = 1.0
+offset_left = -270.0
+offset_top = -419.0
+offset_right = -1234.0
+offset_bottom = -644.0
+theme = ExtResource("1_46tws")
+script = ExtResource("2_15pva")
+
+[node name="UpperPanel" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = -12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpperPanel"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="UpperPanel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_46tws")
+theme_override_font_sizes/font_size = 32
+text = "[BodyName]"
+
+[node name="Subtitle" type="Label" parent="UpperPanel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_46tws")
+theme_override_font_sizes/font_size = 16
+text = "[BodyType]"
+
+[node name="InnerPanel" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = -20
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = -20
+theme_override_constants/margin_bottom = -20
+
+[node name="TabContainer" type="TabContainer" parent="InnerPanel"]
+layout_mode = 2
+theme = ExtResource("1_46tws")
+tab_alignment = 1
+
+[node name="Overview" type="MarginContainer" parent="InnerPanel/TabContainer"]
+show_behind_parent = true
+layout_mode = 2
+theme_override_constants/margin_top = -3
+
+[node name="Panel" type="Panel" parent="InnerPanel/TabContainer/Overview"]
+layout_mode = 2
+theme = ExtResource("1_46tws")
+theme_type_variation = &"InteriorPanel"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InnerPanel/TabContainer/Overview/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 11.0
+offset_right = -14.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_46tws")
+bbcode_enabled = true
+text = "[color=#ff0000][b]This[/b] text is red![/color] [b]This[/b] text is white"
+
+[node name="Description" type="MarginContainer" parent="InnerPanel/TabContainer"]
+visible = false
+show_behind_parent = true
+layout_mode = 2
+theme_override_constants/margin_top = -3
+
+[node name="Panel" type="Panel" parent="InnerPanel/TabContainer/Description"]
+layout_mode = 2
+theme = ExtResource("1_46tws")
+theme_type_variation = &"InteriorPanel"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InnerPanel/TabContainer/Description/Panel"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 11.0
+offset_right = -14.0
+offset_bottom = -43.0
+theme = ExtResource("1_46tws")
+bbcode_enabled = true
+text = "[color=#ff0000][b]This[/b] text is red![/color] [b]This[/b] text is white"
+
+[node name="Composition" type="MarginContainer" parent="InnerPanel/TabContainer"]
+visible = false
+show_behind_parent = true
+layout_mode = 2
+theme_override_constants/margin_top = -4
+
+[node name="PanelContainer" type="PanelContainer" parent="InnerPanel/TabContainer/Composition"]
+layout_mode = 2
+theme = ExtResource("1_46tws")
+theme_type_variation = &"InteriorPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="InnerPanel/TabContainer/Composition/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -20
+theme_override_constants/margin_top = -16
+theme_override_constants/margin_right = -16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="SolutionName" type="PanelContainer" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_46tws")
+theme_type_variation = &"GenericInbox"
+
+[node name="MarginContainer" type="MarginContainer" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer/SolutionName"]
+layout_mode = 2
+theme_override_constants/margin_left = -6
+theme_override_constants/margin_top = -10
+theme_override_constants/margin_bottom = -8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer/SolutionName/MarginContainer"]
+layout_mode = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer/SolutionName/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer/SolutionName/MarginContainer/HBoxContainer/AspectRatioContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = SubResource("AtlasTexture_7ygl4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer/SolutionName/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="Header" type="RichTextLabel" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer/SolutionName/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 13.5)
+layout_mode = 2
+bbcode_enabled = true
+text = "Composition"
+scroll_active = false
+
+[node name="Footer" type="RichTextLabel" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer/SolutionName/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 13.5)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Stardust"
+scroll_active = false
+
+[node name="TextureButton" type="TextureButton" parent="InnerPanel/TabContainer/Composition/PanelContainer/MarginContainer/VBoxContainer/SolutionName/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Inspect"
+toggle_mode = true
+texture_normal = ExtResource("3_unrf3")
+
+[node name="Properties" type="MarginContainer" parent="InnerPanel/TabContainer"]
+visible = false
+show_behind_parent = true
+layout_mode = 2
+theme_override_constants/margin_top = -3
+
+[node name="Panel" type="Panel" parent="InnerPanel/TabContainer/Properties"]
+layout_mode = 2
+theme = ExtResource("1_46tws")
+theme_type_variation = &"InteriorPanel"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InnerPanel/TabContainer/Properties/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 11.0
+offset_right = -14.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_46tws")
+bbcode_enabled = true
+text = "[b] Object Tags: [/b]"
+
+[node name="Subdialogs" type="Node" parent="."]

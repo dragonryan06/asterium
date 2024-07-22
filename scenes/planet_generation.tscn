@@ -1,0 +1,209 @@
+[gd_scene load_steps=16 format=3 uid="uid://b8nk8farod758"]
+
+[ext_resource type="Script" path="res://scenes/planet_generation.gd" id="1_w0wtp"]
+[ext_resource type="Script" path="res://ui/ui_manager.gd" id="2_atq0q"]
+[ext_resource type="Shader" path="res://ui/assets/gridtest.gdshader" id="2_flx6h"]
+[ext_resource type="Texture2D" uid="uid://cuxh1d2127cq3" path="res://scenes/assets/icon.svg" id="3_3woey"]
+[ext_resource type="Script" path="res://scenes/rts_cam.gd" id="3_a32ds"]
+[ext_resource type="Script" path="res://ui/grid.gd" id="3_ejyy7"]
+[ext_resource type="PackedScene" uid="uid://cefj0aj8uwijq" path="res://debug/frame_counter.tscn" id="6_fnwwd"]
+[ext_resource type="Script" path="res://scenes/WIPScreen.gd" id="8_bgt8n"]
+[ext_resource type="Script" path="res://ui/menus/sidebar_menu.gd" id="9_kh27n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6kctq"]
+shader = ExtResource("2_flx6h")
+shader_parameter/resolution = Vector2(9, 5.07)
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/zoom = Vector2(0, 0)
+shader_parameter/half_thickness = 0.01
+shader_parameter/radial_period = 64.0
+shader_parameter/first_radius_drawn = 0
+shader_parameter/last_radius_drawn = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_71mlx"]
+shader = ExtResource("2_flx6h")
+shader_parameter/resolution = Vector2(9, 5.07)
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/zoom = Vector2(0, 0)
+shader_parameter/half_thickness = 0.001
+shader_parameter/radial_period = 1024.0
+shader_parameter/first_radius_drawn = 0
+shader_parameter/last_radius_drawn = 128
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_mrimq"]
+color = Color(0.862745, 0.862745, 0.862745, 1)
+grow_begin = 8.0
+grow_end = 8.0
+thickness = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_atkj2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_upg4w"]
+
+[sub_resource type="Environment" id="Environment_14p7s"]
+background_mode = 3
+tonemap_mode = 3
+tonemap_exposure = 1.5
+tonemap_white = 2.5
+glow_normalized = true
+glow_intensity = 1.25
+glow_bloom = 0.01
+glow_blend_mode = 0
+glow_hdr_threshold = 1.25
+
+[node name="PlanetGeneration" type="Node2D"]
+script = ExtResource("1_w0wtp")
+
+[node name="UIManager" type="Node" parent="."]
+script = ExtResource("2_atq0q")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_a32ds")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
+scroll_ignore_camera_zoom = true
+
+[node name="Background" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/ParallaxBackground/Background"]
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+color = Color(0, 0, 0, 1)
+
+[node name="GridLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+material = SubResource("ShaderMaterial_6kctq")
+motion_scale = Vector2(0, 0)
+
+[node name="Grid" type="Sprite2D" parent="Camera2D/ParallaxBackground/GridLayer"]
+material = SubResource("ShaderMaterial_71mlx")
+position = Vector2(576, 324)
+scale = Vector2(9, 5.07)
+texture = ExtResource("3_3woey")
+script = ExtResource("3_ejyy7")
+
+[node name="Scale" type="Label" parent="Camera2D/ParallaxBackground/GridLayer"]
+offset_right = 50.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "1 AU"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Title" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 16.0
+grow_horizontal = 2
+text = "Asterium Planet Generation Test"
+horizontal_alignment = 1
+
+[node name="FrameCounter" parent="HUD" instance=ExtResource("6_fnwwd")]
+top_level = true
+z_index = 1000
+
+[node name="WIPScreen" type="ColorRect" parent="HUD"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.396078, 0.396078, 0.396078, 1)
+script = ExtResource("8_bgt8n")
+
+[node name="WIP" type="Label" parent="HUD/WIPScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Oops! Work in progress!"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="HUD/WIPScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "this is gonna be the galactic map :)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SidebarMenu" type="PanelContainer" parent="HUD"]
+anchors_preset = -1
+anchor_left = 0.822049
+anchor_right = 1.02691
+anchor_bottom = 1.0
+offset_left = -64.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("9_kh27n")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/SidebarMenu"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = -61
+
+[node name="Toggle" type="Button" parent="HUD/SidebarMenu/MarginContainer"]
+custom_minimum_size = Vector2(32, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_type_variation = &"ExpandButton"
+toggle_mode = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/SidebarMenu"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="HUD/SidebarMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "STARNAME System"
+
+[node name="HSeparator" type="HSeparator" parent="HUD/SidebarMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxLine_mrimq")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="HUD/SidebarMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/SidebarMenu/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -16
+
+[node name="Tree" type="Tree" parent="HUD/SidebarMenu/VBoxContainer/HFlowContainer/MarginContainer"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.866667, 0.866667, 0.866667, 1)
+theme_override_colors/guide_color = Color(0.866667, 0.866667, 0.866667, 1)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_atkj2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_upg4w")
+columns = 2
+
+[node name="Generate" type="Button" parent="HUD/SidebarMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_type_variation = &"SmallButton"
+theme_override_font_sizes/font_size = 32
+text = "Generate"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_14p7s")
+
+[connection signal="item_activated" from="HUD/SidebarMenu/VBoxContainer/HFlowContainer/MarginContainer/Tree" to="." method="_on_tree_item_activated"]
+[connection signal="pressed" from="HUD/SidebarMenu/Generate" to="." method="_on_generate_pressed"]

@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://cj8yr0m0pkqln"]
+
+[ext_resource type="Script" path="res://core/space/planet.gd" id="1_m3qu6"]
+[ext_resource type="Shader" path="res://core/space/shaders/planet/surface.gdshader" id="2_aukfo"]
+[ext_resource type="Texture2D" uid="uid://cuxh1d2127cq3" path="res://scenes/assets/icon.svg" id="2_xlwtg"]
+[ext_resource type="Script" path="res://ui/components/inspect_component.gd" id="3_06rrq"]
+[ext_resource type="Shader" path="res://core/space/shaders/planet/ocean.gdshader" id="5_p5u1b"]
+[ext_resource type="Shader" path="res://core/space/shaders/planet/atmosphere.gdshader" id="6_py6qu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_26rer"]
+shader = ExtResource("2_aukfo")
+shader_parameter/base_color = Vector4(1, 1, 1, 1)
+shader_parameter/aspect_ratio = 3.0
+shader_parameter/rotation_speed = 1.0
+shader_parameter/light_direction_degrees = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2h0o0"]
+radius = 0.228207
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x5mc5"]
+shader = ExtResource("5_p5u1b")
+shader_parameter/base_color = Vector4(1, 0, 1, 1)
+shader_parameter/aspect_ratio = 3.0
+shader_parameter/rotation_speed = 1.0
+shader_parameter/light_direction_degrees = 0.0
+shader_parameter/ocean_surface_coverage = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uidcm"]
+shader = ExtResource("6_py6qu")
+shader_parameter/base_color = Vector4(1, 1, 1, 1)
+shader_parameter/aspect_ratio = 3.0
+shader_parameter/rotation_speed = 1.0
+shader_parameter/light_direction_degrees = 0.0
+shader_parameter/atmosphere_density = 0.5
+shader_parameter/cloud_coverage = 0.0
+shader_parameter/cloud_tint = Vector3(1, 1, 1)
+
+[node name="Planet" type="Node2D"]
+script = ExtResource("1_m3qu6")
+metadata/_edit_vertical_guides_ = [-596.0]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_26rer")
+scale = Vector2(4, 16)
+texture = ExtResource("2_xlwtg")
+
+[node name="Hitbox" type="Area2D" parent="Sprite"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Hitbox"]
+scale = Vector2(2, 1)
+shape = SubResource("CircleShape2D_2h0o0")
+
+[node name="Ocean" type="Sprite2D" parent="Sprite"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_x5mc5")
+
+[node name="Atmosphere" type="Sprite2D" parent="Sprite"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_uidcm")
+
+[node name="InspectComponent" type="CanvasLayer" parent="." node_paths=PackedStringArray("trigger_area")]
+script = ExtResource("3_06rrq")
+trigger_area = NodePath("../Sprite/Hitbox")
+can_camera_focus = true
+tt_title_text = "Planet Name"
+tt_subtitle_text = "World Class"
+inspect_dialog_scene = "res://ui/dialogs/space_inspect_dialog.tscn"
+
+[connection signal="input_event" from="Sprite/Hitbox" to="." method="_on_hitbox_input_event"]
+[connection signal="mouse_entered" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_entered"]
+[connection signal="mouse_exited" from="Sprite/Hitbox" to="." method="_on_hitbox_mouse_exited"]
+[connection signal="tree_entered" from="InspectComponent" to="InspectComponent" method="_on_tree_entered"]

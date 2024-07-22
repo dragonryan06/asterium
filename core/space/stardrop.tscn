@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7hrv0tsxbsi2"]
+
+[ext_resource type="Texture2D" uid="uid://beygfuky836su" path="res://core/space/assets/nebulae-1.png" id="1_mhry7"]
+[ext_resource type="Texture2D" uid="uid://cb6v3o5r2oxq0" path="res://core/space/assets/small-starfield-1.png" id="2_yxbes"]
+[ext_resource type="Texture2D" uid="uid://denabd7j18y61" path="res://core/space/assets/big-starfield1.png" id="3_b06xy"]
+[ext_resource type="Texture2D" uid="uid://dmye2gjsekviv" path="res://core/space/assets/nebulae-2.png" id="3_benw8"]
+[ext_resource type="Texture2D" uid="uid://cu3i3q168nmc3" path="res://core/space/assets/dust.png" id="5_dfgh3"]
+
+[sub_resource type="Gradient" id="Gradient_3ag7n"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1u15f"]
+gradient = SubResource("Gradient_3ag7n")
+
+[node name="Stardrop" type="ParallaxBackground"]
+scroll_base_scale = Vector2(0.1, 0.1)
+scroll_ignore_camera_zoom = true
+
+[node name="Backdrop" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Backdrop"]
+position = Vector2(608, 320)
+scale = Vector2(32, 16)
+texture = SubResource("GradientTexture2D_1u15f")
+
+[node name="Nebulae" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(2048, 1024)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Nebulae"]
+modulate = Color(0.156863, 0.266667, 1, 0.345098)
+texture = ExtResource("1_mhry7")
+centered = false
+
+[node name="BackStars" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.25, 0.25)
+motion_mirroring = Vector2(2048, 1024)
+
+[node name="Sprite2D" type="Sprite2D" parent="BackStars"]
+texture_filter = 5
+texture_repeat = 2
+texture = ExtResource("2_yxbes")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="BackStars"]
+texture = ExtResource("3_b06xy")
+centered = false
+
+[node name="BackStars2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(2048, 1024)
+
+[node name="Sprite2D" type="Sprite2D" parent="BackStars2"]
+texture_filter = 5
+texture_repeat = 2
+texture = ExtResource("2_yxbes")
+centered = false
+
+[node name="NearNebulae" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.75, 0.75)
+motion_mirroring = Vector2(4096, 2048)
+
+[node name="Sprite2D" type="Sprite2D" parent="NearNebulae"]
+modulate = Color(1, 0.32549, 1, 0.337255)
+texture = ExtResource("3_benw8")
+centered = false
+
+[node name="FrontStars" type="ParallaxLayer" parent="."]
+motion_offset = Vector2(512, 1024)
+motion_mirroring = Vector2(2048, 1024)
+
+[node name="Sprite2D" type="Sprite2D" parent="FrontStars"]
+texture = ExtResource("2_yxbes")
+centered = false
+
+[node name="Dust" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(10, 10)
+motion_mirroring = Vector2(2048, 1024)
+
+[node name="Sprite2D" type="Sprite2D" parent="Dust"]
+texture = ExtResource("5_dfgh3")
+centered = false
