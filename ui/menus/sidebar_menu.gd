@@ -4,6 +4,7 @@ class_name SidebarMenu
 var default_size : Vector2
 
 func _init() -> void:
+	instantiate_connecting_line = false
 	super._init()
 	disabled = [true,true,true,true,true,true,true,false,true]
 

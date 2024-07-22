@@ -12,6 +12,8 @@ enum EDGES {NW,N,NE,E,SE,S,SW,W}
 # enum edges, then center move
 var disabled = [false,false,false,false,false,false,false,false,false]
 
+var instantiate_connecting_line = true
+
 var dragging = false
 var edge = -1
 
@@ -21,8 +23,9 @@ var connecting_line : ConnectingLine
 
 func _init() -> void:
 	gui_input.connect(_on_gui_input)
-	connecting_line = ConnectingLine.new()
-	add_child(connecting_line)
+	if instantiate_connecting_line:
+		connecting_line = ConnectingLine.new()
+		add_child(connecting_line)
 
 func _process(_delta) -> void:
 	if connecting_target!=null:
