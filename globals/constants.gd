@@ -2,7 +2,7 @@
 extends Node
 class_name Constants
 
-const version = "Asterium alpha pre-v0.0.0"
+const version = "Asterium alpha pre-v0.1.0"
 
 const M_IN_AU = 149000000000
 const M_IN_SR = 696000000
