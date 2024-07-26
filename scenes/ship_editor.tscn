@@ -1,0 +1,707 @@
+[gd_scene load_steps=17 format=3 uid="uid://clh87jkwnk5nl"]
+
+[ext_resource type="Script" path="res://scenes/ship_editor.gd" id="1_fynho"]
+[ext_resource type="Texture2D" uid="uid://8rb6pobwpp46" path="res://core/ships/assets/beamatlas.png" id="2_6tcb6"]
+[ext_resource type="Script" path="res://scenes/rts_cam.gd" id="2_grsgj"]
+[ext_resource type="PackedScene" uid="uid://cefj0aj8uwijq" path="res://debug/frame_counter.tscn" id="4_baafq"]
+[ext_resource type="Shader" path="res://ui/assets/selective_color_invert.gdshader" id="5_wvk00"]
+[ext_resource type="Texture2D" uid="uid://du4m3plp6c26m" path="res://ui/assets/hotbarbuttons.png" id="6_drec6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wk3kg"]
+texture = ExtResource("2_6tcb6")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0/terrains_peering_bit/top_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/bottom_side = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/terrains_peering_bit/left_side = 0
+4:0/0 = 0
+4:0/0/terrain_set = 0
+4:0/0/terrain = 0
+4:0/0/terrains_peering_bit/right_side = 0
+4:0/0/terrains_peering_bit/top_side = 0
+5:0/0 = 0
+5:0/0/terrain_set = 0
+5:0/0/terrain = 0
+5:0/0/terrains_peering_bit/right_side = 0
+5:0/0/terrains_peering_bit/bottom_side = 0
+6:0/0 = 0
+6:0/0/terrain_set = 0
+6:0/0/terrain = 0
+6:0/0/terrains_peering_bit/bottom_side = 0
+6:0/0/terrains_peering_bit/left_side = 0
+6:0/0/terrains_peering_bit/top_side = 0
+7:0/0 = 0
+7:0/0/terrain_set = 0
+7:0/0/terrain = 0
+7:0/0/terrains_peering_bit/right_side = 0
+7:0/0/terrains_peering_bit/left_side = 0
+7:0/0/terrains_peering_bit/top_side = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/terrains_peering_bit/right_side = 0
+0:1/0/terrains_peering_bit/left_side = 0
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/terrains_peering_bit/right_side = 0
+1:1/0/terrains_peering_bit/bottom_side = 0
+1:1/0/terrains_peering_bit/left_side = 0
+1:1/0/terrains_peering_bit/top_side = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/terrains_peering_bit/top_side = 0
+3:1/0 = 0
+3:1/0/terrain_set = 0
+3:1/0/terrain = 0
+3:1/0/terrains_peering_bit/right_side = 0
+4:1/0 = 0
+4:1/0/terrain_set = 0
+4:1/0/terrain = 0
+4:1/0/terrains_peering_bit/right_side = 0
+4:1/0/terrains_peering_bit/bottom_side = 0
+4:1/0/terrains_peering_bit/left_side = 0
+5:1/0 = 0
+5:1/0/terrain_set = 0
+5:1/0/terrain = 0
+5:1/0/terrains_peering_bit/left_side = 0
+5:1/0/terrains_peering_bit/top_side = 0
+6:1/0 = 0
+6:1/0/terrain_set = 0
+6:1/0/terrain = 0
+6:1/0/terrains_peering_bit/right_side = 0
+6:1/0/terrains_peering_bit/bottom_side = 0
+6:1/0/terrains_peering_bit/top_side = 0
+7:1/0 = 0
+7:1/0/terrain_set = 0
+7:1/0/terrain = 0
+7:1/0/terrains_peering_bit/right_side = 0
+7:1/0/terrains_peering_bit/bottom_side = 0
+7:1/0/terrains_peering_bit/left_side = 0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/terrains_peering_bit/bottom_left_corner = 0
+0:2/0/terrains_peering_bit/top_side = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 0
+1:2/0/terrains_peering_bit/right_side = 0
+1:2/0/terrains_peering_bit/top_left_corner = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/terrains_peering_bit/bottom_left_corner = 0
+2:2/0/terrains_peering_bit/top_right_corner = 0
+3:2/0 = 0
+3:2/0/terrain_set = 0
+3:2/0/terrains_peering_bit/bottom_right_corner = 0
+3:2/0/terrains_peering_bit/bottom_left_corner = 0
+3:2/0/terrains_peering_bit/top_left_corner = 0
+3:2/0/terrains_peering_bit/top_right_corner = 0
+4:2/0 = 0
+4:2/0/terrain_set = 0
+4:2/0/terrains_peering_bit/bottom_right_corner = 0
+5:2/0 = 0
+5:2/0/terrain_set = 0
+5:2/0/terrains_peering_bit/bottom_left_corner = 0
+6:2/0 = 0
+6:2/0/terrain_set = 0
+6:2/0/terrains_peering_bit/bottom_right_corner = 0
+6:2/0/terrains_peering_bit/top_left_corner = 0
+7:2/0 = 0
+7:2/0/terrain_set = 0
+7:2/0/terrains_peering_bit/bottom_left_corner = 0
+7:2/0/terrains_peering_bit/top_right_corner = 0
+0:3/0 = 0
+0:3/0/terrain_set = 0
+0:3/0/terrain = 0
+0:3/0/terrains_peering_bit/bottom_side = 0
+0:3/0/terrains_peering_bit/top_right_corner = 0
+1:3/0 = 0
+1:3/0/terrain_set = 0
+1:3/0/terrain = 0
+1:3/0/terrains_peering_bit/bottom_right_corner = 0
+1:3/0/terrains_peering_bit/left_side = 0
+2:3/0 = 0
+2:3/0/terrain_set = 0
+2:3/0/terrain = 0
+2:3/0/terrains_peering_bit/bottom_right_corner = 0
+2:3/0/terrains_peering_bit/top_left_corner = 0
+3:3/0 = 0
+3:3/0/terrain_set = 0
+3:3/0/terrain = 0
+3:3/0/terrains_peering_bit/bottom_right_corner = 0
+3:3/0/terrains_peering_bit/bottom_left_corner = 0
+3:3/0/terrains_peering_bit/top_left_corner = 0
+3:3/0/terrains_peering_bit/top_right_corner = 0
+4:3/0 = 0
+4:3/0/terrain_set = 0
+4:3/0/terrains_peering_bit/top_right_corner = 0
+5:3/0 = 0
+5:3/0/terrain_set = 0
+5:3/0/terrains_peering_bit/top_left_corner = 0
+6:3/0 = 0
+6:3/0/terrain_set = 0
+6:3/0/terrains_peering_bit/bottom_left_corner = 0
+6:3/0/terrains_peering_bit/top_right_corner = 0
+7:3/0 = 0
+7:3/0/terrain_set = 0
+7:3/0/terrains_peering_bit/bottom_right_corner = 0
+7:3/0/terrains_peering_bit/top_left_corner = 0
+0:4/0 = 0
+0:4/0/terrain_set = 0
+0:4/0/terrains_peering_bit/bottom_right_corner = 0
+0:4/0/terrains_peering_bit/bottom_left_corner = 0
+1:4/0 = 0
+1:4/0/terrain_set = 0
+1:4/0/terrains_peering_bit/bottom_left_corner = 0
+1:4/0/terrains_peering_bit/top_left_corner = 0
+2:4/0 = 0
+2:4/0/terrain_set = 0
+2:4/0/terrains_peering_bit/bottom_right_corner = 0
+2:4/0/terrains_peering_bit/bottom_left_corner = 0
+2:4/0/terrains_peering_bit/top_left_corner = 0
+3:4/0 = 0
+3:4/0/terrain_set = 0
+3:4/0/terrains_peering_bit/bottom_left_corner = 0
+3:4/0/terrains_peering_bit/top_left_corner = 0
+3:4/0/terrains_peering_bit/top_right_corner = 0
+4:4/0 = 0
+4:4/0/terrain_set = 0
+4:4/0/terrain = 0
+4:4/0/terrains_peering_bit/bottom_right_corner = 0
+4:4/0/terrains_peering_bit/bottom_left_corner = 0
+4:4/0/terrains_peering_bit/top_side = 0
+5:4/0 = 0
+5:4/0/terrain_set = 0
+5:4/0/terrain = 0
+5:4/0/terrains_peering_bit/right_side = 0
+5:4/0/terrains_peering_bit/bottom_left_corner = 0
+5:4/0/terrains_peering_bit/top_left_corner = 0
+0:5/0 = 0
+0:5/0/terrain_set = 0
+0:5/0/terrains_peering_bit/top_left_corner = 0
+0:5/0/terrains_peering_bit/top_right_corner = 0
+1:5/0 = 0
+1:5/0/terrain_set = 0
+1:5/0/terrains_peering_bit/bottom_right_corner = 0
+1:5/0/terrains_peering_bit/top_right_corner = 0
+2:5/0 = 0
+2:5/0/terrain_set = 0
+2:5/0/terrains_peering_bit/bottom_right_corner = 0
+2:5/0/terrains_peering_bit/top_left_corner = 0
+2:5/0/terrains_peering_bit/top_right_corner = 0
+3:5/0 = 0
+3:5/0/terrain_set = 0
+3:5/0/terrains_peering_bit/bottom_right_corner = 0
+3:5/0/terrains_peering_bit/bottom_left_corner = 0
+3:5/0/terrains_peering_bit/top_right_corner = 0
+4:5/0 = 0
+4:5/0/terrain_set = 0
+4:5/0/terrain = 0
+4:5/0/terrains_peering_bit/bottom_side = 0
+4:5/0/terrains_peering_bit/top_left_corner = 0
+4:5/0/terrains_peering_bit/top_right_corner = 0
+5:5/0 = 0
+5:5/0/terrain_set = 0
+5:5/0/terrain = 0
+5:5/0/terrains_peering_bit/bottom_right_corner = 0
+5:5/0/terrains_peering_bit/left_side = 0
+5:5/0/terrains_peering_bit/top_right_corner = 0
+
+[sub_resource type="TileSet" id="TileSet_3fvlc"]
+tile_size = Vector2i(32, 32)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Beam"
+terrain_set_0/terrain_0/color = Color(0.721569, 0, 0.184314, 1)
+sources/0 = SubResource("TileSetAtlasSource_wk3kg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_phtnr"]
+shader = ExtResource("5_wvk00")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phuj2"]
+atlas = ExtResource("6_drec6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pkoqj"]
+texture = SubResource("AtlasTexture_phuj2")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dr1e8"]
+atlas = ExtResource("6_drec6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rdhwn"]
+texture = SubResource("AtlasTexture_dr1e8")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n0f5e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pa3ic"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjkx1"]
+atlas = ExtResource("2_6tcb6")
+region = Rect2(0, 0, 32, 32)
+
+[node name="ShipEditor" type="Node2D"]
+script = ExtResource("1_fynho")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("2_grsgj")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
+scroll_ignore_camera_zoom = true
+
+[node name="Background" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/ParallaxBackground/Background"]
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Ship" type="Node2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Ship"]
+tile_set = SubResource("TileSet_3fvlc")
+format = 2
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Title" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 16.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0.588235, 1, 1)
+text = "Asterium Ship Physics Sandbox"
+horizontal_alignment = 1
+
+[node name="FrameCounter" parent="HUD" instance=ExtResource("4_baafq")]
+top_level = true
+z_index = 1000
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -64.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 16
+
+[node name="Hotbar" type="HBoxContainer" parent="HUD/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 16
+
+[node name="Button" type="Button" parent="HUD/MarginContainer/Hotbar"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rdhwn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n0f5e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pa3ic")
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/MarginContainer/Hotbar/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_mjkx1")
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/Hotbar/Button"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "[1]"
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="HUD/MarginContainer/Hotbar"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rdhwn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n0f5e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pa3ic")
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/MarginContainer/Hotbar/Button2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_mjkx1")
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/Hotbar/Button2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "[2]"
+horizontal_alignment = 1
+
+[node name="Button3" type="Button" parent="HUD/MarginContainer/Hotbar"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rdhwn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n0f5e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pa3ic")
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/MarginContainer/Hotbar/Button3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_mjkx1")
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/Hotbar/Button3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "[3]"
+horizontal_alignment = 1
+
+[node name="Button4" type="Button" parent="HUD/MarginContainer/Hotbar"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rdhwn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n0f5e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pa3ic")
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/MarginContainer/Hotbar/Button4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_mjkx1")
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/Hotbar/Button4"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "[4]"
+horizontal_alignment = 1
+
+[node name="Button5" type="Button" parent="HUD/MarginContainer/Hotbar"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rdhwn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n0f5e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pa3ic")
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/MarginContainer/Hotbar/Button5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_mjkx1")
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/Hotbar/Button5"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "[5]"
+horizontal_alignment = 1
+
+[node name="Button6" type="Button" parent="HUD/MarginContainer/Hotbar"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rdhwn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n0f5e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pa3ic")
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/MarginContainer/Hotbar/Button6"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_mjkx1")
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/Hotbar/Button6"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "[6]"
+horizontal_alignment = 1
+
+[node name="Button7" type="Button" parent="HUD/MarginContainer/Hotbar"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rdhwn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n0f5e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pa3ic")
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/MarginContainer/Hotbar/Button7"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_mjkx1")
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/Hotbar/Button7"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "[7]"
+horizontal_alignment = 1
+
+[node name="Button8" type="Button" parent="HUD/MarginContainer/Hotbar"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rdhwn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n0f5e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pa3ic")
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/MarginContainer/Hotbar/Button8"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_mjkx1")
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/Hotbar/Button8"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "[8]"
+horizontal_alignment = 1
+
+[node name="Button9" type="Button" parent="HUD/MarginContainer/Hotbar"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rdhwn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pkoqj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n0f5e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pa3ic")
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/MarginContainer/Hotbar/Button9"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -36.0
+offset_right = 36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_mjkx1")
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/Hotbar/Button9"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "[9]"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="HUD/MarginContainer/Hotbar/Button" to="." method="_on_hotbar_button_pressed" binds= [0]]
+[connection signal="pressed" from="HUD/MarginContainer/Hotbar/Button2" to="." method="_on_hotbar_button_pressed" binds= [1]]
+[connection signal="pressed" from="HUD/MarginContainer/Hotbar/Button3" to="." method="_on_hotbar_button_pressed" binds= [2]]
+[connection signal="pressed" from="HUD/MarginContainer/Hotbar/Button4" to="." method="_on_hotbar_button_pressed" binds= [3]]
+[connection signal="pressed" from="HUD/MarginContainer/Hotbar/Button5" to="." method="_on_hotbar_button_pressed" binds= [4]]
+[connection signal="pressed" from="HUD/MarginContainer/Hotbar/Button6" to="." method="_on_hotbar_button_pressed" binds= [5]]
+[connection signal="pressed" from="HUD/MarginContainer/Hotbar/Button7" to="." method="_on_hotbar_button_pressed" binds= [6]]
+[connection signal="pressed" from="HUD/MarginContainer/Hotbar/Button8" to="." method="_on_hotbar_button_pressed" binds= [7]]
+[connection signal="pressed" from="HUD/MarginContainer/Hotbar/Button9" to="." method="_on_hotbar_button_pressed" binds= [8]]

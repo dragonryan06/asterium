@@ -10,9 +10,9 @@ const EDGE_WIDTH = 10
 enum EDGES {NW,N,NE,E,SE,S,SW,W}
 
 # enum edges, then center move
-var disabled = [false,false,false,false,false,false,false,false,false]
+@export var disabled = [false,false,false,false,false,false,false,false,false]
 
-var instantiate_connecting_line = true
+@export var instantiate_connecting_line = true
 
 var dragging = false
 var edge = -1

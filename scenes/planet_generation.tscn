@@ -72,6 +72,7 @@ offset_bottom = 648.0
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="GridLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
 material = SubResource("ShaderMaterial_6kctq")
@@ -101,6 +102,7 @@ offset_left = -100.0
 offset_right = 100.0
 offset_bottom = 16.0
 grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0.588235, 1, 1)
 text = "Asterium Planet Generation Test"
 horizontal_alignment = 1
 

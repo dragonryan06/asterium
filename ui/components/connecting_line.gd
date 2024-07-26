@@ -9,7 +9,7 @@ func _ready() -> void:
 	current_scene.get_node("Camera2D").get_node("ParallaxBackground/Background").add_child.call_deferred(self)
 	width = 4.0
 	material = ShaderMaterial.new()
-	material.shader = load("res://ui/assets/invert_area_shader.gdshader")
+	material.shader = load("res://ui/assets/selective_color_invert.gdshader")
 
 func _fade_out_and_die() -> void:
 	var tween = get_tree().create_tween()
