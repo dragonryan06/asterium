@@ -178,7 +178,6 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_m8jrg")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_uywy4")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_txalg")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_knmgg")
-disabled = true
 text = "SHIP PHYSICS SANDBOX"
 
 [node name="Label" type="Label" parent="UI/SelectPage/VBoxContainer2/ShipPhysics"]
@@ -193,10 +192,10 @@ offset_top = -32.0
 offset_right = 292.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.698039, 0.698039, 0.698039, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0.588235, 1, 1)
 theme_override_font_sizes/font_size = 32
-text = "To be added in v0.1.0!"
+text = "New in v0.1.0!"
 horizontal_alignment = 1
 
 [node name="Back" type="Button" parent="UI/SelectPage/VBoxContainer2"]

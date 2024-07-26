@@ -22,7 +22,7 @@ func _on_button_pressed(idx:int):
 			get_parent().play("res://scenes/planet_generation.tscn")
 		4:
 			# Ship physics test
-			pass
+			get_parent().play("res://scenes/ship_editor.tscn")
 		5:
 			# Back
 			var tween = get_tree().create_tween().set_parallel()
