@@ -50,6 +50,9 @@ var style_selection = -1 :
 
 var style_rotation_idx = 0 :
 	set(new):
+		if selected=="":
+			new = 0
+			return
 		var len = len(STYLEMAP[selected][style_selection])
 		if new<0:
 			new = len+new
@@ -222,5 +225,6 @@ func _on_style_picker_button_toggled(_state:bool,idx:int) -> void:
 		style_selection = idx
 	elif style_selection == idx:
 		style_selection = -1
+		$Ship/TileMap.clear_layer(1)
 	else:
 		style_selection = idx
