@@ -148,6 +148,7 @@ func _unhandled_input(event:InputEvent) -> void:
 				drawing_path = true
 			MOUSE_BUTTON_LEFT when not event.pressed and style_selection == -1:
 				# stop path-painting
+				log_action("Path paint x"+str(len(map.get_used_cells(1))))
 				map.clear_layer(1)
 				for c in drag_path:
 					map.set_cell(0,c,0,Vector2i(0,0))
@@ -162,6 +163,8 @@ func _unhandled_input(event:InputEvent) -> void:
 				drag_path.append(pos)
 				drawing = true
 			MOUSE_BUTTON_LEFT when not event.pressed and style_selection != -1:
+				# stop placing
+				log_action("Place x"+str(len(map.get_used_cells(1))))
 				for c in drag_path:
 					map.set_cell(0,c,0,map.get_cell_atlas_coords(1,c))
 				map.clear_layer(1)
@@ -178,6 +181,7 @@ func _unhandled_input(event:InputEvent) -> void:
 				erasing = true
 			MOUSE_BUTTON_RIGHT when not event.pressed:
 				# stop erasing
+				log_action("Erase x"+str(len(map.get_used_cells(1))))
 				for c in map.get_used_cells(1):
 					map.set_cell(0,c,-1)
 				map.clear_layer(1)
