@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://clh87jkwnk5nl"]
+[gd_scene load_steps=67 format=3 uid="uid://clh87jkwnk5nl"]
 
 [ext_resource type="Script" path="res://scenes/ship_editor.gd" id="1_fynho"]
 [ext_resource type="Texture2D" uid="uid://8rb6pobwpp46" path="res://core/ships/assets/beamatlas.png" id="2_6tcb6"]
@@ -105,28 +105,30 @@ texture_region_size = Vector2i(32, 32)
 2:2/0 = 0
 2:2/0/terrain_set = 0
 2:2/0/terrain = 0
-2:2/0/terrains_peering_bit/bottom_left_corner = 0
-2:2/0/terrains_peering_bit/top_right_corner = 0
+2:2/0/terrains_peering_bit/bottom_right_corner = 0
+2:2/0/terrains_peering_bit/top_side = 0
 3:2/0 = 0
 3:2/0/terrain_set = 0
-3:2/0/terrains_peering_bit/bottom_right_corner = 0
+3:2/0/terrain = 0
+3:2/0/terrains_peering_bit/right_side = 0
 3:2/0/terrains_peering_bit/bottom_left_corner = 0
-3:2/0/terrains_peering_bit/top_left_corner = 0
-3:2/0/terrains_peering_bit/top_right_corner = 0
 4:2/0 = 0
 4:2/0/terrain_set = 0
-4:2/0/terrains_peering_bit/bottom_right_corner = 0
+4:2/0/terrain = 0
+4:2/0/terrains_peering_bit/bottom_left_corner = 0
+4:2/0/terrains_peering_bit/top_right_corner = 0
 5:2/0 = 0
 5:2/0/terrain_set = 0
+5:2/0/terrains_peering_bit/bottom_right_corner = 0
 5:2/0/terrains_peering_bit/bottom_left_corner = 0
+5:2/0/terrains_peering_bit/top_left_corner = 0
+5:2/0/terrains_peering_bit/top_right_corner = 0
 6:2/0 = 0
 6:2/0/terrain_set = 0
 6:2/0/terrains_peering_bit/bottom_right_corner = 0
-6:2/0/terrains_peering_bit/top_left_corner = 0
 7:2/0 = 0
 7:2/0/terrain_set = 0
 7:2/0/terrains_peering_bit/bottom_left_corner = 0
-7:2/0/terrains_peering_bit/top_right_corner = 0
 0:3/0 = 0
 0:3/0/terrain_set = 0
 0:3/0/terrain = 0
@@ -140,89 +142,107 @@ texture_region_size = Vector2i(32, 32)
 2:3/0 = 0
 2:3/0/terrain_set = 0
 2:3/0/terrain = 0
-2:3/0/terrains_peering_bit/bottom_right_corner = 0
+2:3/0/terrains_peering_bit/bottom_side = 0
 2:3/0/terrains_peering_bit/top_left_corner = 0
 3:3/0 = 0
 3:3/0/terrain_set = 0
 3:3/0/terrain = 0
-3:3/0/terrains_peering_bit/bottom_right_corner = 0
-3:3/0/terrains_peering_bit/bottom_left_corner = 0
-3:3/0/terrains_peering_bit/top_left_corner = 0
+3:3/0/terrains_peering_bit/left_side = 0
 3:3/0/terrains_peering_bit/top_right_corner = 0
 4:3/0 = 0
 4:3/0/terrain_set = 0
-4:3/0/terrains_peering_bit/top_right_corner = 0
+4:3/0/terrain = 0
+4:3/0/terrains_peering_bit/bottom_right_corner = 0
+4:3/0/terrains_peering_bit/top_left_corner = 0
 5:3/0 = 0
 5:3/0/terrain_set = 0
+5:3/0/terrain = 0
+5:3/0/terrains_peering_bit/bottom_right_corner = 0
+5:3/0/terrains_peering_bit/bottom_left_corner = 0
 5:3/0/terrains_peering_bit/top_left_corner = 0
+5:3/0/terrains_peering_bit/top_right_corner = 0
 6:3/0 = 0
 6:3/0/terrain_set = 0
-6:3/0/terrains_peering_bit/bottom_left_corner = 0
 6:3/0/terrains_peering_bit/top_right_corner = 0
 7:3/0 = 0
 7:3/0/terrain_set = 0
-7:3/0/terrains_peering_bit/bottom_right_corner = 0
 7:3/0/terrains_peering_bit/top_left_corner = 0
 0:4/0 = 0
 0:4/0/terrain_set = 0
 0:4/0/terrains_peering_bit/bottom_right_corner = 0
-0:4/0/terrains_peering_bit/bottom_left_corner = 0
+0:4/0/terrains_peering_bit/top_left_corner = 0
 1:4/0 = 0
 1:4/0/terrain_set = 0
 1:4/0/terrains_peering_bit/bottom_left_corner = 0
-1:4/0/terrains_peering_bit/top_left_corner = 0
+1:4/0/terrains_peering_bit/top_right_corner = 0
 2:4/0 = 0
 2:4/0/terrain_set = 0
 2:4/0/terrains_peering_bit/bottom_right_corner = 0
 2:4/0/terrains_peering_bit/bottom_left_corner = 0
-2:4/0/terrains_peering_bit/top_left_corner = 0
 3:4/0 = 0
 3:4/0/terrain_set = 0
 3:4/0/terrains_peering_bit/bottom_left_corner = 0
 3:4/0/terrains_peering_bit/top_left_corner = 0
-3:4/0/terrains_peering_bit/top_right_corner = 0
 4:4/0 = 0
 4:4/0/terrain_set = 0
-4:4/0/terrain = 0
 4:4/0/terrains_peering_bit/bottom_right_corner = 0
 4:4/0/terrains_peering_bit/bottom_left_corner = 0
-4:4/0/terrains_peering_bit/top_side = 0
+4:4/0/terrains_peering_bit/top_left_corner = 0
 5:4/0 = 0
 5:4/0/terrain_set = 0
-5:4/0/terrain = 0
-5:4/0/terrains_peering_bit/right_side = 0
 5:4/0/terrains_peering_bit/bottom_left_corner = 0
 5:4/0/terrains_peering_bit/top_left_corner = 0
+5:4/0/terrains_peering_bit/top_right_corner = 0
 0:5/0 = 0
 0:5/0/terrain_set = 0
-0:5/0/terrains_peering_bit/top_left_corner = 0
+0:5/0/terrains_peering_bit/bottom_left_corner = 0
 0:5/0/terrains_peering_bit/top_right_corner = 0
 1:5/0 = 0
 1:5/0/terrain_set = 0
 1:5/0/terrains_peering_bit/bottom_right_corner = 0
-1:5/0/terrains_peering_bit/top_right_corner = 0
+1:5/0/terrains_peering_bit/top_left_corner = 0
 2:5/0 = 0
 2:5/0/terrain_set = 0
-2:5/0/terrains_peering_bit/bottom_right_corner = 0
 2:5/0/terrains_peering_bit/top_left_corner = 0
 2:5/0/terrains_peering_bit/top_right_corner = 0
 3:5/0 = 0
 3:5/0/terrain_set = 0
 3:5/0/terrains_peering_bit/bottom_right_corner = 0
-3:5/0/terrains_peering_bit/bottom_left_corner = 0
 3:5/0/terrains_peering_bit/top_right_corner = 0
 4:5/0 = 0
 4:5/0/terrain_set = 0
-4:5/0/terrain = 0
-4:5/0/terrains_peering_bit/bottom_side = 0
+4:5/0/terrains_peering_bit/bottom_right_corner = 0
 4:5/0/terrains_peering_bit/top_left_corner = 0
 4:5/0/terrains_peering_bit/top_right_corner = 0
 5:5/0 = 0
 5:5/0/terrain_set = 0
-5:5/0/terrain = 0
 5:5/0/terrains_peering_bit/bottom_right_corner = 0
-5:5/0/terrains_peering_bit/left_side = 0
+5:5/0/terrains_peering_bit/bottom_left_corner = 0
 5:5/0/terrains_peering_bit/top_right_corner = 0
+6:4/0 = 0
+6:4/0/terrain_set = 0
+6:4/0/terrain = 0
+6:4/0/terrains_peering_bit/bottom_right_corner = 0
+6:4/0/terrains_peering_bit/bottom_left_corner = 0
+6:4/0/terrains_peering_bit/top_side = 0
+6:5/0 = 0
+6:5/0/terrain_set = 0
+6:5/0/terrain = 0
+6:5/0/terrains_peering_bit/bottom_side = 0
+6:5/0/terrains_peering_bit/top_left_corner = 0
+6:5/0/terrains_peering_bit/top_right_corner = 0
+7:4/0 = 0
+7:4/0/terrain_set = 0
+7:4/0/terrain = 0
+7:4/0/terrains_peering_bit/right_side = 0
+7:4/0/terrains_peering_bit/bottom_left_corner = 0
+7:4/0/terrains_peering_bit/top_left_corner = 0
+7:5/0 = 0
+7:5/0/terrain_set = 0
+7:5/0/terrain = 0
+7:5/0/terrains_peering_bit/bottom_right_corner = 0
+7:5/0/terrains_peering_bit/left_side = 0
+7:5/0/terrains_peering_bit/top_right_corner = 0
 
 [sub_resource type="TileSet" id="TileSet_3fvlc"]
 tile_size = Vector2i(32, 32)
@@ -267,12 +287,12 @@ region = Rect2(0, 0, 16, 16)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e4sjf"]
 texture = SubResource("AtlasTexture_y3u8x")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yscmc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3u7q"]
 atlas = ExtResource("7_fc3nr")
-region = Rect2(0, 32, 16, 16)
+region = Rect2(0, 48, 16, 16)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ggmsn"]
-texture = SubResource("AtlasTexture_yscmc")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vsaal"]
+texture = SubResource("AtlasTexture_b3u7q")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0lc7f"]
 
@@ -285,12 +305,12 @@ region = Rect2(16, 0, 16, 16)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4bgm3"]
 texture = SubResource("AtlasTexture_leo27")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lreh1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3k0m"]
 atlas = ExtResource("7_fc3nr")
-region = Rect2(16, 32, 16, 16)
+region = Rect2(16, 48, 16, 16)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p0tpp"]
-texture = SubResource("AtlasTexture_lreh1")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wqk81"]
+texture = SubResource("AtlasTexture_i3k0m")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o4hmo"]
 
@@ -303,96 +323,110 @@ region = Rect2(32, 0, 16, 16)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_30nb7"]
 texture = SubResource("AtlasTexture_geo8s")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h6sd3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hsgp"]
 atlas = ExtResource("7_fc3nr")
-region = Rect2(32, 32, 16, 16)
+region = Rect2(32, 48, 16, 16)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_30y4x"]
-texture = SubResource("AtlasTexture_h6sd3")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bojfj"]
+texture = SubResource("AtlasTexture_1hsgp")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hi1v4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jbnmc"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dg86q"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l6c2"]
 atlas = ExtResource("7_fc3nr")
-region = Rect2(48, 0, 16, 16)
+region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_46q0m"]
-texture = SubResource("AtlasTexture_dg86q")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8dn1c"]
+texture = SubResource("AtlasTexture_7l6c2")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w685j"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ukag"]
 atlas = ExtResource("7_fc3nr")
-region = Rect2(48, 32, 16, 16)
+region = Rect2(0, 64, 16, 16)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vs8tk"]
-texture = SubResource("AtlasTexture_w685j")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tx6ok"]
+texture = SubResource("AtlasTexture_3ukag")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bpfej"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wxsev"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yj6w8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cbja"]
 atlas = ExtResource("7_fc3nr")
-region = Rect2(0, 16, 16, 16)
+region = Rect2(16, 16, 16, 16)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_08cbh"]
-texture = SubResource("AtlasTexture_yj6w8")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xp1eh"]
+texture = SubResource("AtlasTexture_6cbja")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5b47q"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hf75p"]
 atlas = ExtResource("7_fc3nr")
-region = Rect2(0, 48, 16, 16)
+region = Rect2(16, 64, 16, 16)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3fcnn"]
-texture = SubResource("AtlasTexture_5b47q")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h0wcr"]
+texture = SubResource("AtlasTexture_hf75p")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gpxju"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtgt2"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gslog"]
-atlas = ExtResource("7_fc3nr")
-region = Rect2(16, 16, 16, 16)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y3a6c"]
-texture = SubResource("AtlasTexture_gslog")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qeol1"]
-atlas = ExtResource("7_fc3nr")
-region = Rect2(16, 48, 16, 16)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qb8hu"]
-texture = SubResource("AtlasTexture_qeol1")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ocyok"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jcx84"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k70rq"]
 atlas = ExtResource("7_fc3nr")
 region = Rect2(32, 16, 16, 16)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ky456"]
-texture = SubResource("AtlasTexture_jcx84")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cmxhu"]
+texture = SubResource("AtlasTexture_k70rq")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m5o5k"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0tmo"]
 atlas = ExtResource("7_fc3nr")
-region = Rect2(32, 48, 16, 16)
+region = Rect2(32, 64, 16, 16)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y8r3c"]
-texture = SubResource("AtlasTexture_m5o5k")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_apbxo"]
+texture = SubResource("AtlasTexture_u0tmo")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tewiy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsvyv"]
 atlas = ExtResource("7_fc3nr")
-region = Rect2(48, 16, 16, 16)
+region = Rect2(0, 32, 16, 16)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_73ffr"]
-texture = SubResource("AtlasTexture_tewiy")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4qem8"]
+texture = SubResource("AtlasTexture_wsvyv")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dd45u"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hw87s"]
 atlas = ExtResource("7_fc3nr")
-region = Rect2(48, 48, 16, 16)
+region = Rect2(0, 80, 16, 16)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hqcpr"]
-texture = SubResource("AtlasTexture_dd45u")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t43uo"]
+texture = SubResource("AtlasTexture_hw87s")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ocyok"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v34uv"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y35g8"]
+texture = SubResource("AtlasTexture_v34uv")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjt6a"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(16, 80, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cjh8s"]
+texture = SubResource("AtlasTexture_wjt6a")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ae2p1"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_37wh2"]
+texture = SubResource("AtlasTexture_ae2p1")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p80u6"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(32, 80, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bf8ax"]
+texture = SubResource("AtlasTexture_p80u6")
 
 [node name="ShipEditor" type="Node2D"]
 script = ExtResource("1_fynho")
@@ -856,8 +890,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -184.0
-offset_top = -264.0
+offset_left = -150.0
+offset_top = -272.0
 offset_bottom = -96.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -889,15 +923,15 @@ theme_override_constants/margin_top = 8
 
 [node name="GridContainer" type="GridContainer" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
-columns = 4
+columns = 3
 
 [node name="Straightaway" type="Button" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 material = SubResource("ShaderMaterial_phtnr")
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_e4sjf")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ggmsn")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_ggmsn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_vsaal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vsaal")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_0lc7f")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_fexik")
 toggle_mode = true
@@ -917,8 +951,8 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme_type_variation = &"SmallButton"
 theme_override_styles/normal = SubResource("StyleBoxTexture_4bgm3")
-theme_override_styles/hover = SubResource("StyleBoxTexture_p0tpp")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_p0tpp")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wqk81")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wqk81")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_o4hmo")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_sgvg0")
 toggle_mode = true
@@ -938,8 +972,8 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme_type_variation = &"SmallButton"
 theme_override_styles/normal = SubResource("StyleBoxTexture_30nb7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_30y4x")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_30y4x")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bojfj")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_bojfj")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_hi1v4")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jbnmc")
 toggle_mode = true
@@ -958,9 +992,9 @@ material = SubResource("ShaderMaterial_phtnr")
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme_type_variation = &"SmallButton"
-theme_override_styles/normal = SubResource("StyleBoxTexture_46q0m")
-theme_override_styles/hover = SubResource("StyleBoxTexture_vs8tk")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_vs8tk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_8dn1c")
+theme_override_styles/hover = SubResource("StyleBoxTexture_tx6ok")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_tx6ok")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_bpfej")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wxsev")
 toggle_mode = true
@@ -979,9 +1013,9 @@ material = SubResource("ShaderMaterial_phtnr")
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme_type_variation = &"SmallButton"
-theme_override_styles/normal = SubResource("StyleBoxTexture_08cbh")
-theme_override_styles/hover = SubResource("StyleBoxTexture_3fcnn")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_3fcnn")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xp1eh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_h0wcr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h0wcr")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_gpxju")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_rtgt2")
 toggle_mode = true
@@ -995,14 +1029,35 @@ offset_right = 32.0
 offset_bottom = 32.0
 texture = ExtResource("8_eyrv8")
 
+[node name="HalfElbowMirrored" type="Button" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_cmxhu")
+theme_override_styles/hover = SubResource("StyleBoxTexture_apbxo")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_apbxo")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gpxju")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rtgt2")
+toggle_mode = true
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/HalfElbowMirrored"]
+visible = false
+show_behind_parent = true
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("8_eyrv8")
+
 [node name="Diagonal" type="Button" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 material = SubResource("ShaderMaterial_phtnr")
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme_type_variation = &"SmallButton"
-theme_override_styles/normal = SubResource("StyleBoxTexture_y3a6c")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qb8hu")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_qb8hu")
+theme_override_styles/normal = SubResource("StyleBoxTexture_4qem8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_t43uo")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_t43uo")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_ocyok")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pa3ic")
 toggle_mode = true
@@ -1021,9 +1076,9 @@ material = SubResource("ShaderMaterial_phtnr")
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme_type_variation = &"SmallButton"
-theme_override_styles/normal = SubResource("StyleBoxTexture_ky456")
-theme_override_styles/hover = SubResource("StyleBoxTexture_y8r3c")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_y8r3c")
+theme_override_styles/normal = SubResource("StyleBoxTexture_y35g8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cjh8s")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cjh8s")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_n0f5e")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pa3ic")
 toggle_mode = true
@@ -1042,9 +1097,9 @@ material = SubResource("ShaderMaterial_phtnr")
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme_type_variation = &"SmallButton"
-theme_override_styles/normal = SubResource("StyleBoxTexture_73ffr")
-theme_override_styles/hover = SubResource("StyleBoxTexture_hqcpr")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_hqcpr")
+theme_override_styles/normal = SubResource("StyleBoxTexture_37wh2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bf8ax")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_bf8ax")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_n0f5e")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pa3ic")
 toggle_mode = true
@@ -1072,6 +1127,7 @@ texture = ExtResource("8_eyrv8")
 [connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/T-Intersect" to="." method="_on_style_picker_button_toggled" binds= [2]]
 [connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Fourway" to="." method="_on_style_picker_button_toggled" binds= [3]]
 [connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/HalfElbow" to="." method="_on_style_picker_button_toggled" binds= [4]]
-[connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Diagonal" to="." method="_on_style_picker_button_toggled" binds= [5]]
-[connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/DiagonalFourway" to="." method="_on_style_picker_button_toggled" binds= [6]]
-[connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Y-Intersect" to="." method="_on_style_picker_button_toggled" binds= [7]]
+[connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/HalfElbowMirrored" to="." method="_on_style_picker_button_toggled" binds= [5]]
+[connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Diagonal" to="." method="_on_style_picker_button_toggled" binds= [6]]
+[connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/DiagonalFourway" to="." method="_on_style_picker_button_toggled" binds= [7]]
+[connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Y-Intersect" to="." method="_on_style_picker_button_toggled" binds= [8]]
