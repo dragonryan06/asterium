@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://clh87jkwnk5nl"]
+[gd_scene load_steps=63 format=3 uid="uid://clh87jkwnk5nl"]
 
 [ext_resource type="Script" path="res://scenes/ship_editor.gd" id="1_fynho"]
 [ext_resource type="Texture2D" uid="uid://8rb6pobwpp46" path="res://core/ships/assets/beamatlas.png" id="2_6tcb6"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cefj0aj8uwijq" path="res://debug/frame_counter.tscn" id="4_baafq"]
 [ext_resource type="Shader" path="res://ui/assets/selective_color_invert.gdshader" id="5_wvk00"]
 [ext_resource type="Texture2D" uid="uid://du4m3plp6c26m" path="res://ui/assets/hotbarbuttons.png" id="6_drec6"]
+[ext_resource type="Texture2D" uid="uid://dryr35et58hxy" path="res://ui/assets/selection_style_icons.png" id="7_fc3nr"]
+[ext_resource type="Texture2D" uid="uid://b2rvuscsui7mn" path="res://ui/assets/selected_box.png" id="8_eyrv8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wk3kg"]
 texture = ExtResource("2_6tcb6")
@@ -71,7 +73,6 @@ texture_region_size = Vector2i(32, 32)
 4:1/0 = 0
 4:1/0/terrain_set = 0
 4:1/0/terrain = 0
-4:1/0/terrains_peering_bit/right_side = 0
 4:1/0/terrains_peering_bit/bottom_side = 0
 4:1/0/terrains_peering_bit/left_side = 0
 5:1/0 = 0
@@ -255,6 +256,144 @@ texture = SubResource("AtlasTexture_dr1e8")
 atlas = ExtResource("2_6tcb6")
 region = Rect2(0, 0, 32, 32)
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_y0dle"]
+color = Color(0.862745, 0.862745, 0.862745, 1)
+grow_end = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3u8x"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e4sjf"]
+texture = SubResource("AtlasTexture_y3u8x")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yscmc"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ggmsn"]
+texture = SubResource("AtlasTexture_yscmc")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0lc7f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fexik"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_leo27"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4bgm3"]
+texture = SubResource("AtlasTexture_leo27")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lreh1"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p0tpp"]
+texture = SubResource("AtlasTexture_lreh1")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o4hmo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sgvg0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_geo8s"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_30nb7"]
+texture = SubResource("AtlasTexture_geo8s")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6sd3"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_30y4x"]
+texture = SubResource("AtlasTexture_h6sd3")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hi1v4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jbnmc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg86q"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_46q0m"]
+texture = SubResource("AtlasTexture_dg86q")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w685j"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vs8tk"]
+texture = SubResource("AtlasTexture_w685j")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bpfej"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wxsev"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yj6w8"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_08cbh"]
+texture = SubResource("AtlasTexture_yj6w8")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5b47q"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3fcnn"]
+texture = SubResource("AtlasTexture_5b47q")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gpxju"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtgt2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gslog"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y3a6c"]
+texture = SubResource("AtlasTexture_gslog")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qeol1"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qb8hu"]
+texture = SubResource("AtlasTexture_qeol1")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ocyok"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcx84"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ky456"]
+texture = SubResource("AtlasTexture_jcx84")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5o5k"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y8r3c"]
+texture = SubResource("AtlasTexture_m5o5k")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tewiy"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_73ffr"]
+texture = SubResource("AtlasTexture_tewiy")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dd45u"]
+atlas = ExtResource("7_fc3nr")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hqcpr"]
+texture = SubResource("AtlasTexture_dd45u")
+
 [node name="ShipEditor" type="Node2D"]
 script = ExtResource("1_fynho")
 
@@ -280,6 +419,11 @@ metadata/_edit_use_anchors_ = true
 [node name="TileMap" type="TileMap" parent="Ship"]
 tile_set = SubResource("TileSet_3fvlc")
 format = 2
+layer_0/name = "Base"
+layer_1/name = "Preview"
+layer_1/modulate = Color(0, 1, 0, 1)
+layer_1/z_index = 100
+layer_1/tile_data = PackedInt32Array()
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -320,7 +464,7 @@ theme_override_constants/separation = 16
 
 [node name="Button" type="Button" parent="HUD/MarginContainer/Hotbar"]
 material = SubResource("ShaderMaterial_phtnr")
-custom_minimum_size = Vector2(72, 72)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_type_variation = &"SmallButton"
 theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
@@ -337,10 +481,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -36.0
-offset_top = -36.0
-offset_right = 36.0
-offset_bottom = 36.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_mjkx1")
@@ -357,12 +501,12 @@ offset_right = 20.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "[1]"
+text = "1"
 horizontal_alignment = 1
 
 [node name="Button2" type="Button" parent="HUD/MarginContainer/Hotbar"]
 material = SubResource("ShaderMaterial_phtnr")
-custom_minimum_size = Vector2(72, 72)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_type_variation = &"SmallButton"
 theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
@@ -379,10 +523,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -36.0
-offset_top = -36.0
-offset_right = 36.0
-offset_bottom = 36.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_mjkx1")
@@ -399,12 +543,12 @@ offset_right = 20.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "[2]"
+text = "2"
 horizontal_alignment = 1
 
 [node name="Button3" type="Button" parent="HUD/MarginContainer/Hotbar"]
 material = SubResource("ShaderMaterial_phtnr")
-custom_minimum_size = Vector2(72, 72)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_type_variation = &"SmallButton"
 theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
@@ -421,10 +565,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -36.0
-offset_top = -36.0
-offset_right = 36.0
-offset_bottom = 36.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_mjkx1")
@@ -441,12 +585,12 @@ offset_right = 20.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "[3]"
+text = "3"
 horizontal_alignment = 1
 
 [node name="Button4" type="Button" parent="HUD/MarginContainer/Hotbar"]
 material = SubResource("ShaderMaterial_phtnr")
-custom_minimum_size = Vector2(72, 72)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_type_variation = &"SmallButton"
 theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
@@ -463,10 +607,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -36.0
-offset_top = -36.0
-offset_right = 36.0
-offset_bottom = 36.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_mjkx1")
@@ -483,12 +627,12 @@ offset_right = 20.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "[4]"
+text = "4"
 horizontal_alignment = 1
 
 [node name="Button5" type="Button" parent="HUD/MarginContainer/Hotbar"]
 material = SubResource("ShaderMaterial_phtnr")
-custom_minimum_size = Vector2(72, 72)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_type_variation = &"SmallButton"
 theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
@@ -505,10 +649,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -36.0
-offset_top = -36.0
-offset_right = 36.0
-offset_bottom = 36.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_mjkx1")
@@ -525,12 +669,12 @@ offset_right = 20.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "[5]"
+text = "5"
 horizontal_alignment = 1
 
 [node name="Button6" type="Button" parent="HUD/MarginContainer/Hotbar"]
 material = SubResource("ShaderMaterial_phtnr")
-custom_minimum_size = Vector2(72, 72)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_type_variation = &"SmallButton"
 theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
@@ -547,10 +691,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -36.0
-offset_top = -36.0
-offset_right = 36.0
-offset_bottom = 36.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_mjkx1")
@@ -567,12 +711,12 @@ offset_right = 20.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "[6]"
+text = "6"
 horizontal_alignment = 1
 
 [node name="Button7" type="Button" parent="HUD/MarginContainer/Hotbar"]
 material = SubResource("ShaderMaterial_phtnr")
-custom_minimum_size = Vector2(72, 72)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_type_variation = &"SmallButton"
 theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
@@ -589,10 +733,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -36.0
-offset_top = -36.0
-offset_right = 36.0
-offset_bottom = 36.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_mjkx1")
@@ -609,12 +753,12 @@ offset_right = 20.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "[7]"
+text = "7"
 horizontal_alignment = 1
 
 [node name="Button8" type="Button" parent="HUD/MarginContainer/Hotbar"]
 material = SubResource("ShaderMaterial_phtnr")
-custom_minimum_size = Vector2(72, 72)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_type_variation = &"SmallButton"
 theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
@@ -631,10 +775,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -36.0
-offset_top = -36.0
-offset_right = 36.0
-offset_bottom = 36.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_mjkx1")
@@ -651,12 +795,12 @@ offset_right = 20.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "[8]"
+text = "8"
 horizontal_alignment = 1
 
 [node name="Button9" type="Button" parent="HUD/MarginContainer/Hotbar"]
 material = SubResource("ShaderMaterial_phtnr")
-custom_minimum_size = Vector2(72, 72)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_type_variation = &"SmallButton"
 theme_override_styles/normal = SubResource("StyleBoxTexture_pkoqj")
@@ -673,10 +817,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -36.0
-offset_top = -36.0
-offset_right = 36.0
-offset_bottom = 36.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_mjkx1")
@@ -693,8 +837,226 @@ offset_right = 20.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "[9]"
+text = "9"
 horizontal_alignment = 1
+
+[node name="ActionLog" type="VBoxContainer" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 92.0
+grow_vertical = 0
+alignment = 2
+
+[node name="StylePicker" type="PanelContainer" parent="HUD"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -184.0
+offset_top = -264.0
+offset_bottom = -96.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/StylePicker"]
+layout_mode = 2
+theme_override_constants/margin_left = -12
+theme_override_constants/margin_top = -20
+theme_override_constants/margin_right = -8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/StylePicker/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="Label" type="Label" parent="HUD/StylePicker/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "SELECTED_ITEM"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="HUD/StylePicker/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+theme_override_styles/separator = SubResource("StyleBoxLine_y0dle")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/StylePicker/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+
+[node name="GridContainer" type="GridContainer" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="Straightaway" type="Button" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_e4sjf")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ggmsn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ggmsn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_0lc7f")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fexik")
+toggle_mode = true
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Straightaway"]
+visible = false
+show_behind_parent = true
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("8_eyrv8")
+
+[node name="Elbow" type="Button" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_4bgm3")
+theme_override_styles/hover = SubResource("StyleBoxTexture_p0tpp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_p0tpp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_o4hmo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sgvg0")
+toggle_mode = true
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Elbow"]
+visible = false
+show_behind_parent = true
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("8_eyrv8")
+
+[node name="T-Intersect" type="Button" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_30nb7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_30y4x")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_30y4x")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hi1v4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jbnmc")
+toggle_mode = true
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/T-Intersect"]
+visible = false
+show_behind_parent = true
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("8_eyrv8")
+
+[node name="Fourway" type="Button" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_46q0m")
+theme_override_styles/hover = SubResource("StyleBoxTexture_vs8tk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vs8tk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_bpfej")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wxsev")
+toggle_mode = true
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Fourway"]
+visible = false
+show_behind_parent = true
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("8_eyrv8")
+
+[node name="HalfElbow" type="Button" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_08cbh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3fcnn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3fcnn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gpxju")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rtgt2")
+toggle_mode = true
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/HalfElbow"]
+visible = false
+show_behind_parent = true
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("8_eyrv8")
+
+[node name="Diagonal" type="Button" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_y3a6c")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qb8hu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qb8hu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ocyok")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pa3ic")
+toggle_mode = true
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Diagonal"]
+visible = false
+show_behind_parent = true
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("8_eyrv8")
+
+[node name="DiagonalFourway" type="Button" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_ky456")
+theme_override_styles/hover = SubResource("StyleBoxTexture_y8r3c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_y8r3c")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n0f5e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pa3ic")
+toggle_mode = true
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/DiagonalFourway"]
+visible = false
+show_behind_parent = true
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("8_eyrv8")
+
+[node name="Y-Intersect" type="Button" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+material = SubResource("ShaderMaterial_phtnr")
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_type_variation = &"SmallButton"
+theme_override_styles/normal = SubResource("StyleBoxTexture_73ffr")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hqcpr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_hqcpr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n0f5e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pa3ic")
+toggle_mode = true
+metadata/select_name = "beam"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Y-Intersect"]
+visible = false
+show_behind_parent = true
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("8_eyrv8")
 
 [connection signal="pressed" from="HUD/MarginContainer/Hotbar/Button" to="." method="_on_hotbar_button_pressed" binds= [0]]
 [connection signal="pressed" from="HUD/MarginContainer/Hotbar/Button2" to="." method="_on_hotbar_button_pressed" binds= [1]]
@@ -705,3 +1067,11 @@ horizontal_alignment = 1
 [connection signal="pressed" from="HUD/MarginContainer/Hotbar/Button7" to="." method="_on_hotbar_button_pressed" binds= [6]]
 [connection signal="pressed" from="HUD/MarginContainer/Hotbar/Button8" to="." method="_on_hotbar_button_pressed" binds= [7]]
 [connection signal="pressed" from="HUD/MarginContainer/Hotbar/Button9" to="." method="_on_hotbar_button_pressed" binds= [8]]
+[connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Straightaway" to="." method="_on_style_picker_button_toggled" binds= [0]]
+[connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Elbow" to="." method="_on_style_picker_button_toggled" binds= [1]]
+[connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/T-Intersect" to="." method="_on_style_picker_button_toggled" binds= [2]]
+[connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Fourway" to="." method="_on_style_picker_button_toggled" binds= [3]]
+[connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/HalfElbow" to="." method="_on_style_picker_button_toggled" binds= [4]]
+[connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Diagonal" to="." method="_on_style_picker_button_toggled" binds= [5]]
+[connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/DiagonalFourway" to="." method="_on_style_picker_button_toggled" binds= [6]]
+[connection signal="toggled" from="HUD/StylePicker/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Y-Intersect" to="." method="_on_style_picker_button_toggled" binds= [7]]
