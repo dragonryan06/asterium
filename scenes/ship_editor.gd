@@ -1,6 +1,7 @@
 extends Node2D
 
-const hotbar = [KEY_1,KEY_2,KEY_3,KEY_4,KEY_5,KEY_6,KEY_7,KEY_8,KEY_9]
+const ACTION_HISTORY_MAX = 50
+const HOTBAR = [KEY_1,KEY_2,KEY_3,KEY_4,KEY_5,KEY_6,KEY_7,KEY_8,KEY_9]
 
 enum STYLES {
 	STRAIGHTAWAY,
@@ -53,17 +54,18 @@ var style_rotation_idx = 0 :
 		if selected=="":
 			new = 0
 			return
-		var len = len(STYLEMAP[selected][style_selection])
+		var length = len(STYLEMAP[selected][style_selection])
 		if new<0:
-			new = len+new
-		elif new>len-1:
-			new = abs(new-len)
+			new = length+new
+		elif new>length-1:
+			new = abs(new-length)
 		var map = $Ship/TileMap
 		map.clear_layer(1)
 		map.set_cell(1,map.local_to_map(get_global_mouse_position()),0,STYLEMAP[selected][style_selection][new])
 		style_rotation_idx = new
 
 var action_history = []
+# index of latest action
 var action_idx = -1
 
 var selected = ""
@@ -73,18 +75,19 @@ var drawing = false
 var erasing = false
 
 #func _process(delta):
-	#print(str(action_history)+"     "+str(action_idx))
+	#print(str(action_history))
+	#print(str(action_idx))
 
 func store_action(what:Dictionary) -> void:
-	if action_idx<-1:
+	if action_idx<len(action_history)-1:
 		# wipe future actions if a new one occurs
-		for a in range(len(action_history)+action_idx+1,len(action_history)):
-			if a>=0:
-				action_history.remove_at(len(action_history)+action_idx+1)
-			else:
-				action_history.clear()
-		action_idx = -1
+		action_history = action_history.slice(0,action_idx)
+		action_idx = len(action_history)-1
+	if len(action_history)>=ACTION_HISTORY_MAX:
+		action_history.pop_front()
+		action_idx = ACTION_HISTORY_MAX-2
 	action_history.append(what)
+	action_idx+=1
 
 func log_action(text:String) -> void:
 	var label = Label.new()
@@ -110,8 +113,8 @@ func log_action(text:String) -> void:
 
 func _input(event:InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
-		if event.keycode in hotbar:
-			_on_hotbar_button_pressed(hotbar.find(event.keycode))
+		if event.keycode in HOTBAR:
+			_on_hotbar_button_pressed(HOTBAR.find(event.keycode))
 		elif event.is_action_pressed("editor_cycle_selected_style_reverse"):
 			# kinda annoying but -1 channel means something different, we'll fix this outside the setter
 			if style_selection==0:
@@ -126,14 +129,35 @@ func _input(event:InputEvent) -> void:
 			style_rotation_idx-=1
 		elif event.is_action_pressed("editor_rotate_selected_style"):
 			style_rotation_idx+=1
-		elif event.is_action_pressed("editor_undo_previous_action"):
-			if abs(action_idx-1)<=len(action_history)+1:
-				action_idx-=1
-		elif event.is_action_pressed("editor_redo_following_action"):
-			if action_idx<-1:
-				action_idx+=1
-		elif event.keycode == KEY_SPACE:
-			store_action({"hey someone pressed":"the spacebar lol"})
+		elif event.is_action_pressed("editor_undo_previous_action") and action_idx>-1:
+			var map = $Ship/TileMap
+			action_idx-=1
+			if not action_history.is_empty():
+				match action_history[action_idx+1]["type"]:
+					"path_paint","place":
+						log_action("Undo: "+action_history[action_idx+1]["log"]+str(len(action_history[action_idx+1]["positions"])))
+						for i in range(len(action_history[action_idx+1]["positions"])):
+							map.set_cell(0,action_history[action_idx+1]["positions"][i],-1)
+						for i in range(len(action_history[action_idx+1]["replaced"])):
+							map.set_cell(0,action_history[action_idx+1]["replaced"][i],0,action_history[action_idx+1]["replaced_atlas"][i])
+					"erase":
+						log_action("Undo: "+action_history[action_idx+1]["log"]+str(len(action_history[action_idx+1]["positions"])))
+						for i in range(len(action_history[action_idx+1]["positions"])):
+							map.set_cell(0,action_history[action_idx+1]["positions"][i],0,action_history[action_idx+1]["atlas_coords"][i])
+		elif event.is_action_pressed("editor_redo_following_action") and action_idx<len(action_history)-1:
+			var map = $Ship/TileMap
+			action_idx+=1
+			if not action_history.is_empty():
+				match action_history[action_idx]["type"]:
+					"path_paint","place":
+						log_action("Redo: "+action_history[action_idx]["log"]+str(len(action_history[action_idx]["positions"])))
+						for i in range(len(action_history[action_idx]["positions"])):
+							map.set_cell(0,action_history[action_idx]["positions"][i],0,action_history[action_idx]["atlas_coords"][i])
+						map.set_cells_terrain_connect(0,action_history[action_idx]["replaced"],0,0)
+					"erase":
+						log_action("Redo: "+action_history[action_idx]["log"]+str(len(action_history[action_idx]["positions"])))
+						for i in range(len(action_history[action_idx]["positions"])):
+							map.set_cell(0,action_history[action_idx]["positions"][i],-1)
 
 func _unhandled_input(event:InputEvent) -> void:
 	var map = $Ship/TileMap
@@ -149,6 +173,16 @@ func _unhandled_input(event:InputEvent) -> void:
 			MOUSE_BUTTON_LEFT when not event.pressed and style_selection == -1:
 				# stop path-painting
 				log_action("Path paint x"+str(len(map.get_used_cells(1))))
+				var atlas_coords = []
+				# need to keep track of tiles that have been overwritten
+				var replaced_pos = []
+				var replaced_atlas = []
+				for p in map.get_used_cells(1):
+					atlas_coords.append(map.get_cell_atlas_coords(1,p))
+					if p in map.get_used_cells(0):
+						replaced_pos.append(p)
+						replaced_atlas.append(map.get_cell_atlas_coords(0,p))
+				store_action({"type":"path_paint","log":"Path paint x","positions":map.get_used_cells(1),"atlas_coords":atlas_coords,"replaced":replaced_pos,"replaced_atlas":replaced_atlas})
 				map.clear_layer(1)
 				for c in drag_path:
 					map.set_cell(0,c,0,Vector2i(0,0))
@@ -165,6 +199,16 @@ func _unhandled_input(event:InputEvent) -> void:
 			MOUSE_BUTTON_LEFT when not event.pressed and style_selection != -1:
 				# stop placing
 				log_action("Place x"+str(len(map.get_used_cells(1))))
+				var atlas_coords = []
+				# need to keep track of tiles that have been overwritten
+				var replaced_pos = []
+				var replaced_atlas = []
+				for p in map.get_used_cells(1):
+					atlas_coords.append(map.get_cell_atlas_coords(1,p))
+					if p in map.get_used_cells(0):
+						replaced_pos.append(p)
+						replaced_atlas.append(map.get_cell_atlas_coords(0,p))
+				store_action({"type":"place","log":"Place x","positions":map.get_used_cells(1),"atlas_coords":atlas_coords,"replaced":replaced_pos,"replaced_atlas":replaced_atlas})
 				for c in drag_path:
 					map.set_cell(0,c,0,map.get_cell_atlas_coords(1,c))
 				map.clear_layer(1)
@@ -181,7 +225,13 @@ func _unhandled_input(event:InputEvent) -> void:
 				erasing = true
 			MOUSE_BUTTON_RIGHT when not event.pressed:
 				# stop erasing
+				if len(map.get_used_cells(1)) == 0:
+					return
 				log_action("Erase x"+str(len(map.get_used_cells(1))))
+				var atlas_coords = []
+				for p in map.get_used_cells(1):
+					atlas_coords.append(map.get_cell_atlas_coords(1,p))
+				store_action({"type":"erase","log":"Erase x","positions":map.get_used_cells(1),"atlas_coords":atlas_coords})
 				for c in map.get_used_cells(1):
 					map.set_cell(0,c,-1)
 				map.clear_layer(1)
