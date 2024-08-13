@@ -37,7 +37,7 @@ var style_selection = -1 :
 			style_selection = new
 			if style_selection!=-1:
 				style_rotation_idx = 0
-				var map = $Ship/TileMap
+				var map = $ShipAssembly/TileMap
 				map.set_layer_modulate(1,Color(0.0,1.0,0.0))
 				map.clear_layer(1)
 				map.set_cell(1,map.local_to_map(get_global_mouse_position()),0,STYLEMAP[selected][style_selection][style_rotation_idx])
@@ -59,7 +59,7 @@ var style_rotation_idx = 0 :
 			new = length+new
 		elif new>length-1:
 			new = abs(new-length)
-		var map = $Ship/TileMap
+		var map = $ShipAssembly/TileMap
 		map.clear_layer(1)
 		map.set_cell(1,map.local_to_map(get_global_mouse_position()),0,STYLEMAP[selected][style_selection][new])
 		style_rotation_idx = new
@@ -130,7 +130,7 @@ func _input(event:InputEvent) -> void:
 		elif event.is_action_pressed("editor_rotate_selected_style"):
 			style_rotation_idx+=1
 		elif event.is_action_pressed("editor_undo_previous_action") and action_idx>-1:
-			var map = $Ship/TileMap
+			var map = $ShipAssembly/TileMap
 			action_idx-=1
 			if not action_history.is_empty():
 				match action_history[action_idx+1]["type"]:
@@ -145,7 +145,7 @@ func _input(event:InputEvent) -> void:
 						for i in range(len(action_history[action_idx+1]["positions"])):
 							map.set_cell(0,action_history[action_idx+1]["positions"][i],0,action_history[action_idx+1]["atlas_coords"][i])
 		elif event.is_action_pressed("editor_redo_following_action") and action_idx<len(action_history)-1:
-			var map = $Ship/TileMap
+			var map = $ShipAssembly/TileMap
 			action_idx+=1
 			if not action_history.is_empty():
 				match action_history[action_idx]["type"]:
@@ -160,7 +160,7 @@ func _input(event:InputEvent) -> void:
 							map.set_cell(0,action_history[action_idx]["positions"][i],-1)
 
 func _unhandled_input(event:InputEvent) -> void:
-	var map = $Ship/TileMap
+	var map = $ShipAssembly/TileMap
 	if event is InputEventMouseButton:
 		match event.button_index:
 			MOUSE_BUTTON_LEFT when event.pressed and style_selection == -1:
@@ -262,7 +262,7 @@ func _on_hotbar_button_pressed(idx:int) -> void:
 		$HUD/StylePicker.visible = false
 		style_selection = -1
 		style_rotation_idx = -1
-		$Ship/TileMap.clear_layer(1)
+		$ShipAssembly/TileMap.clear_layer(1)
 	else:
 		selected = item
 		log_action("Select: "+selected.capitalize())
@@ -279,6 +279,6 @@ func _on_style_picker_button_toggled(_state:bool,idx:int) -> void:
 		style_selection = idx
 	elif style_selection == idx:
 		style_selection = -1
-		$Ship/TileMap.clear_layer(1)
+		$ShipAssembly/TileMap.clear_layer(1)
 	else:
 		style_selection = idx

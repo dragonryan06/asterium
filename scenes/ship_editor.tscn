@@ -1,8 +1,9 @@
-[gd_scene load_steps=67 format=3 uid="uid://clh87jkwnk5nl"]
+[gd_scene load_steps=68 format=3 uid="uid://clh87jkwnk5nl"]
 
 [ext_resource type="Script" path="res://scenes/ship_editor.gd" id="1_fynho"]
 [ext_resource type="Texture2D" uid="uid://8rb6pobwpp46" path="res://core/ships/assets/beamatlas.png" id="2_6tcb6"]
 [ext_resource type="Script" path="res://scenes/rts_cam.gd" id="2_grsgj"]
+[ext_resource type="Script" path="res://core/ships/ship_assembly.gd" id="3_5fjbg"]
 [ext_resource type="PackedScene" uid="uid://cefj0aj8uwijq" path="res://debug/frame_counter.tscn" id="4_baafq"]
 [ext_resource type="Shader" path="res://ui/assets/selective_color_invert.gdshader" id="5_wvk00"]
 [ext_resource type="Texture2D" uid="uid://du4m3plp6c26m" path="res://ui/assets/hotbarbuttons.png" id="6_drec6"]
@@ -448,9 +449,10 @@ mouse_force_pass_scroll_events = false
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Ship" type="Node2D" parent="."]
+[node name="ShipAssembly" type="Node" parent="."]
+script = ExtResource("3_5fjbg")
 
-[node name="TileMap" type="TileMap" parent="Ship"]
+[node name="TileMap" type="TileMap" parent="ShipAssembly"]
 tile_set = SubResource("TileSet_3fvlc")
 format = 2
 layer_0/name = "Base"
